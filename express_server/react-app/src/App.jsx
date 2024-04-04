@@ -18,7 +18,7 @@ export default function App() {
       <BrowserRouter>
         <div className="header">
         <div className="logo">
-            <img src={web_logo} alt="" style={{ width: '10%', height: 'auto' }} /> 
+            <img src={web_logo} alt="" /> 
           </div>
           <ul>
             <li>

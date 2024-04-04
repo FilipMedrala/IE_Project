@@ -28,7 +28,7 @@ export default function FallingFood() {
       </div>
       <div className="mid">
         <div className="left">
-          <img className="img1" src="../src/assets/sun.png" alt="" />
+          <img className="img1" src="../src/assets/family.jpg" alt=""style={{ width: '100%', height: 'auto' }} />
         </div>
         <div className="right">
           <div className="title">
