@@ -4,7 +4,7 @@ export default function FallingFood() {
 
   return (
     <div>
-     <div className="header">sssssssssssssss</div>
+     <div className="header">Game</div>
     
     </div>
   );
