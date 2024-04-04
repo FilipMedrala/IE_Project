@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-export default function FGame() {
+export default function Snake() {
   const gridSize = 20; // Size of the grid
   const initialSnake = [{ x: 0, y: 0 }]; // Initial snake position
   const [snake, setSnake] = useState(initialSnake);
   const [food, setFood] = useState(generateFood());
   const [score, setScore] = useState(0);
-  const [direction, setDirection] = useState("right");
+  const [direction, setDirection] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [speed, setSpeed] = useState(150);
 

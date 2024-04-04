@@ -1,7 +1,8 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
-import FGame from "./filip_game";
+import Snake from "./Snake";
+import FallingFood from "./FallingFood";
 
 export default function App() {
   return (
@@ -9,7 +10,8 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<FGame />} />
+            {/* <Route index element={<Snake />} /> */}
+            <Route index element={<FallingFood />} />
           </Route>
         </Routes>
       </BrowserRouter>
