@@ -9,6 +9,10 @@ import pic3 from './assets/5.png'
 import pic4 from './assets/6.png'
 import pic5 from './assets/left-btn.png'
 import pic6 from './assets/right-btn.png'
+import broccoli from './assets/broccoli.png'
+import carrot from './assets/carroct.png'
+import Spanish from './assets/Spanish.png'
+import sp from './assets/sweetpotato.png'
 import { Carousel } from 'antd';
 
 
@@ -87,10 +91,65 @@ export default function FallingFood() {
               </Carousel>
             </div>
           </div>
-
+        {/* veggie part */}
         </div>
         <div className="itembox itembox2" style={{ backgroundColor: '#C6E2FF' }}>
-          page2
+        <div className="firstPageContWrap">
+            <div className="firstPageCont">
+              <div>
+                <Popover content={'People have developed several kinds of apples with different tastes.'} title="Title">
+                  <img className="icons icons0" src={broccoli} alt="" />
+                </Popover>
+              </div>
+              <div>
+                <Popover content={'2222222222222222'} title="Title">
+                  <img className="icons icons1" src={carrot} alt="" />
+                </Popover>
+              </div>
+              <div>
+                <Popover content={'2222222222222222'} title="Title">
+                  <img className="icons icons2" src={Spanish} alt="" />
+                </Popover>
+              </div>
+              <div>
+                <Popover content={'2222222222222222'} title="Title">
+                  <img className="icons icons3" src={sp} alt="" />
+                </Popover>
+              </div>
+            </div>
+          </div>
+
+
+          <div className="swiper">
+            <div className="swiperInner" >
+              <div className="leftIcon sameicon" onClick={() => { myRef?.current?.prev?.() }}>
+                <img src={pic5} alt="" />
+              </div>
+              <div className="rightIcon sameicon" onClick={() => { myRef?.current?.next?.() }}>
+                <img src={pic6} alt="" />
+              </div>
+              <Carousel dotPosition={'bottom'} ref={myRef}  >
+                <div>
+                  <div className="swiperItem" key={'1'}  >
+                    The plump, juicy blueberries glistened in the sunlight, their deep indigo hue a feast for the eyes.
+                    < br />As I bit into the ripe blueberry, a burst of sweet,
+                    < br />The plump, juicy blueberries glistened in the sunlight, their deep indigo hue a feast for the eyes.
+                    < br /> As I bit into the ripe blueberry, a burst of sweet,
+
+                  </div>
+                </div>
+                <div>
+                  <div className="swiperItem" key={'2'}  >222</div>
+                </div>
+                <div>
+                  <div className="swiperItem" key={'3'}  >333</div>
+                </div>
+                <div>
+                  <div className="swiperItem" key={'4'}  >444</div>
+                </div>
+              </Carousel>
+            </div>
+          </div>
         </div>
         <div className="itembox itembox3" style={{ backgroundColor: '#FFEC8B' }}>
           page3

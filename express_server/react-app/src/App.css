@@ -253,6 +253,9 @@ ul li {
   padding: 20px 0;
   margin: 0 auto;
 }
+
+
+/* info */
 .card-container {
   display: flex;
   justify-content: center; /* Center cards horizontally */
