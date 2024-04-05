@@ -36,7 +36,7 @@ export default function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/Journey" element={<Journey />} />
           <Route path="/Game" element={<Game />} />
-          
+
         </Routes>
         </div>
       </BrowserRouter>
