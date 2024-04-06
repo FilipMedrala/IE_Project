@@ -6,9 +6,9 @@ import './StatisticsCards.css'; // Import CSS file for styling
 
 
 const StatisticsCards = () => (
-  <header>
-    <h1>Key Statistics</h1>
-    <p>Introduction to the key Statistic</p>
+  <header className='info-page'>
+  <h1 className="header-title">Key Statistics</h1>
+<p className="header-intro">Introduction to the key Statistic</p>
     <div className="card-container">
       {/* Statistic Cards Component */}
       <div className="card">
