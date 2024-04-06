@@ -15,12 +15,40 @@ import Spanish from './assets/Spanish.png'
 import sp from './assets/sweetpotato.png'
 import { Carousel } from 'antd';
 import Quiz from "./Quiz"
+import axios from 'axios';
 
 
 export default function FallingFood() {
 
-
+  const [quizData, setQuizData] = useState({});
   const myRef = useRef(null);
+
+  useEffect(() => {
+    // Fetch data from Express server when component mounts
+    fetchQuizData();
+  }, []);
+
+  const fetchQuizData = async () => {
+    try {
+      // Make a GET request to your Express server endpoint with query parameters
+      const response = await axios.get('http://localhost:8080/quiz', {
+        params: {
+          stage1: [1, 3],
+          stage2: [2, 3],
+          stage3: [3, 3]
+        }
+      });
+      // Extract the data from the response
+      const data = response.data;
+      // Set the quiz data state variable with the retrieved data
+      setQuizData(data[0]);
+      console.log("Received data in journey: ", data);
+      console.log("Stored data in journey: ", quizData);
+    } catch (error) {
+      console.error('Error fetching quiz data:', error);
+    }
+  };
+  
   return (
     <div className="Journey">
 
@@ -132,7 +160,7 @@ export default function FallingFood() {
               <Carousel dotPosition={'bottom'} ref={myRef}  >
                 <div>
                   <div className="swiperItem" key={'1'}  >
-                    <Quiz></Quiz>
+                    <Quiz quizData={quizData}/>
                   </div>
                 </div>
                 <div>

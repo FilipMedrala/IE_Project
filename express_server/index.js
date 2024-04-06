@@ -25,53 +25,52 @@ connection.connect((err) => {
   console.log('Connected to MySQL as id ' + connection.threadId);
 });
 
-// Route to pull data from 'quiz' table
-app.get('/quiz', (req, res) => {
-  const query = 'SELECT * FROM quiz';
-  connection.query(query, (error, results, fields) => {
-    if (error) {
-      console.error('Error querying database: ' + error.stack);
-      res.status(500).send('Error querying database');
-      return;
+// Route to pull data from 'quiz' table with filtering based on stage and number of rows
+app.get('/quiz', async (req, res) => {
+  const { stage1, stage2, stage3 } = req.query;
+  try {
+    // Function to execute a SQL query and return a promise
+    const queryDatabase = (sql, params) => {
+      return new Promise((resolve, reject) => {
+        connection.query(sql, params, (error, results, fields) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(results);
+          }
+        });
+      });
+    };
+
+    // WHERE stage = ? ORDER BY RAND() LIMIT ?
+
+    // Function to fetch random rows for a given stage
+    const fetchRandomRowsForStage = async (stage, count) => {
+      const sql = 'SELECT * FROM quiz WHERE stage = ? ORDER BY RAND() LIMIT ?';
+      const rows = await queryDatabase(sql, [stage, count]);
+      return rows;
+    };
+
+    // Fetch and send data for each stage
+    const stageData = [];
+    for (const stage of [stage1, stage2, stage3]) {
+      if (stage) {
+        const randomRows = await fetchRandomRowsForStage(parseInt(stage[0]), parseInt(stage[1]));
+        stageData.push(randomRows);
+      }
     }
-    res.json(results);
-  });
+
+    // console.log(stageData)
+    res.json(stageData);
+  } catch (error) {
+    console.error('Error querying database:', error);
+    res.status(500).send('Error querying database');
+  }
 });
+
 
 // Start the server
 app.listen(port, () => {
   console.log('Server is running on port ' + port);
 });
-
-
-
-
-// const express = require('express');
-// const app = express();
-// app.use(express.json());
-// app.use(express.static('react-app/dist'));
-// const port = process.env.PORT || 8080;
-
-// app.listen(port, () => {
-//     console.log(`listening on port ${port}`)
-// })
-
-// app.get('/api/pirates/:id', (req, res) => {
-//     const id = req.params.id;
-//     const pirate = getPirate(id);
-//     if (!pirate) {
-//         res.status(404).send({ error: `Pirate ${id} not found`});
-//     }
-//     else {
-//         res.send({ data: pirate});
-//     }
-// })
-
-// function getPirate(id) {
-//     const pirates = [
-//     {id: 1, name: 'test name'}
-//     ];
-
-//     return pirates.find(p => p.id == id);
-// }
 
