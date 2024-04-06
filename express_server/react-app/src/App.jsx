@@ -5,6 +5,7 @@ import Layout from "./Layout";
 import Snake from "./Snake";
 import FallingFood from "./FallingFood";
 import Fetch from "./Fetch";
+import Quiz from "./Quiz"
 
 import Home from "./Home";
 import Info from "./Info";
@@ -31,7 +32,7 @@ export default function App() {
               <Link to="/info">Info</Link>
             </li>
             <li>
-              <Link to="/Fetch">DB Test</Link>
+              <Link to="/Quiz">Quiz</Link>
             </li>
           </ul>
         </div>
@@ -41,7 +42,7 @@ export default function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/Journey" element={<Journey />} />
           <Route path="/Game" element={<Game />} />
-          <Route path="/Fetch" element={<Fetch />} />
+          <Route path="/Quiz" element={<Quiz />} />
 
         </Routes>
         </div>
