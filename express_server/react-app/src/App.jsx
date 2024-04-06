@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Router, Link } from "react-router-dom";
 import Layout from "./Layout";
 import Snake from "./Snake";
 import FallingFood from "./FallingFood";
+import Fetch from "./Fetch";
 
 import Home from "./Home";
 import Info from "./Info";
@@ -18,7 +19,9 @@ export default function App() {
       <BrowserRouter>
         <div className="header">
         <div className="logo">
-            <img src={web_logo} alt="" /> 
+        <Link to="/">
+              <img src={web_logo} alt="Home" style={{ width: '20%', height: 'auto' }}  />
+            </Link>
           </div>
           <ul>
             <li>
@@ -27,16 +30,19 @@ export default function App() {
             <li>
               <Link to="/info">Info</Link>
             </li>
+            <li>
+              <Link to="/Fetch">DB Test</Link>
+            </li>
           </ul>
         </div>
         <div  className="content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/info" element={<Info />} />
-          <Route path="/info" element={<Info />} />
           <Route path="/Journey" element={<Journey />} />
           <Route path="/Game" element={<Game />} />
-          
+          <Route path="/Fetch" element={<Fetch />} />
+
         </Routes>
         </div>
       </BrowserRouter>
