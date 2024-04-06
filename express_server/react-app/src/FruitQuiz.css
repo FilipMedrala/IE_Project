@@ -1,0 +1,72 @@
+/* FruitQuiz.css */
+
+.container {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2em;
+  color: #00b0ff;
+  margin: 20px 0;
+}
+
+.question {
+  margin-bottom: 20px;
+  border: 2px solid #00b0ff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.question p {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.options button {
+  margin-bottom: 5px;
+  cursor: pointer;
+  padding: 0;
+  background-color: #ffffff;
+  transition: background-color 0.3s;
+  border: none;
+  outline: none;
+}
+
+.options button:hover {
+  background-color: #f0f0f0;
+}
+
+.options button.selected {
+  background-color: #f08080;
+  border: 2px solid #00b0ff;
+}
+
+.options button.selected + button {
+  background-color: #adff2f;
+  border: 2px solid #00b0ff;
+}
+
+.options img {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+}
+
+.submit-button {
+  padding: 15px 30px;
+  background-color: #00b0ff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0080ff;
+}

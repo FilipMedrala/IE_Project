@@ -14,6 +14,7 @@ import carrot from './assets/carroct.png'
 import Spanish from './assets/Spanish.png'
 import sp from './assets/sweetpotato.png'
 import { Carousel } from 'antd';
+import Quiz from "./Quiz"
 
 
 export default function FallingFood() {
@@ -131,11 +132,7 @@ export default function FallingFood() {
               <Carousel dotPosition={'bottom'} ref={myRef}  >
                 <div>
                   <div className="swiperItem" key={'1'}  >
-                    The plump, juicy blueberries glistened in the sunlight, their deep indigo hue a feast for the eyes.
-                    < br />As I bit into the ripe blueberry, a burst of sweet,
-                    < br />The plump, juicy blueberries glistened in the sunlight, their deep indigo hue a feast for the eyes.
-                    < br /> As I bit into the ripe blueberry, a burst of sweet,
-
+                    <Quiz></Quiz>
                   </div>
                 </div>
                 <div>
