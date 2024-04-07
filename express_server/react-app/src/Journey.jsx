@@ -71,7 +71,20 @@ export default function FallingFood() {
           <div className="firstPageContWrap">
             <div className="firstPageCont">
               <div>
-                <Popover content={'People have developed several kinds of apples with different tastes.'} title="Title">
+              <Popover 
+                  content={
+                    <div>
+                      <ul>
+                        <li>I give you Vitamin C to protect you from getting sick.</li>
+                        <li>I support healthy skin and gums.</li>
+                        <li>I can maintain a happy and healthy body.</li>
+                        <li>Muscle fuel! Potassium powers you up!</li>
+                        <li>I can help clean teeth a little, making me beneficial for oral health.</li>
+                      </ul>
+                    </div>
+                  } 
+                  title="Apple"
+                >
                   <img className="icons icons0" src={pic1} alt="" />
                 </Popover>
               </div>

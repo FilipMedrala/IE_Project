@@ -4,6 +4,7 @@ import { FaPerson } from "react-icons/fa6";
 import { GiFruitBowl, GiWrappedSweet, GiSodaCan } from "react-icons/gi";
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import './StatisticsCards.css'; // Import CSS file for styling
+import map from "./assets/map.png"
 
 const data = [
   { name: 'Underweight', value: 8.2 },
@@ -124,9 +125,15 @@ const StatisticsCards = () => (
           <Tooltip />
           <Legend layout="vertical" align="center" verticalAlign="top" />
         </PieChart>
-      </ResponsiveContainer>
+        </ResponsiveContainer>
+        {/* Add heading and image below the PieChart */}
+        <div style={{ marginTop: '10px', textAlign: 'center' }}>
+        <h2>Australia Obesity</h2>
+        <img src={map} alt="Australia Obesity Map" style={{ maxWidth: '60%', height: 'auto', alignContent: 'center'}} />
+      </div>
     </div>
   </div>
 );
+
 
 export default StatisticsCards;
