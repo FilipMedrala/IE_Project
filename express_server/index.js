@@ -31,7 +31,7 @@ connection.connect((err) => {
 app.get('/quiz', async (req, res) => {
   const { stage1, stage2, stage3 } = req.query;
   try {
-    // Function to execute a SQL query and return a promise
+    // Function to execute a SQL query with parameters and return a promise
     const queryDatabase = (sql, params) => {
       return new Promise((resolve, reject) => {
         connection.query(sql, params, (error, results, fields) => {
@@ -44,9 +44,7 @@ app.get('/quiz', async (req, res) => {
       });
     };
 
-    // WHERE stage = ? ORDER BY RAND() LIMIT ?
-
-    // Function to fetch random rows for a given stage
+    // Function to fetch random rows for a given stage using a parameterized query
     const fetchRandomRowsForStage = async (stage, count) => {
       const sql = 'SELECT * FROM quiz WHERE stage = ? ORDER BY RAND() LIMIT ?';
       const rows = await queryDatabase(sql, [stage, count]);
@@ -57,18 +55,27 @@ app.get('/quiz', async (req, res) => {
     const stageData = [];
     for (const stage of [stage1, stage2, stage3]) {
       if (stage) {
-        const randomRows = await fetchRandomRowsForStage(parseInt(stage[0]), parseInt(stage[1]));
-        stageData.push(randomRows);
+        // Parse the input parameters to ensure they are integers
+        const stageInt = parseInt(stage[0]);
+        const countInt = parseInt(stage[1]);
+        
+        // Check if the parsed integers are valid numbers
+        if (!isNaN(stageInt) && !isNaN(countInt)) {
+          const randomRows = await fetchRandomRowsForStage(stageInt, countInt);
+          stageData.push(randomRows);
+        } else {
+          console.error('Invalid input:', stage);
+        }
       }
     }
 
-    // console.log(stageData)
     res.json(stageData);
   } catch (error) {
     console.error('Error querying database:', error);
     res.status(500).send('Error querying database');
   }
 });
+
 
 app.use(express.static(path.join(__dirname, 'react-app', 'dist')));
 
