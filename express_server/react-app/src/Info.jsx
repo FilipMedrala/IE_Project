@@ -80,7 +80,9 @@ const StatisticsCards = () => (
         </div>
       </div>
     </div>
-    <p className="cta">Together, let's transform information into action and pave the way for a healthier tomorrow. Click, explore, and be part of the change today!</p>
+    <h2 className="sub-header" style={{ fontSize: '28px' }}>Obesity trends in Australian children</h2>
+    <p className="header-vizz"> The prevalence of overweight among Australians aged 2 to 17 years was 16.7% , and the prevalence of obesity was 8.2% in 2017–18 </p>
+
   </div>
 );
 
