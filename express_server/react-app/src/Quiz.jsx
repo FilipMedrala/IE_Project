@@ -14,25 +14,6 @@ export default function Quiz(data) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [answers, setAnswers] = useState([]);
     console.log(data.quizData.corAnswer)
-    // const [answers, setAnswers] = useState({
-    //     q1: '',
-    //     q2: '',
-    //     q3: '',
-    //     q4: ''
-    // });
-
-    // const questions = [
-    //     "Which one helps your body stay strong and healthy?",
-    //     "Which is better for your body?",
-    //     "Which choice makes you feel good and strong?",
-    //     "Which one is good for keeping your body happy and strong?",
-    //     "Which one helps your body grow and be strong?",
-    //     "Which choice gives your body the good stuff it needs to be strong?",
-    //     "Which one helps your body work its best?",
-    //     "Which one helps your body stay happy and healthy?",
-    //     "Which choice is like giving your body a big hug?",
-    //     "Which one is like super fuel for your body?"
-    // ];
 
     const images = [
         { a: apple, b: burger },
