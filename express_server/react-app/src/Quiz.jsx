@@ -1,42 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy } from 'react';
 import './FruitQuiz.css'; // Import the CSS file for styling
-import appleImage from './quiz_photo/healthy/apple.png';
-import burgerImage from './quiz_photo/unhealthy/burger.png';
-import cakeImage from './quiz_photo/unhealthy/cake.png';
-import blueberryImage from './quiz_photo/healthy/blue_berry.png';
-import candyImage from './quiz_photo/unhealthy/candy.png';
-import bananaImage from './quiz_photo/healthy/banana.png';
-import cookieImage from './quiz_photo/unhealthy/cookie.png';
-import orangeImage from './quiz_photo/healthy/orange.png';
+import apple from './quiz_photo/healthy/apple.png';
+import burger from './quiz_photo/unhealthy/burger.png';
+import cake from './quiz_photo/unhealthy/cake.png';
+import blueberry from './quiz_photo/healthy/blue_berry.png';
+import candy from './quiz_photo/unhealthy/candy.png';
+import banana from './quiz_photo/healthy/banana.png';
+import cookie from './quiz_photo/unhealthy/cookie.png';
+import orange from './quiz_photo/healthy/orange.png';
 import axios from 'axios';
 
-export default function Quiz() {
+export default function Quiz(data) {
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [selectedQuestions, setSelectedQuestions] = useState([]);
     const [answers, setAnswers] = useState([]);
-
-
-    useEffect(() => {
-        fetchQuizData();
-    }, []);
-
-    const fetchQuizData = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/quiz');
-            const quizData = response.data;
-            console.log(quizData)
-
-            if (quizData.length > 0) {
-                setSelectedQuestions(quizData);
-                setAnswers([]);
-            }
-        } catch (error) {
-            console.error('Error fetching quiz data:', error);
-        }
-    };
-
-
-
+    console.log(data.quizData.corAnswer)
     // const [answers, setAnswers] = useState({
     //     q1: '',
     //     q2: '',
@@ -57,18 +34,18 @@ export default function Quiz() {
     //     "Which one is like super fuel for your body?"
     // ];
 
-    // const images = [
-    //     { a: appleImage, b: burgerImage },
-    //     { a: blueberryImage, b: candyImage },
-    //     { a: bananaImage, b: cookieImage },
-    //     { a: orangeImage, b: cakeImage },
-    //     { a: appleImage, b: candyImage },
-    //     { a: blueberryImage, b: burgerImage },
-    //     { a: bananaImage, b: cookieImage },
-    //     { a: orangeImage, b: cakeImage },
-    //     { a: appleImage, b: candyImage },
-    //     { a: blueberryImage, b: burgerImage }
-    // ];
+    const images = [
+        { a: apple, b: burger },
+        { a: blueberry, b: candy },
+        { a: banana, b: cookie },
+        { a: orange, b: cake },
+        { a: apple, b: candy },
+        { a: blueberry, b: burger },
+        { a: banana, b: cookie },
+        { a: orange, b: cake },
+        { a: apple, b: candy },
+        { a: blueberry, b: burger }
+    ];
 
 
     const handleOptionClick = (value) => {
@@ -97,21 +74,21 @@ export default function Quiz() {
         <div className="container">
             <h2 className="title">Fruit Quiz</h2>
             <div className="question">
-                <p>{selectedQuestions[currentQuestion]}</p>
-                {/* <div className="options">
+                <p>{data.quizData.question}</p>
+                <div className="options">
                     <button
                         onClick={() => handleOptionClick('a')}
                         className={answers[`q${currentQuestion}`] === 'a' ? 'selected' : ''}
                     >
-                        <img src={images[currentQuestion - 1].a} alt="Option A" />
+                        <img src={`${data.quizData.corAnswer}`} alt="Option A" />
                     </button>
                     <button
                         onClick={() => handleOptionClick('b')}
                         className={answers[`q${currentQuestion}`] === 'b' ? 'selected' : ''}
                     >
-                        <img src={images[currentQuestion - 1].b} alt="Option B" />
+                        <img src={`${data.quizData.incorAnswer}`} alt="Option B" />
                     </button>
-                </div> */}
+                </div>
             </div>
             <button
                 className="submit-button"

@@ -20,13 +20,17 @@ import axios from 'axios';
 
 export default function FallingFood() {
 
-  const [quizData, setQuizData] = useState({});
+  const [quizData, setQuizData] = useState(null);
   const myRef = useRef(null);
 
   useEffect(() => {
     // Fetch data from Express server when component mounts
     fetchQuizData();
   }, []);
+
+  useEffect(() => {
+    console.log("Stored data in journey: ", quizData);
+  }, [quizData]);
 
   const fetchQuizData = async () => {
     try {
@@ -41,13 +45,13 @@ export default function FallingFood() {
       // Extract the data from the response
       const data = response.data;
       // Set the quiz data state variable with the retrieved data
-      setQuizData(data[0]);
+      setQuizData(data);
       console.log("Received data in journey: ", data);
-      console.log("Stored data in journey: ", quizData);
     } catch (error) {
       console.error('Error fetching quiz data:', error);
     }
   };
+
   
   return (
     <div className="Journey">
@@ -99,24 +103,12 @@ export default function FallingFood() {
                 <img src={pic6} alt="" />
               </div>
               <Carousel dotPosition={'bottom'} ref={myRef}  >
-                <div>
-                  <div className="swiperItem" key={'1'}  >
-                    The plump, juicy blueberries glistened in the sunlight, their deep indigo hue a feast for the eyes.
-                    < br />As I bit into the ripe blueberry, a burst of sweet,
-                    < br />The plump, juicy blueberries glistened in the sunlight, their deep indigo hue a feast for the eyes.
-                    < br /> As I bit into the ripe blueberry, a burst of sweet,
-
-                  </div>
+              {quizData && quizData[0].map((question, index) => (
+                <div className="swiperItem" key={index}>
+                  {/* Render each question here */}
+                  <Quiz quizData={question} />
                 </div>
-                <div>
-                  <div className="swiperItem" key={'2'}  >222</div>
-                </div>
-                <div>
-                  <div className="swiperItem" key={'3'}  >333</div>
-                </div>
-                <div>
-                  <div className="swiperItem" key={'4'}  >444</div>
-                </div>
+              ))}
               </Carousel>
             </div>
           </div>
@@ -158,20 +150,12 @@ export default function FallingFood() {
                 <img src={pic6} alt="" />
               </div>
               <Carousel dotPosition={'bottom'} ref={myRef}  >
-                <div>
-                  <div className="swiperItem" key={'1'}  >
-                    <Quiz quizData={quizData}/>
-                  </div>
+              {quizData && quizData[1].map((question, index) => (
+                <div className="swiperItem" key={index}>
+                  {/* Render each question here */}
+                  <Quiz quizData={question} />
                 </div>
-                <div>
-                  <div className="swiperItem" key={'2'}  >222</div>
-                </div>
-                <div>
-                  <div className="swiperItem" key={'3'}  >333</div>
-                </div>
-                <div>
-                  <div className="swiperItem" key={'4'}  >444</div>
-                </div>
+              ))}
               </Carousel>
             </div>
           </div>

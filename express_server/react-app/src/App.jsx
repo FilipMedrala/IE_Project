@@ -31,9 +31,6 @@ export default function App() {
             <li>
               <Link to="/info">Info</Link>
             </li>
-            <li>
-              <Link to="/Quiz">Quiz</Link>
-            </li>
           </ul>
         </div>
         <div  className="content">
@@ -42,7 +39,6 @@ export default function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/Journey" element={<Journey />} />
           <Route path="/Game" element={<Game />} />
-          <Route path="/Quiz" element={<Quiz />} />
 
         </Routes>
         </div>
