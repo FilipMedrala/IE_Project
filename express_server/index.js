@@ -3,6 +3,8 @@ const mysql = require('mysql');
 const cors = require('cors');
 const port = process.env.PORT || 8080;
 
+var path = require('path');
+
 const app = express();
 app.use(express.static('react-app/dist'));
 
@@ -66,6 +68,13 @@ app.get('/quiz', async (req, res) => {
     console.error('Error querying database:', error);
     res.status(500).send('Error querying database');
   }
+});
+
+app.use(express.static(path.join(__dirname, 'react-app', 'dist')));
+
+// Serve index.html for all routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'react-app', 'dist', 'index.html'));
 });
 
 

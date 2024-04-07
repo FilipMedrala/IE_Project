@@ -6,6 +6,7 @@ import Snake from "./Snake";
 import FallingFood from "./FallingFood";
 import Fetch from "./Fetch";
 import Quiz from "./Quiz"
+import NotFound from "./NotFound"
 
 import Home from "./Home";
 import Info from "./Info";
@@ -39,7 +40,7 @@ export default function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/Journey" element={<Journey />} />
           <Route path="/Game" element={<Game />} />
-
+          <Route path="*" element={<NotFound />} />
         </Routes>
         </div>
       </BrowserRouter>
