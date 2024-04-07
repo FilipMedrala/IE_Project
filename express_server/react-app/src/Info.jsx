@@ -2,7 +2,29 @@ import React from 'react';
 import { Statistic } from 'antd';
 import { FaPerson } from "react-icons/fa6";
 import { GiFruitBowl, GiWrappedSweet, GiSodaCan } from "react-icons/gi";
+import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import './StatisticsCards.css'; // Import CSS file for styling
+
+const data = [
+  { name: 'Underweight', value: 8.2 },
+  { name: 'Normal weight', value: 66.9 },
+  { name: 'Overweight', value: 16.7 },
+  { name: 'Obesity', value: 8.2 }
+];
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + (radius * Math.cos(-midAngle * Math.PI / 180)) * 1.4; // Adjusted x position
+  const y = cy + (radius * Math.sin(-midAngle * Math.PI / 180)) * 1.4; // Adjusted y position
+
+  return (
+    <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      {`${(percent * 100).toFixed(2)}%`}
+    </text>
+  );
+};
 
 const StatisticsCards = () => (
   <div className='info-page'>
@@ -80,9 +102,30 @@ const StatisticsCards = () => (
         </div>
       </div>
     </div>
-    <h2 className="sub-header" style={{ fontSize: '28px' }}>Obesity trends in Australian children</h2>
-    <p className="header-vizz"> The prevalence of overweight among Australians aged 2 to 17 years was 16.7% , and the prevalence of obesity was 8.2% in 2017–18 </p>
-
+    <div>
+      <h2 className="sub-header" style={{ fontSize: '28px' }}>Weight status of Australian children aged 2-17 years</h2>
+      <p style={{ fontSize: '18px' }}>Visual representation of weight status:</p>
+      <ResponsiveContainer width="100%" height={500}>
+        <PieChart>
+          <Pie
+            data={data}
+            cx="50%"
+            cy="50%"
+            innerRadius={80} // Increased inner radius
+            outerRadius={140} // Increased outer radius
+            fill="#8884d8"
+            dataKey="value"
+            label={renderCustomizedLabel}
+          >
+            {
+              data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+            }
+          </Pie>
+          <Tooltip />
+          <Legend layout="vertical" align="center" verticalAlign="top" />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   </div>
 );
 
