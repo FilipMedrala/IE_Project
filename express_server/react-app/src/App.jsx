@@ -29,7 +29,7 @@ export default function App() {
               <Link to="/Game">Game</Link>
             </li>
             <li>
-              <Link to="/info">Info</Link>
+              <Link to="/info">Health Awareness</Link>
             </li>
           </ul>
         </div>
