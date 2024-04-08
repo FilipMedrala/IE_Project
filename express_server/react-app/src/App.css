@@ -149,6 +149,7 @@ ul li {
 .Journey .itembox {
   height: 100vh;
   width: 100%;
+  position: relative;
   
   /* height: calc(100vh - 70px); */
 }
@@ -171,7 +172,7 @@ ul li {
 }
 
 .firstPageContWrap {
-  padding: 0 10%;
+  padding: 150px 10% 0;
   height: 60%;
 }
 
@@ -186,6 +187,7 @@ ul li {
 
 .firstPageCont>div {
   width: 50%;
+  margin: 40px 0;
 }
 
 .firstPageCont>div:nth-child(2) {}
@@ -201,7 +203,7 @@ ul li {
 }
 
 .icons1 {
-  margin-left: 200px;
+  margin-left: 250px;
 }
 
 .icons2 {
@@ -215,8 +217,9 @@ ul li {
 .swiper {
   margin: 0 auto;
   width: 80%;
-  height:250px;
-  background: #acf8ac;
+  /* height:250px; */
+  height: auto;
+  /* background: #acf8ac; */
   border-radius: 8px;
 }
 
@@ -241,7 +244,9 @@ ul li {
   font-size: 30px;
 }
 .sameicon{
-  top: 110px;
+  /* top: 110px; */
+  top: 50%;
+  transform: translateY(-50%);
 }
 .sameicon img{
   width: 30px;

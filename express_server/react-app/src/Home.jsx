@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import sun from './assets/1.jpg'
 import mid from './assets/2.jpg'
+import game from './assets/play.png'
 import { Button } from 'antd';
 import { Link } from "react-router-dom";
 export default function FallingFood() {
@@ -9,14 +10,11 @@ export default function FallingFood() {
     <div>
       <div className="home">
         <div className="title">
-        I AM a TITLE
+        Helping Kids Develop Healthy Habits in a More Fun Way
         </div>
         <div className="conts">
-          i am the decription of Journey
-          Please help me think of some interesting phrases to attract users. 
-          Abby's literary talent is limited, 
-          and she doesn't know what to write.
-          and botton link to journ page
+         <p>Nutritional education is a pressing concern for parents across Australia, who grapple with the challenge of instilling healthy eating habits in their children. In a landscape dominated by sugary snacks and beverages, convincing children of the importance of nutrient-rich foods remains an uphill battle for many families.</p>
+         <p>Our website finds innovative solutions to simplify the complexity of nutrition education and is dedicated to helping children understand healthy eating and gain knowledge at the same time through simple and fun games.</p>
         </div>
         <div className="but">
           <Link to="/Journey">
@@ -31,15 +29,9 @@ export default function FallingFood() {
           <img className="img1" src="../src/assets/family.jpg" alt="" />
         </div>
         <div className="right">
-          <div className="title">
-            i am a title
-          </div>
+          
           <div className="conts">
-          i am the decription of information for parents
-          Please help me think of some interesting phrases to attract users. 
-          Abby's literary talent is limited, 
-          and she doesn't know what to write.
-          and the button link to info page
+          Help kids develop healthy eating habits, so they can learn and grow while having fun. Through a well-designed journey, kids will explore trivia about healthy food and reinforce what they've learned with fun quizzes.
             <div className="but">
               <Link to="/info">
                 <Button size="large" type="primary" shape="round">LEARN MORE</Button>
@@ -51,15 +43,8 @@ export default function FallingFood() {
       </div>
       <img className="img" src={mid} alt="" />
       <div className="bot">
-        <div className="title">
-          i am a title
-        </div>
         <div className="conts">
-        i am the decription of Games
-          Please help me think of some interesting phrases to attract users. 
-          Abby's literary talent is limited, 
-          and she doesn't know what to write.
-          and the button link to game page
+        We offer Snake Game and Falling Food Game for kids.The games are simple and fun, with a healthy food theme to help your kids subconsciously gain nutritional knowledge while relaxing.
         </div>
         <div className="but">
 

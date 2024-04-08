@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import './journey.css'
 // import { Carousel } from 'antd';
 //import { FullSlip, SlipItem } from "react-fullslip";
 import { Button, Popover } from 'antd';
@@ -15,12 +16,15 @@ import sp from './assets/sweetpotato.png'
 import { Carousel } from 'antd';
 import Quiz from "./Quiz"
 import axios from 'axios';
+import fixedImg from './assets/fixedImg.png'
+import fixedRoadImg from './assets/fixedRoadImg.png'
 
 
 export default function FallingFood() {
 
   const [quizData, setQuizData] = useState(null);
   const myRef = useRef(null);
+  const myRef2 = useRef(null);
 
   useEffect(() => {
     // Fetch data from Express server when component mounts
@@ -36,9 +40,9 @@ export default function FallingFood() {
       // Make a GET request to your Express server endpoint with query parameters
       const response = await axios.get('http://localhost:8080/quiz', {
         params: {
-          stage1: [1, 3],
-          stage2: [2, 3],
-          stage3: [3, 3]
+          stage1: [1, 4],
+          stage2: [2, 4],
+          stage3: [3, 4]
         }
       });
       // Extract the data from the response
@@ -51,10 +55,11 @@ export default function FallingFood() {
     }
   };
 
-  
+
   return (
     <div className="Journey">
-
+      <img className="fixedImg" src={fixedImg} />
+      <div className="fixedRoadImg" ></div>
       {/* <div className="header">Journey</div> */}
       {/* <FullSlip {...{
         navigation: false,           //是否开启导航点,      默认为true
@@ -65,28 +70,25 @@ export default function FallingFood() {
         arrowNav: true,              //是否开启箭头导航     默认false不开启
       }}> */}
 
-{/* <Carousel dotPosition={'right'}> */}
-        <div className="itembox itembox1" style={{ backgroundColor: '#C1FFC1' }}>
-          <div className="firstPageContWrap">
-            <div className="firstPageCont">
-              <div>
-              <Popover 
-                  content={
-                    <div>
-                      <ol style={{ listStyleType: 'decimal' }}>
-                        <li>I give you Vitamin C to protect you from getting sick.</li>
-                        <li>I support healthy skin and gums.</li>
-                        <li>I can maintain a happy and healthy body.</li>
-                      </ol>
-                    </div>
-                  } 
-                  title="Apple"
-                >
-                  <img className="icons icons0" src={pic1} alt="" />
+      {/* <Carousel dotPosition={'right'}> */}
+      <div className="itembox itembox1" style={{ backgroundColor: '#C1FFC1' }}>
+        <div className="firstPageContWrap">
+          <div className="firstPageCont">
+            <div>
+            <Popover content={
+                  <div>
+                  <ol style={{ listStyleType: 'decimal' }}>
+                  <li>I give you Vitamin C to protect you from getting sick.</li>
+                  <li>I support healthy skin and gums.</li>
+                  <li>I can maintain a happy and healthy body.</li>
+                  </ol>
+                </div>
+                } title="Apple">
+                  <img className="icons icons1" src={pic1} alt="" />
                 </Popover>
-              </div>
-              <div>
-                <Popover content={
+            </div>
+            <div>
+            <Popover content={
                   <div>
                   <ol style={{ listStyleType: 'decimal' }}>
                     <li>I provide you with Vitamin B6, which helps your body make energy.</li>
@@ -97,9 +99,9 @@ export default function FallingFood() {
                 } title="Banana">
                   <img className="icons icons1" src={pic2} alt="" />
                 </Popover>
-              </div>
-              <div>
-                <Popover content={
+            </div>
+            <div>
+            <Popover content={
                   <div>
                   <ol style={{ listStyleType: 'decimal' }}>
                     <li>I'm rich in Vitamin K, helping your blood to clot and your bones to stay strong.</li>
@@ -110,9 +112,9 @@ export default function FallingFood() {
                 } title="Blueberry">
                   <img className="icons icons2" src={pic3} alt="" />
                 </Popover>
-              </div>
-              <div>
-                <Popover content={
+            </div>
+            <div>
+            <Popover content={
                   <div>
                   <ol style={{ listStyleType: 'decimal' }}>
                     <li>I'm loaded with Vitamin C, your superhero against colds and flu.</li>
@@ -123,36 +125,20 @@ export default function FallingFood() {
                 } title="Orange">
                   <img className="icons icons3" src={pic4} alt="" />
                 </Popover>
-              </div>
             </div>
           </div>
-
-
-          <div className="swiper">
-            <div className="swiperInner" >
-              <div className="leftIcon sameicon" onClick={() => { myRef?.current?.prev?.() }}>
-                <img src={pic5} alt="" />
-              </div>
-              <div className="rightIcon sameicon" onClick={() => { myRef?.current?.next?.() }}>
-                <img src={pic6} alt="" />
-              </div>
-              <Carousel dotPosition={'bottom'} ref={myRef}  >
-              {quizData && quizData[0].map((question, index) => (
-                <div className="swiperItem" key={index}>
-                  {/* Render each question here */}
-                  <Quiz quizData={question} />
-                </div>
-              ))}
-              </Carousel>
-            </div>
-          </div>
-        {/* veggie part */}
         </div>
-        <div className="itembox itembox2" style={{ backgroundColor: '#C6E2FF' }}>
+
+        {quizData?.length > 0 && <Quiz quizData={quizData[0]} type="stage1" />}
+
+        {/* veggie part */}
+      </div>
+      <div className="itembox itembox2" style={{ backgroundColor: '#C6E2FF' }}>
         <div className="firstPageContWrap">
-            <div className="firstPageCont">
-              <div>
-                <Popover content={
+          <div className="firstPageCont">
+            <div>
+              
+            <Popover content={
                 <div>
                 <ol style={{ listStyleType: 'decimal' }}>
                   <li>I'm your green powerhouse, loaded with Vitamin C to keep your immune system strong.</li>
@@ -163,9 +149,9 @@ export default function FallingFood() {
                 } title="Broccoli">
                   <img className="icons icons0" src={broccoli} alt="" />
                 </Popover>
-              </div>
-              <div>
-                <Popover content={
+            </div>
+            <div>
+            <Popover content={
                   <div>
                   <ol style={{ listStyleType: 'decimal' }}>
                     <li>I'm your orange buddy, packed with Vitamin A to keep your eyesight sharp.</li>
@@ -176,9 +162,9 @@ export default function FallingFood() {
                 } title="Carrot">
                   <img className="icons icons1" src={carrot} alt="" />
                 </Popover>
-              </div>
-              <div>
-                <Popover content={
+            </div>
+            <div>
+            <Popover content={
                   <div>
                   <ol style={{ listStyleType: 'decimal' }}>
                     <li>I'm bursting with Vitamin K, which is great for bone health and helps with blood clotting.</li>
@@ -189,9 +175,9 @@ export default function FallingFood() {
                 } title="Spinach">
                   <img className="icons icons2" src={Spanish} alt="" />
                 </Popover>
-              </div>
-              <div>
-                <Popover content={
+            </div>
+            <div>
+            <Popover content={
                   <div>
                   <ol style={{ listStyleType: 'decimal' }}>
                     <li>I'm your starchy friend, providing energy to keep you going throughout the day.</li>
@@ -202,36 +188,18 @@ export default function FallingFood() {
                 } title="Sweet Potato">
                   <img className="icons icons3" src={sp} alt="" />
                 </Popover>
-              </div>
-            </div>
-          </div>
-
-
-          <div className="swiper">
-            <div className="swiperInner" >
-              <div className="leftIcon sameicon" onClick={() => { myRef?.current?.prev?.() }}>
-                <img src={pic5} alt="" />
-              </div>
-              <div className="rightIcon sameicon" onClick={() => { myRef?.current?.next?.() }}>
-                <img src={pic6} alt="" />
-              </div>
-              <Carousel dotPosition={'bottom'} ref={myRef}  >
-              {quizData && quizData[1].map((question, index) => (
-                <div className="swiperItem" key={index}>
-                  {/* Render each question here */}
-                  <Quiz quizData={question} />
-                </div>
-              ))}
-              </Carousel>
             </div>
           </div>
         </div>
-        <div className="itembox itembox3" style={{ backgroundColor: '#FFEC8B' }}>
-          page3
-        </div>
-        <div className="itembox itembox4" style={{ backgroundColor: '#cccccc' }}>
-          page4
-        </div>
+
+        {quizData?.length > 0 && <Quiz quizData={quizData[1]} type="stage2" />}
+      </div>
+      <div className="itembox itembox3" style={{ backgroundColor: '#FFEC8B' }}>
+        page3
+      </div>
+      <div className="itembox itembox4" style={{ backgroundColor: '#cccccc' }}>
+        page4
+      </div>
       {/* </FullSlip> */}
       {/* </Carousel> */}
 

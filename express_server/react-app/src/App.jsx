@@ -21,7 +21,7 @@ export default function App() {
           </div>
           <ul>
             <li>
-              <Link to="/Snake">Snake Game</Link>
+              <Link to="/Snake" >Snake Game</Link>
             </li>
             <li>
               <Link to="/FallingFood">Falling Food Game</Link>
