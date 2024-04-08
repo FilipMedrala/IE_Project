@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Statistic } from 'antd';
 import { FaPerson } from "react-icons/fa6";
 import { GiFruitBowl, GiWrappedSweet, GiSodaCan } from "react-icons/gi";
@@ -45,6 +45,51 @@ const MapLegend = ({ legendData }) => (
     ))}
   </div>
 );
+
+const BMICalculator = () => {
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [bmi, setBMI] = useState(null);
+
+  const calculateBMI = (e) => {
+    e.preventDefault(); // Prevent form submission from reloading the page
+    const heightInMeters = height / 100; // convert cm to meters
+    const bmiValue = weight / (heightInMeters ** 2); // BMI formula
+    setBMI(bmiValue.toFixed(2)); // Round to two decimal places
+  };
+
+  return (
+    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+      <h2 className="sub-header" style={{ fontSize: '28px' }}>Calculate Your BMI</h2>
+      <form onSubmit={calculateBMI}>
+        <div>
+          <label htmlFor="height">Height (cm): </label>
+          <input
+            type="number"
+            id="height"
+            value={height}
+            onChange={(e) => setHeight(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="weight">Weight (kg): </label>
+          <input
+            type="number"
+            id="weight"
+            value={weight}
+            onChange={(e) => setWeight(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Calculate</button>
+      </form>
+      {bmi && <p>Your BMI is: {bmi}</p>}
+    </div>
+  );
+};
+
+
 
 const StatisticsCards = () => (
   <div className='info-page'>
@@ -156,6 +201,9 @@ const StatisticsCards = () => (
         </div>
       </div>
     </div>
+    {/* BMI Calculator component */}
+    <BMICalculator />
+
   </div>
 );
 
