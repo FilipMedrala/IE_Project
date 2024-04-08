@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import './FallingFood.css'
 // import { Carousel } from 'antd';
 //import { FullSlip, SlipItem } from "react-fullslip";
 import { Button, Popover } from 'antd';
