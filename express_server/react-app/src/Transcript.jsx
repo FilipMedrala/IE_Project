@@ -22,14 +22,14 @@ export default function Transcript(data) {
         </div>
         <div className='detail'>
           <Space>
-            <span>正确 {count}</span>
-            <span>错误 {total - count}</span>
+            <span>CORRECT {count}</span>
+            <span>INCORRECT {total - count}</span>
           </Space>
         </div>
         <div className='btn-wrapper'>
           <Space>
-            <Button type="primary" onClick={data.reset}>重做</Button>
-            <Button type="primary" onClick={data.back}>返回</Button>
+            <Button type="primary" onClick={data.reset}>TRY AGAIN</Button>
+            <Button type="primary" onClick={data.back}>GO BACK TO JOURNEY</Button>
           </Space>
         </div>
       </div>
