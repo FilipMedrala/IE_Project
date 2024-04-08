@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Statistic } from 'antd';
+import { Statistic, Input, Button } from 'antd'; // Import Ant Design components
 import { FaPerson } from "react-icons/fa6";
 import { GiFruitBowl, GiWrappedSweet, GiSodaCan } from "react-icons/gi";
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import './StatisticsCards.css'; // Import CSS file for styling
-import map from "./assets/map.png"
-import bmi from "./assets/bmi.png"
-
+import './App.css'
+import map from "./assets/map.png";
+import bmi from "./assets/bmi.png";
 
 const data = [
   { name: 'Underweight', value: 8.2 },
@@ -19,8 +19,8 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + (radius * Math.cos(-midAngle * Math.PI / 180)) * 1.4; // Adjusted x position
-  const y = cy + (radius * Math.sin(-midAngle * Math.PI / 180)) * 1.4; // Adjusted y position
+  const x = cx + (radius * Math.cos(-midAngle * Math.PI / 180)) * 1.4;
+  const y = cy + (radius * Math.sin(-midAngle * Math.PI / 180)) * 1.4;
 
   return (
     <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
@@ -29,68 +29,74 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
   );
 };
 
-// Define the ranges and colors for the legend
-const legendData = [
-  { range: 'Less than 7%', color: '#FFC0CB' }, // Light pink
-  { range: '7% to 8%', color: '#FF69B4' },     // Hot pink
-  { range: '8% to 9%', color: '#FF1493' },     // Deep pink
-  { range: 'More than 9%', color: '#C71585' }  // Medium violet red
-];
-
-const MapLegend = ({ legendData }) => (
-  <div className="map-legend">
-    {legendData.map((item, index) => (
-      <div key={index} className="legend-item">
-        <span className="legend-color" style={{ backgroundColor: item.color }}></span>
-        <span className="legend-text">{item.range}</span>
-      </div>
-    ))}
-  </div>
-);
-
 const BMICalculator = () => {
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
-  const [bmi, setBMI] = useState(null);
+  const [bmiValue, setBMIValue] = useState(null);
+  const [bmiCategory, setBMICategory] = useState('');
 
-  const calculateBMI = (e) => {
-    e.preventDefault(); // Prevent form submission from reloading the page
-    const heightInMeters = height / 100; // convert cm to meters
-    const bmiValue = weight / (heightInMeters ** 2); // BMI formula
-    setBMI(bmiValue.toFixed(2)); // Round to two decimal places
+  const calculateBMI = () => {
+    if (height && weight) {
+      const heightInMeters = height / 100;
+      const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+      setBMIValue(bmi);
+
+      let category = '';
+      if (bmi < 18.5) {
+        category = 'underweight';
+      } else if (bmi >= 18.5 && bmi < 25) {
+        category = 'normal';
+      } else if (bmi >= 25 && bmi < 30) {
+        category = 'overweight';
+      } else {
+        category = 'obese';
+      }
+      setBMICategory(category);
+    } else {
+      setBMIValue('');
+      setBMICategory('');
+    }
   };
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '20px' }}>
-      <h2 className="sub-header" style={{ fontSize: '28px' }}>Calculate Your BMI</h2>
-      <form onSubmit={calculateBMI}>
-        <div>
-          <label htmlFor="height">Height (cm): </label>
-          <input
-            type="number"
-            id="height"
-            value={height}
-            onChange={(e) => setHeight(e.target.value)}
-            required
-          />
+    <div className={`bmi-calculator-box ${bmiCategory}`}>
+      <h2 className="sub-header" style={{fontSize:"23px"}}>Calculate Your BMI</h2>
+      <div className="input-container">
+        <label htmlFor="height">Enter Your Height (cm):</label>
+        <input
+          type="number"
+          placeholder="Enter your height (cm)"
+          value={height}
+          onChange={(e) => setHeight(e.target.value)}
+          className="input-field"
+        />
+      </div>
+      <div className="input-container">
+        <label htmlFor="weight">Enter Your Weight (kg):</label>
+        <input
+          type="number"
+          placeholder="Enter your weight (kg)"
+          value={weight}
+          onChange={(e) => setWeight(e.target.value)}
+          className="input-field"
+        />
+      </div>
+      <Button type="primary" onClick={calculateBMI} className="calculate-button">
+        Calculate
+      </Button>
+      {bmiValue && (
+        <div className="result_bmi">
+          <p>
+            Your BMI: <span className="bmi-value">{bmiValue}</span>
+          </p>
+          <p className="bmi-category">
+            Result: You are <span className="bmi-message">{bmiCategory}</span> weight
+          </p>
         </div>
-        <div>
-          <label htmlFor="weight">Weight (kg): </label>
-          <input
-            type="number"
-            id="weight"
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Calculate</button>
-      </form>
-      {bmi && <p>Your BMI is: {bmi}</p>}
+      )}
     </div>
   );
 };
-
 
 
 const StatisticsCards = () => (
@@ -204,12 +210,8 @@ const StatisticsCards = () => (
       </div>
     </div>
     {/* BMI Calculator component */}
+    <h2 className="sub-header" style={{ marginTop: '10px', fontSize: '28px' , textAlign: 'center'}}>Are you healthy? Check your BMI below!</h2>
     <BMICalculator />
-        <div className="flex-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
-              <img src={bmi} alt="BMI chart" style={{ width: '100%', maxWidth: '600px', height: 'auto'}} />
-              <div style={{ maxWidth: '600px' }}>
-        </div>
-      </div>
     </div>
 );
 
