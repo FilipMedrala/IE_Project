@@ -5,6 +5,8 @@ import { GiFruitBowl, GiWrappedSweet, GiSodaCan } from "react-icons/gi";
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import './StatisticsCards.css'; // Import CSS file for styling
 import map from "./assets/map.png"
+import bmi from "./assets/bmi.png"
+
 
 const data = [
   { name: 'Underweight', value: 8.2 },
@@ -203,8 +205,12 @@ const StatisticsCards = () => (
     </div>
     {/* BMI Calculator component */}
     <BMICalculator />
-
-  </div>
+        <div className="flex-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+              <img src={bmi} alt="BMI chart" style={{ width: '100%', maxWidth: '600px', height: 'auto'}} />
+              <div style={{ maxWidth: '600px' }}>
+        </div>
+      </div>
+    </div>
 );
 
 
