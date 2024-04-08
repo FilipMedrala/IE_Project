@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./Snake.css";
 
 export default function Snake() {
   const gridSize = 20; // Size of the grid
@@ -108,18 +109,18 @@ export default function Snake() {
     for (let y = 0; y < gridSize; y++) {
       const row = [];
       for (let x = 0; x < gridSize; x++) {
-        let cellType = "bg-gray-100";
+        let cellType = "cell bg-gray-100";
         if (isColliding({ x, y }, snake[0])) {
-          cellType = "bg-black";
+          cellType = "cell bg-black";
         } else if (snake.some((cell) => isColliding(cell, { x, y }))) {
-          cellType = "bg-gray-400";
+          cellType = "cell bg-gray-400";
         } else if (isColliding({ x, y }, food)) {
-          cellType = "bg-green-500";
+          cellType = "cell bg-green-500";
         }
-        row.push(<div key={`${x}-${y}`} className={`w-4 h-4 ${cellType}`} />);
+        row.push(<div key={`${x}-${y}`} className={cellType} />);
       }
       grid.push(
-        <div key={y} className="flex">
+        <div key={y} className="row">
           {row}
         </div>
       );
@@ -128,13 +129,13 @@ export default function Snake() {
   }
 
   return (
-    <div className="text-center mt-8">
-      <p className="mb-4">This is the snake game. Use arrow keys to control the snake.</p>
-      <div className="grid grid-cols-20 gap-0 mx-auto">{renderGrid()}</div>
-      <p className="mt-4">Score: {score}</p>
-      {gameOver && <p className="mt-4">Game Over!</p>}
-      <nav className="mt-4">
-        <a href="/" className="text-blue-500">Home</a>
+    <div className="container">
+      <p className="description">This is the snake game. Use arrow keys to control the snake.</p>
+      <div className="grid">{renderGrid()}</div>
+      <p className="score">Score: {score}</p>
+      {gameOver && <p className="game-over">Game Over!</p>}
+      <nav className="nav">
+        <a href="/" className="link">Home</a>
       </nav>
     </div>
   );
