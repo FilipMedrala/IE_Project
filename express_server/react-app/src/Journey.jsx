@@ -74,13 +74,11 @@ export default function FallingFood() {
               <Popover 
                   content={
                     <div>
-                      <ul>
+                      <ol style={{ listStyleType: 'decimal' }}>
                         <li>I give you Vitamin C to protect you from getting sick.</li>
                         <li>I support healthy skin and gums.</li>
                         <li>I can maintain a happy and healthy body.</li>
-                        <li>Muscle fuel! Potassium powers you up!</li>
-                        <li>I can help clean teeth a little, making me beneficial for oral health.</li>
-                      </ul>
+                      </ol>
                     </div>
                   } 
                   title="Apple"
@@ -89,17 +87,41 @@ export default function FallingFood() {
                 </Popover>
               </div>
               <div>
-                <Popover content={'2222222222222222'} title="Title">
+                <Popover content={
+                  <div>
+                  <ol style={{ listStyleType: 'decimal' }}>
+                    <li>I provide you with Vitamin B6, which helps your body make energy.</li>
+                    <li>I'm like a natural energy bar, perfect for keeping you active and strong.</li>
+                    <li>I can also help with brain function, making me a smart choice for snack time!</li>
+                  </ol>
+                </div>
+                } title="Banana">
                   <img className="icons icons1" src={pic2} alt="" />
                 </Popover>
               </div>
               <div>
-                <Popover content={'2222222222222222'} title="Title">
+                <Popover content={
+                  <div>
+                  <ol style={{ listStyleType: 'decimal' }}>
+                    <li>I'm rich in Vitamin K, helping your blood to clot and your bones to stay strong.</li>
+                    <li>I can boost your brain power.</li>
+                    <li>I can keep your memory sharp.</li>
+                  </ol>
+                </div>
+                } title="Blueberry">
                   <img className="icons icons2" src={pic3} alt="" />
                 </Popover>
               </div>
               <div>
-                <Popover content={'2222222222222222'} title="Title">
+                <Popover content={
+                  <div>
+                  <ol style={{ listStyleType: 'decimal' }}>
+                    <li>I'm loaded with Vitamin C, your superhero against colds and flu.</li>
+                    <li>I keep your skin glowing and your gums healthy, so you can smile bright!</li>
+                    <li>Drinking my juice can quench your thirst and keep you hydrated on hot days.</li>
+                  </ol>
+                </div>
+                } title="Orange">
                   <img className="icons icons3" src={pic4} alt="" />
                 </Popover>
               </div>
@@ -131,22 +153,54 @@ export default function FallingFood() {
         <div className="firstPageContWrap">
             <div className="firstPageCont">
               <div>
-                <Popover content={'People have developed several kinds of apples with different tastes.'} title="Title">
+                <Popover content={
+                <div>
+                <ol style={{ listStyleType: 'decimal' }}>
+                  <li>I'm your green powerhouse, loaded with Vitamin C to keep your immune system strong.</li>
+                  <li>I'm a superhero for your eyes, with Vitamin A to keep your vision sharp.</li>
+                  <li>I'm packed with fiber, which keeps your tummy happy and digestion smooth.</li>
+                </ol>
+              </div>
+                } title="Broccoli">
                   <img className="icons icons0" src={broccoli} alt="" />
                 </Popover>
               </div>
               <div>
-                <Popover content={'2222222222222222'} title="Title">
+                <Popover content={
+                  <div>
+                  <ol style={{ listStyleType: 'decimal' }}>
+                    <li>I'm your orange buddy, packed with Vitamin A to keep your eyesight sharp.</li>
+                    <li>I help your skin glow and heal, making you look and feel your best.</li>
+                    <li>I'm a crunchy delight that makes snack time fun and nutritious!</li>
+                  </ol>
+                </div>
+                } title="Carrot">
                   <img className="icons icons1" src={carrot} alt="" />
                 </Popover>
               </div>
               <div>
-                <Popover content={'2222222222222222'} title="Title">
+                <Popover content={
+                  <div>
+                  <ol style={{ listStyleType: 'decimal' }}>
+                    <li>I'm bursting with Vitamin K, which is great for bone health and helps with blood clotting.</li>
+                    <li>Eating me can boost your energy levels and keep you feeling vibrant.</li>
+                    <li>Add me to your salads, sandwiches, or smoothies for a nutritious punch!</li>
+                  </ol>
+                </div>
+                } title="Spinach">
                   <img className="icons icons2" src={Spanish} alt="" />
                 </Popover>
               </div>
               <div>
-                <Popover content={'2222222222222222'} title="Title">
+                <Popover content={
+                  <div>
+                  <ol style={{ listStyleType: 'decimal' }}>
+                    <li>I'm your starchy friend, providing energy to keep you going throughout the day.</li>
+                    <li>Don't peel me! My skin is loaded with fiber and nutrients.</li>
+                    <li>I'm rich in potassium, which helps keep your heart beating strong.</li>
+                  </ol>
+                </div>  
+                } title="Sweet Potato">
                   <img className="icons icons3" src={sp} alt="" />
                 </Popover>
               </div>
