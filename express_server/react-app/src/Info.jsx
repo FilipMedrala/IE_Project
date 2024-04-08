@@ -144,7 +144,16 @@ const StatisticsCards = () => (
         {/* Add heading and image below the PieChart */}
         <div style={{ marginTop: '10px', textAlign: 'center' }}>
         <h2 className="sub-header" style={{ fontSize: '28px' }}>Overweight and obesity by state and territory</h2>
-        <img src={map} alt="Australia Obesity Map" style={{ maxWidth: '60%', height: 'auto', alignContent: 'center'}} />
+        <div className="flex-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+          <img src={map} alt="Australia Obesity Map" style={{ width: '100%', maxWidth: '600px', height: 'auto' }} />
+          <div style={{ maxWidth: '600px' }}>
+            <ul>
+              <li>The prevalence of overweight and obesity in children varies between Australian states and territories.</li>
+              <li>The highest prevalence of obesity in 2017-18 was in Tasmania (11.4%).</li>
+              <li>The lowest was in Western Australia (7.2%).</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
