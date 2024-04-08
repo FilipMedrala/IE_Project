@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import sun from './assets/1.jpg'
 import mid from './assets/2.jpg'
 import game from './assets/play.png'
+import family from "./assets/family.jpg"
 import { Button } from 'antd';
 import { Link } from "react-router-dom";
 export default function FallingFood() {
@@ -26,7 +27,7 @@ export default function FallingFood() {
       </div>
       <div className="mid">
         <div className="left">
-          <img className="img1" src="../src/assets/family.jpg" alt="" />
+          <img className="img1" src={family} alt="" />
         </div>
         <div className="right">
           
