@@ -2,7 +2,8 @@
   background: #fff;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+
   padding: 0 20px;
   color: #333;
   position: fixed;
@@ -12,18 +13,23 @@
   font-size: 18px;
   z-index: 8;
 }
-
+.nav_health {
+  display: flex;
+  align-items: center;
+}
 a {
   color: #333 !important;
 }
 
 .logo {
+  width: 200px;
+  height: auto;
   display: flex;
   align-items: center;
 }
 
 .logo img {
-  width: 50px;
+  width: 200px;
   margin-right: 5px;
 }
 
@@ -122,8 +128,21 @@ ul li {
   display: block;
 }
 
-.bot {
+/* .bot {
   padding: 120px 0;
+} */
+
+.bot {
+  padding: 120px 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bot .right {
+  margin-left: 10%;
+  text-align: center;
+  flex: 1;
 }
 
 .bot .title {
@@ -134,12 +153,18 @@ ul li {
 }
 
 .bot .conts {
-  width: 50%;
-  margin: 0 auto;
+
   font-size: 24px;
   font-weight: bold;
   min-height: 38vh;
   line-height: 60px;
+
+}
+
+.img1 {
+  width: 400px !important;
+  height: 400px;
+  display: block;
 }
 .Journey .ant-carousel .slick-dots li.slick-active button{
   background: #333;

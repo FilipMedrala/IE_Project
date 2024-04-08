@@ -43,19 +43,35 @@ export default function FallingFood() {
         </div>
       </div>
       <img className="img" src={mid} alt="" />
+
+
       <div className="bot">
-        <div className="conts">
-        We offer Snake Game and Falling Food Game for kids.The games are simple and fun, with a healthy food theme to help your kids subconsciously gain nutritional knowledge while relaxing.
+      <div className="left">
+          <img className="img1" src={game} alt="" />
         </div>
-        <div className="but">
+        <div className="right">
+          
+          <div className="conts">
+             We offer Snake Game and Falling Food Game for kids.The games are simple and fun, with a healthy food theme to help your kids subconsciously gain nutritional knowledge while relaxing.
+        
+            <div className="but">
+            <Link to="/Snake">
+            <Button size="large" type="primary" shape="round">PLAY SNAKE GAME</Button>
+            </Link>
+            <Link to="/FallingFood">
+            <Button size="large" type="primary" shape="round">PLAY FALLING FOOD GAME</Button>
+            </Link>
 
-          <Link to="/Game">
-            <Button size="large" type="primary" shape="round">PLAY</Button>
-          </Link>
-
+            </div>
+          </div>
         </div>
-
-      </div>
     </div>
+
+</div>
+          
+  
+
+      
+ 
   );
 }

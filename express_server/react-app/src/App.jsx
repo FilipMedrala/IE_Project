@@ -16,20 +16,16 @@ export default function App() {
         <div className="header">
         <div className="logo">
         <Link to="/">
-              <img src={web_logo} alt="Home" style={{ width: '20%', height: 'auto' }}  />
+              <img src={web_logo} alt="Home"  />
             </Link>
           </div>
+          
           <ul>
-            <li>
-              <Link to="/Snake" >Snake Game</Link>
-            </li>
-            <li>
-              <Link to="/FallingFood">Falling Food Game</Link>
-            </li>
             <li>
               <Link to="/info">Health Awareness</Link>
             </li>
           </ul>
+        
         </div>
         <div  className="content">
         <Routes>
