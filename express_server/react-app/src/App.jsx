@@ -1,17 +1,10 @@
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route, Router, Link } from "react-router-dom";
-// import { NavLink } from 'react-router-dom';
-import Layout from "./Layout";
 import Snake from "./Snake";
-import FallingFood from "./FallingFood";
-import Fetch from "./Fetch";
-import Quiz from "./Quiz"
 import NotFound from "./NotFound"
-
 import Home from "./Home";
 import Info from "./Info";
 import Journey from "./Journey";
-import Game from "./Game";
 import './App.css'
 
 import web_logo from './assets/web_logo.jpg'
@@ -27,7 +20,7 @@ export default function App() {
           </div>
           <ul>
             <li>
-              <Link to="/Game">Game</Link>
+              <Link to="/Snake">Snake Game</Link>
             </li>
             <li>
               <Link to="/info">Health Awareness</Link>
@@ -39,7 +32,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/info" element={<Info />} />
           <Route path="/Journey" element={<Journey />} />
-          <Route path="/Game" element={<Game />} />
+          <Route path="/Snake" element={<Snake />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         </div>
