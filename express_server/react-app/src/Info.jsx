@@ -4,9 +4,8 @@ import { FaPerson } from "react-icons/fa6";
 import { GiFruitBowl, GiWrappedSweet, GiSodaCan } from "react-icons/gi";
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import './StatisticsCards.css'; // Import CSS file for styling
-import './App.css'
+import './bmi.css'
 import map from "./assets/map.png";
-import bmi from "./assets/bmi.png";
 
 const data = [
   { name: 'Underweight', value: 8.2 },
