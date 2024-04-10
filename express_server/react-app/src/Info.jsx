@@ -135,7 +135,7 @@ const StatisticsCards = () => (
     <section className="bg-white border-b py-8s">
       <div className="container max-w-5xl mx-auto m-8">
         <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-          Welcome to Our Health Awareness Hub!
+          Welcome to Our Health Awareness Hub! (WORK IN PROGRESS)
         </h2>
         <div className="w-full mb-4">
           <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
@@ -199,12 +199,16 @@ const StatisticsCards = () => (
             Is it really that bad?
           </p>
           <h1 className="my-4 text-5xl font-bold leading-tight">
-            Data on Childhood Obesity and Sugar Intake
+            Understanding the scale of problem
           </h1>
           <p className="leading-normal text-2xl mb-8">
-            Explore a series of informative cards that visually depict crucial data related to childhood obesity and sugar consumption.
-            Gain valuable insights into the prevalence of obesity among children, the impact of sugar intake on health, and actionable steps for promoting healthier lifestyles.
-            Dive into the data to empower yourself with knowledge and make informed decisions for your child's well-being.
+            Explore a series of informative cards that visually depict crucial data related to childhood obesity, sugar consumption and eating habits.
+            <br />
+            <br />
+            Gain insights into childhood obesity rates, adherence to healthy eating habits, awareness of sugar intake, and smart drinking practices.
+            <br />
+            <br />
+            Empower yourself with knowledge to make informed decisions for your child's well-being.
           </p>
         </div>
         <div className="w-full md:w-3/5 py-6 text-center">
@@ -281,117 +285,91 @@ const StatisticsCards = () => (
     </div>
 
 
-    {/* <h1 className="header-title" style={{ fontSize: '36px', textAlign: 'center' }}>Welcome to Our Health Awareness Hub</h1>
-    <p className="header-intro" style={{ fontSize: '23px' }}>Learn about the dangers of childhood obesity and sugary drinks! Many parents aren't aware of how these unhealthy habits can affect their children's health. We provide important information to help you understand the risks and make better choices for your family.</p>
-    <h2 className="sub-header" style={{ fontSize: '28px' }}>Key Statistics</h2> */}
-    {/* <div className="card-container">
-      {/* Statistic Cards Component */}
-      {/* <div className="card">
-        <div className="card-inner">
-          <div className="card-front">
-            <Statistic
-              title="Childhood Obesity"
-              value={25}
-              suffix="%"
-              prefix={<FaPerson />}
-              valueStyle={{ fontSize: '34px' }}
-            />
-          </div>
-          <div className="card-back">
-            <p>25% overweight or obese (5-17 years)</p>
-          </div>
+    <div className="pt-24 bg-white" >
+      <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+          <h1 className="my-4 text-5xl font-bold leading-tight">
+            Weight status of Australian children aged 2-17 years
+          </h1>
+          <p className="leading-normal text-2xl mb-8">
+            Hover over each segment to reveal detailed information about the prevalence of underweight, healthy weight, overweight, and obesity among children in Australia.
+            <br />
+            <br />
+            Gain valuable insights into the current landscape of childhood weight status and use this data to inform decision-making and promote healthier lifestyles for children nationwide
+          </p>
         </div>
-      </div>
-      <div className="card">
-        <div className="card-inner">
-          <div className="card-front">
-            <Statistic
-              title="Healthy Eating Habits"
-              value={6}
-              suffix="%"
-              prefix={<GiFruitBowl />}
-              valueStyle={{ fontSize: '34px' }}
-            />
-          </div>
-          <div className="card-back">
-            <p>6% meet fruit and veg recommendations</p>
-          </div>
-        </div>
-      </div>
-      <div className="card">
-        <div className="card-inner">
-          <div className="card-front">
-            <Statistic
-              title="Sugar Awareness"
-              value={9}
-              suffix="%"
-              prefix={<GiWrappedSweet />}
-              valueStyle={{ fontSize: '34px' }}
-            />
-          </div>
-          <div className="card-back">
-            <p>9% adults, 7% children drink sugary drinks daily</p>
-          </div>
-        </div>
-      </div>
-      <div className="card">
-        <div className="card-inner">
-          <div className="card-front">
-            <Statistic
-              title="Drink Smart"
-              value={45}
-              suffix="%"
-              prefix={<GiSodaCan />}
-              valueStyle={{ fontSize: '34px' }}
-            />
-          </div>
-          <div className="card-back">
-            <p>45% children consume sugary or diet drinks weekly (2-17 years)</p>
-          </div>
-        </div>
-      </div>
-    </div> */}
-    <div>
-      <h2 className="sub-header" style={{ marginTop: '10px', fontSize: '28px', textAlign: 'center' }}>Weight status of Australian children aged 2-17 years</h2>
-      <p style={{ fontSize: '23px' }}>Visual representation of weight status:</p>
-      <ResponsiveContainer width="100%" height={500}>
-        <PieChart>
-          <Pie
-            data={data}
-            cx="50%"
-            cy="50%"
-            innerRadius={80} // Increased inner radius
-            outerRadius={140} // Increased outer radius
-            fill="#8884d8"
-            dataKey="value"
-            label={renderCustomizedLabel}
-          >
-            {
-              data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-            }
-          </Pie>
-          <Tooltip />
-          <Legend layout="vertical" align="center" verticalAlign="top" />
-        </PieChart>
-      </ResponsiveContainer>
-      {/* Add heading and image below the PieChart */}
-      <div style={{ marginTop: '10px', textAlign: 'center' }}>
-        <h2 className="sub-header" style={{ fontSize: '28px' }}>Overweight and obesity by state and territory</h2>
-        <div className="flex-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
-          <img src={map} alt="Australia Obesity Map" style={{ width: '100%', maxWidth: '600px', height: 'auto' }} />
-          <div style={{ maxWidth: '600px' }}>
-            <ul>
-              <li>The prevalence of overweight and obesity in children varies between Australian states and territories.</li>
-              <li>The highest prevalence of obesity in 2017-18 was in Tasmania (11.4%).</li>
-              <li>The lowest was in Western Australia (7.2%).</li>
-            </ul>
-          </div>
+        <div className="w-full md:w-3/5 py-6 text-center">
+          <ResponsiveContainer width="100%" height={500}>
+            <PieChart>
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                innerRadius={80} // Increased inner radius
+                outerRadius={140} // Increased outer radius
+                fill="#8884d8"
+                dataKey="value"
+                label={renderCustomizedLabel}
+              >
+                {
+                  data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+                }
+              </Pie>
+              <Tooltip />
+              <Legend layout="vertical" align="center" verticalAlign="top" />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
       </div>
     </div>
-    {/* BMI Calculator component */}
-    <h2 className="sub-header" style={{ marginTop: '10px', fontSize: '28px', textAlign: 'center' }}>Are you healthy? Check your BMI below!</h2>
-    <BMICalculator />
+
+    <div className="pt-24 bg-white" >
+      <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div className="w-full md:w-3/5 py-6 text-center">
+          <div style={{ marginTop: '10px', textAlign: 'center' }}>
+            <div className="flex-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+              <img src={map} alt="Australia Obesity Map" style={{ width: '100%', maxWidth: '600px', height: 'auto' }} />
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+          <h1 className="my-4 text-5xl font-bold leading-tight">
+            In what zone are you?
+          </h1>
+          <p className="leading-normal text-2xl mb-8">
+
+            Discover how childhood obesity rates vary across Australia with a static map showcasing the percentage of obese children per state.
+            <br />
+            <br />
+            By identifying areas with higher obesity rates, you can make better informed decisions about your children's lifestyle and healthcare, ensuring they receive the support and resources adequate to difficulties they face in their daily life.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
+      <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+          <h1 className="my-4 text-5xl font-bold leading-tight">
+            Calculate Your BMI
+          </h1>
+          <p className="leading-normal text-2xl mb-8">
+
+            Assessing your health status is a very important step in understanding your overall well-being.
+            By calculating your Body Mass Index (BMI), you can gain valuable insights into whether your weight falls within a healthy range for your height.
+            <br />
+            <br />
+            Regularly monitoring your child's BMI can serve as a proactive measure in maintaining optimal health and preventing potential health complications associated with weight-related issues.
+          </p>
+          <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            Want to learn more?
+          </button>
+        </div>
+        <div className="w-full md:w-3/5 py-6 text-center">
+          <BMICalculator />
+        </div>
+      </div>
+    </div>
   </div>
 );
 
