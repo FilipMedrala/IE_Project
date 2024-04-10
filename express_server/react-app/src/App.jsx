@@ -90,140 +90,56 @@ export default function App() {
   return (
     <>
       <BrowserRouter>
-      <nav id="header" className="fixed w-full h-[15%] z-30 top-0 text-white bg-gradient-to-r from-cyan-300 to-blue-900">
-        <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
-            <div className="pl-4">
-              <Link
-                className="toggleColour text-black no-underline hover:text-white no-underline font-bold text-b text-2xl lg:text-4xl"
-                to="/"
-              >
-                Healthy Journey
-                <img
-                  className="w-full md:w-1/12 z-50"
-                  src={pierogi}
-                  alt="Pierogi"
-                />
+        <nav id="header" className="fixed w-full z-30 top-0 text-white bg-gradient-to-r from-cyan-300 to-blue-900">
+          <div className="mx-auto flex items-center justify-between py-2">
+            <div className="pl-4 flex items-center justify-center">
+              <img className="w-full w-1/12 z-50" src={pierogi} alt="Pierogi" />
+              <Link className="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl ml-2" to="/">
+                Health Journey
               </Link>
             </div>
             <div className="block lg:hidden pr-4">
-              <button
-                id="nav-toggle"
-                className="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-              >
-                <svg
-                  className="fill-current h-6 w-6"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+              <button id="nav-toggle" className="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                <svg className="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <title>Menu</title>
                   <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
                 </svg>
               </button>
             </div>
-            <div
-              className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20"
-              id="nav-content"
-            >
-              <ul className="list-reset lg:flex justify-end flex-1 items-center">
+            <div className="hidden lg:flex lg:items-center lg:w-auto text-black flex-grow justify-center" id="nav-content">
+              <ul className="list-reset flex justify-end">
                 <li className="mr-3">
-                  <Link
-                    className="inline-block py-2 px-4 text-black font-bold no-underline"
-                    to="/Info"
-                  >
-                    Information
-                  </Link>
+                  <Link className="inline-block py-2 px-4 text-black font-bold no-underline" to="/Info">Information</Link>
                 </li>
                 <li className="mr-3">
-                  <Link
-                    className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                    to="/Snake"
-                  >
-                    Snake
-                  </Link>
+                  <Link className="inline-block py-2 px-4 text-black font-bold no-underline" to="/Journey">Journey</Link>
                 </li>
                 <li className="mr-3">
-                  <Link
-                    className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                    to="/Journey"
-                  >
-                    Journey
-                  </Link>
+                  <Link className="inline-block py-2 px-4 text-black font-bold no-underline" to="/Snake">Snake</Link>
                 </li>
               </ul>
             </div>
-        </div>
-      </nav >
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/info" element={<Info />} />
-        <Route path="/Journey" element={<Journey />} />
-        <Route path="/Snake" element={<Snake />} />
-        <Route path="/FallingFood" element={<FallingFood />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          </div>
+        </nav>
 
-      <footer className="bg-gradient-to-r from-cyan-300 to-blue-900">
-      <div className="container mx-auto px-8">
-        <div className="w-full flex flex-col md:flex-row py-6">
-          <div className="flex-1 mb-6 text-black">
-          <a
-              className="toggleColour text-black no-underline hover:text-white no-underline font-bold text-b text-2xl lg:text-4xl"
-              href="#"
-            >
-              <img
-                className="w-full md:w-1/6 z-50"
-                src={pierogi}
-                alt="Pierogi"
-              />
-              Healthy Journey
-            </a>
-          </div>
-          <div className="flex-1">
-            <p className="uppercase text-gray-500 md:mb-6">Links</p>
-            <ul className="list-reset mb-6">
-              <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" className="no-underline hover:underline text-gray-800 hover:text-pink-500">FAQ</a>
-              </li>
-              <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" className="no-underline hover:underline text-gray-800 hover:text-pink-500">Help</a>
-              </li>
-              <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" className="no-underline hover:underline text-gray-800 hover:text-pink-500">Support</a>
-              </li>
-            </ul>
-          </div>
-          <div className="flex-1">
-            <p className="uppercase text-gray-500 md:mb-6">Social</p>
-            <ul className="list-reset mb-6">
-              <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" className="no-underline hover:underline text-gray-800 hover:text-pink-500">Facebook</a>
-              </li>
-              <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" className="no-underline hover:underline text-gray-800 hover:text-pink-500">Linkedin</a>
-              </li>
-              <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" className="no-underline hover:underline text-gray-800 hover:text-pink-500">Twitter</a>
-              </li>
-            </ul>
-          </div>
-          <div className="flex-1">
-            <p className="uppercase text-gray-500 md:mb-6">Company</p>
-            <ul className="list-reset mb-6">
-              <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" className="no-underline hover:underline text-gray-800 hover:text-pink-500">Official Blog</a>
-              </li>
-              <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" className="no-underline hover:underline text-gray-800 hover:text-pink-500">About Us</a>
-              </li>
-              <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a href="#" className="no-underline hover:underline text-gray-800 hover:text-pink-500">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-    </BrowserRouter>
+
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/info" element={<Info />} />
+          <Route path="/Journey" element={<Journey />} />
+          <Route path="/Snake" element={<Snake />} />
+          <Route path="/FallingFood" element={<FallingFood />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+
+        <footer className="bg-gradient-to-r from-cyan-300 to-blue-900">
+  <div className="mx-auto px-8 py-6 text-white text-center">
+    <p>&copy; 2024 Journey Health. All rights reserved.</p>
+  </div>
+</footer>
+
+      </BrowserRouter>
     </>
   );
 }
