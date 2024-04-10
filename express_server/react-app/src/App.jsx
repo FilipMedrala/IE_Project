@@ -82,11 +82,11 @@ export default function App() {
 
   return (
     <>
-      <nav id="header" className="fixed w-full z-30 top-0 text-white">
+      <nav id="header" className="fixed w-full z-30 top-0 text-white bg-gradient-to-r from-cyan-300 to-blue-900">
         <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
           <div className="pl-4 flex items-center">
             <a
-              className="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+              className="toggleColour text-black no-underline hover:text-white no-underline font-bold text-b text-2xl lg:text-4xl"
               href="#"
             >
               <img
@@ -144,9 +144,9 @@ export default function App() {
             </ul>
           </div>
         </div>
-        <hr className="border-b border-gray-100 opacity-25 my-0 py-0" />
+        {/* <hr className="border-b border-gray-100 opacity-25 my-0 py-0" /> */}
       </nav>
-      <div className="pt-24">
+      <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
         <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
           <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
             <p className="uppercase tracking-loose w-full">
@@ -336,6 +336,68 @@ export default function App() {
           </div>
         </div>
       </section>
+      <footer class="bg-white">
+      <div class="container mx-auto px-8">
+        <div class="w-full flex flex-col md:flex-row py-6">
+          <div class="flex-1 mb-6 text-black">
+          <a
+              className="toggleColour text-black no-underline hover:text-white no-underline font-bold text-b text-2xl lg:text-4xl"
+              href="#"
+            >
+              <img
+                className="w-full md:w-1/6 z-50"
+                src={pierogi}
+                alt="Pierogi"
+              />
+              Healthy Journey
+            </a>
+          </div>
+          <div class="flex-1">
+            <p class="uppercase text-gray-500 md:mb-6">Links</p>
+            <ul class="list-reset mb-6">
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">FAQ</a>
+              </li>
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Help</a>
+              </li>
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Support</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex-1">
+            <p class="uppercase text-gray-500 md:mb-6">Social</p>
+            <ul class="list-reset mb-6">
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Facebook</a>
+              </li>
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Linkedin</a>
+              </li>
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Twitter</a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex-1">
+            <p class="uppercase text-gray-500 md:mb-6">Company</p>
+            <ul class="list-reset mb-6">
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Official Blog</a>
+              </li>
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">About Us</a>
+              </li>
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <a href="https://www.freepik.com/free-photos-vectors/background" class="text-gray-500">Background vector created by freepik - www.freepik.com</a>
+    </footer>
     </>
   );
 }
