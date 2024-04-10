@@ -199,11 +199,11 @@ const StatisticsCards = () => (
             Is it really that bad?
           </p>
           <h1 className="my-4 text-5xl font-bold leading-tight">
-          Data on Childhood Obesity and Sugar Intake
+            Data on Childhood Obesity and Sugar Intake
           </h1>
           <p className="leading-normal text-2xl mb-8">
-          Explore a series of informative cards that visually depict crucial data related to childhood obesity and sugar consumption.
-           Gain valuable insights into the prevalence of obesity among children, the impact of sugar intake on health, and actionable steps for promoting healthier lifestyles.
+            Explore a series of informative cards that visually depict crucial data related to childhood obesity and sugar consumption.
+            Gain valuable insights into the prevalence of obesity among children, the impact of sugar intake on health, and actionable steps for promoting healthier lifestyles.
             Dive into the data to empower yourself with knowledge and make informed decisions for your child's well-being.
           </p>
         </div>
@@ -211,15 +211,82 @@ const StatisticsCards = () => (
           <img className="w-full md:w-4/5 z-50" src={info4} alt="Data" />
         </div>
       </div>
+      <div className="card-container p-6">
+        {/* Statistic Cards Component */}
+        <div className="card">
+          <div className="card-inner">
+            <div className="card-front">
+              <Statistic
+                title="Childhood Obesity"
+                value={25}
+                suffix="%"
+                prefix={<FaPerson />}
+                valueStyle={{ fontSize: '34px' }}
+              />
+            </div>
+            <div className="card-back">
+              <p>25% overweight or obese (5-17 years)</p>
+            </div>
+          </div>
+        </div>
+        <div className="card">
+          <div className="card-inner">
+            <div className="card-front">
+              <Statistic
+                title="Healthy Eating Habits"
+                value={6}
+                suffix="%"
+                prefix={<GiFruitBowl />}
+                valueStyle={{ fontSize: '34px' }}
+              />
+            </div>
+            <div className="card-back">
+              <p>6% meet fruit and veg recommendations</p>
+            </div>
+          </div>
+        </div>
+        <div className="card">
+          <div className="card-inner">
+            <div className="card-front">
+              <Statistic
+                title="Sugar Awareness"
+                value={9}
+                suffix="%"
+                prefix={<GiWrappedSweet />}
+                valueStyle={{ fontSize: '34px' }}
+              />
+            </div>
+            <div className="card-back">
+              <p>9% adults, 7% children drink sugary drinks daily</p>
+            </div>
+          </div>
+        </div>
+        <div className="card">
+          <div className="card-inner">
+            <div className="card-front">
+              <Statistic
+                title="Drink Smart"
+                value={45}
+                suffix="%"
+                prefix={<GiSodaCan />}
+                valueStyle={{ fontSize: '34px' }}
+              />
+            </div>
+            <div className="card-back">
+              <p>45% children consume sugary or diet drinks weekly (2-17 years)</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
 
-    <h1 className="header-title" style={{ fontSize: '36px', textAlign: 'center' }}>Welcome to Our Health Awareness Hub</h1>
+    {/* <h1 className="header-title" style={{ fontSize: '36px', textAlign: 'center' }}>Welcome to Our Health Awareness Hub</h1>
     <p className="header-intro" style={{ fontSize: '23px' }}>Learn about the dangers of childhood obesity and sugary drinks! Many parents aren't aware of how these unhealthy habits can affect their children's health. We provide important information to help you understand the risks and make better choices for your family.</p>
-    <h2 className="sub-header" style={{ fontSize: '28px' }}>Key Statistics</h2>
-    <div className="card-container">
+    <h2 className="sub-header" style={{ fontSize: '28px' }}>Key Statistics</h2> */}
+    {/* <div className="card-container">
       {/* Statistic Cards Component */}
-      <div className="card">
+      {/* <div className="card">
         <div className="card-inner">
           <div className="card-front">
             <Statistic
@@ -283,7 +350,7 @@ const StatisticsCards = () => (
           </div>
         </div>
       </div>
-    </div>
+    </div> */}
     <div>
       <h2 className="sub-header" style={{ marginTop: '10px', fontSize: '28px', textAlign: 'center' }}>Weight status of Australian children aged 2-17 years</h2>
       <p style={{ fontSize: '23px' }}>Visual representation of weight status:</p>
