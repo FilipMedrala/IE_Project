@@ -7,6 +7,7 @@ import pierogi from "./assets/pierogi.png";
 import Snake from "./Snake";
 import FallingFood from "./FallingFood";
 import NotFound from "./NotFound"
+import Snake2 from "./Snake2"
 import Home from "./Home";
 import Info from "./Info";
 
@@ -130,6 +131,7 @@ export default function App() {
           <Route path="/Journey" element={<Journey />} />
           <Route path="/Snake" element={<Snake />} />
           <Route path="/FallingFood" element={<FallingFood />} />
+          <Route path="/Snake2" element={<Snake2 />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

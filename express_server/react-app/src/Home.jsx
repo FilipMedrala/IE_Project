@@ -168,9 +168,7 @@ export default function App() {
                   PLACEHOLDER TITLE.
                 </div>
                 <p className="text-gray-800 text-base px-6 mb-5">
-                  Placeholder description placeholder description placeholder
-                  description placeholder description placeholder description
-                  placeholder description.
+                  Placeholder description
                 </p>
               </a>
             </div>

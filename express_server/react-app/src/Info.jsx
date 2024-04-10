@@ -338,7 +338,7 @@ const StatisticsCards = () => (
           </h1>
           <p className="leading-normal text-2xl mb-8">
 
-            Discover how childhood obesity rates vary across Australia with a static map showcasing the percentage of obese children per state.
+            Discover how childhood obesity rates vary across Australia with a map showcasing the percentage of obese children per state.
             <br />
             <br />
             By identifying areas with higher obesity rates, you can make better informed decisions about your children's lifestyle and healthcare, ensuring they receive the support and resources adequate to difficulties they face in their daily life.
