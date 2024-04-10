@@ -10,6 +10,11 @@ import map from "./assets/map.png";
 import family from "./assets/family.jpg";
 import game from "./assets/game.png";
 import play from "./assets/play.png";
+import info1 from "./assets/info1.png";
+import info2 from "./assets/info2.png";
+import info3 from "./assets/info3.png";
+import info4 from "./assets/info4.png";
+import info5 from "./assets/info5.png";
 
 
 const data = [
@@ -111,24 +116,104 @@ const StatisticsCards = () => (
       <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           <p className="uppercase tracking-loose w-full">
-            Does your kid know what's healthy?
+            Let's Dive into the Facts...
           </p>
           <h1 className="my-4 text-5xl font-bold leading-tight">
-            We can help you!
+            Nurturing Today for a Bright Tomorrow!
           </h1>
           <p className="leading-normal text-2xl mb-8">
-            Embark on a noble quest with your children to uncover the wonders
-            of healthy eating and why it matters! 🛡️🍏
+            Dive into our comprehensive guide on the critical importance of children's nutrition.
+            Backed by statistics and detailed insights, explore why prioritizing proper nutrition for kids is fundamental for their current well-being and sets the stage for a healthier, brighter future.
           </p>
-          <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            Want to learn more?
-          </button>
         </div>
         <div className="w-full md:w-3/5 py-6 text-center">
-          <img className="w-full md:w-4/5 z-50" src={family} alt="Family" />
+          <img className="w-full md:w-4/5 z-50" src={info1} alt="Family" />
         </div>
       </div>
     </div>
+
+    <section className="bg-white border-b py-8s">
+      <div className="container max-w-5xl mx-auto m-8">
+        <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+          Welcome to Our Health Awareness Hub!
+        </h2>
+        <div className="w-full mb-4">
+          <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+        </div>
+        <div className="flex flex-wrap">
+          <div className="w-5/6 sm:w-1/2 p-6">
+            <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
+              Fight Against Sugar
+            </h3>
+            <p className="text-gray-600 mb-8">
+              Many parents may not realize the hidden risks lurking within sugary beverages, often overshadowed by their enticing flavors.
+              Yet, these drinks can stealthily contribute to weight gain, dental issues, and even chronic health conditions in children.
+              By becoming informed and making mindful choices, parents can take proactive steps to safeguard their children's health and promote a future of vitality and well-being.
+
+              <br />
+              <br />
+              <a
+                className="text-pink-500 underline"
+                href="https://undraw.co/"
+              >
+                Find out more
+              </a>
+            </p>
+          </div>
+          <div className="w-full sm:w-1/2 p-6">
+            <img className="w-full md:w-4/5 z-50" src={info5} alt="Sugar" />
+          </div>
+        </div>
+        <div className="flex flex-wrap flex-col-reverse sm:flex-row">
+          <div className="w-full sm:w-1/2 p-6 mt-6">
+            <img className="w-full md:w-4/5 z-50" src={info3} alt="Obesity" />
+          </div>
+          <div className="w-full sm:w-1/2 p-6 mt-6">
+            <div className="align-middle">
+              <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
+                Shedding Light on Childhood Obesity
+              </h3>
+              <p className="text-gray-600 mb-8">
+                Explore the crucial insights into childhood obesity, tailored for parents seeking to navigate and address this pressing health concern.
+                Discover actionable strategies, informed by expert guidance, to support your child's journey toward a healthier lifestyle and brighter future.
+                <br />
+                <br />
+                <a
+                  className="text-pink-500 underline"
+                  href="https://undraw.co/"
+                >
+                  Find out more
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
+      <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+          <p className="uppercase tracking-loose w-full">
+            Is it really that bad?
+          </p>
+          <h1 className="my-4 text-5xl font-bold leading-tight">
+          Data on Childhood Obesity and Sugar Intake
+          </h1>
+          <p className="leading-normal text-2xl mb-8">
+          Explore a series of informative cards that visually depict crucial data related to childhood obesity and sugar consumption.
+           Gain valuable insights into the prevalence of obesity among children, the impact of sugar intake on health, and actionable steps for promoting healthier lifestyles.
+            Dive into the data to empower yourself with knowledge and make informed decisions for your child's well-being.
+          </p>
+        </div>
+        <div className="w-full md:w-3/5 py-6 text-center">
+          <img className="w-full md:w-4/5 z-50" src={info4} alt="Data" />
+        </div>
+      </div>
+    </div>
+
+
     <h1 className="header-title" style={{ fontSize: '36px', textAlign: 'center' }}>Welcome to Our Health Awareness Hub</h1>
     <p className="header-intro" style={{ fontSize: '23px' }}>Learn about the dangers of childhood obesity and sugary drinks! Many parents aren't aware of how these unhealthy habits can affect their children's health. We provide important information to help you understand the risks and make better choices for your family.</p>
     <h2 className="sub-header" style={{ fontSize: '28px' }}>Key Statistics</h2>
