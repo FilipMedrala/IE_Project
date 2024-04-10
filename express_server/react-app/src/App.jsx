@@ -182,7 +182,7 @@ export default function App() {
           </g>
         </svg>
       </div> */}
-      <section className="bg-white border-b py-8">
+      <section className="bg-white border-b py-8s">
         <div className="container max-w-5xl mx-auto m-8">
           <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
             Welcome to Healthy Journey!
@@ -336,7 +336,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      <footer class="bg-white">
+      <footer class="bg-gradient-to-r from-cyan-300 to-blue-900">
       <div class="container mx-auto px-8">
         <div class="w-full flex flex-col md:flex-row py-6">
           <div class="flex-1 mb-6 text-black">
