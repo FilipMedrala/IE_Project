@@ -7,6 +7,11 @@ import './StatisticsCards.css'; // Import CSS file for styling
 import './bmi.css'
 import map from "./assets/map.png";
 
+import family from "./assets/family.jpg";
+import game from "./assets/game.png";
+import play from "./assets/play.png";
+
+
 const data = [
   { name: 'Underweight', value: 8.2 },
   { name: 'Normal weight', value: 66.9 },
@@ -59,7 +64,7 @@ const BMICalculator = () => {
 
   return (
     <div className={`bmi-calculator-box ${bmiCategory}`}>
-      <h2 className="sub-header" style={{fontSize:"23px"}}>Calculate Your BMI</h2>
+      <h2 className="sub-header" style={{ fontSize: "23px" }}>Calculate Your BMI</h2>
       <div className="input-container">
         <label htmlFor="height">Enter Your Height (cm):</label>
         <input
@@ -99,9 +104,33 @@ const BMICalculator = () => {
 
 
 const StatisticsCards = () => (
-  <div className='info-page'>
-    <h1 className="header-title" style={{ fontSize: '36px', textAlign: 'center'}}>Welcome to Our Health Awareness Hub</h1>
-    <p className="header-intro" style={{ fontSize: '23px'}}>Learn about the dangers of childhood obesity and sugary drinks! Many parents aren't aware of how these unhealthy habits can affect their children's health. We provide important information to help you understand the risks and make better choices for your family.</p>
+
+  <div className='info-page pt-10'>
+
+    <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
+      <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+          <p className="uppercase tracking-loose w-full">
+            Does your kid know what's healthy?
+          </p>
+          <h1 className="my-4 text-5xl font-bold leading-tight">
+            We can help you!
+          </h1>
+          <p className="leading-normal text-2xl mb-8">
+            Embark on a noble quest with your children to uncover the wonders
+            of healthy eating and why it matters! 🛡️🍏
+          </p>
+          <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            Want to learn more?
+          </button>
+        </div>
+        <div className="w-full md:w-3/5 py-6 text-center">
+          <img className="w-full md:w-4/5 z-50" src={family} alt="Family" />
+        </div>
+      </div>
+    </div>
+    <h1 className="header-title" style={{ fontSize: '36px', textAlign: 'center' }}>Welcome to Our Health Awareness Hub</h1>
+    <p className="header-intro" style={{ fontSize: '23px' }}>Learn about the dangers of childhood obesity and sugary drinks! Many parents aren't aware of how these unhealthy habits can affect their children's health. We provide important information to help you understand the risks and make better choices for your family.</p>
     <h2 className="sub-header" style={{ fontSize: '28px' }}>Key Statistics</h2>
     <div className="card-container">
       {/* Statistic Cards Component */}
@@ -171,8 +200,8 @@ const StatisticsCards = () => (
       </div>
     </div>
     <div>
-      <h2 className="sub-header" style={{ marginTop: '10px', fontSize: '28px' , textAlign: 'center'}}>Weight status of Australian children aged 2-17 years</h2>
-      <p style={{ fontSize: '23px'}}>Visual representation of weight status:</p>
+      <h2 className="sub-header" style={{ marginTop: '10px', fontSize: '28px', textAlign: 'center' }}>Weight status of Australian children aged 2-17 years</h2>
+      <p style={{ fontSize: '23px' }}>Visual representation of weight status:</p>
       <ResponsiveContainer width="100%" height={500}>
         <PieChart>
           <Pie
@@ -192,9 +221,9 @@ const StatisticsCards = () => (
           <Tooltip />
           <Legend layout="vertical" align="center" verticalAlign="top" />
         </PieChart>
-        </ResponsiveContainer>
-        {/* Add heading and image below the PieChart */}
-        <div style={{ marginTop: '10px', textAlign: 'center' }}>
+      </ResponsiveContainer>
+      {/* Add heading and image below the PieChart */}
+      <div style={{ marginTop: '10px', textAlign: 'center' }}>
         <h2 className="sub-header" style={{ fontSize: '28px' }}>Overweight and obesity by state and territory</h2>
         <div className="flex-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
           <img src={map} alt="Australia Obesity Map" style={{ width: '100%', maxWidth: '600px', height: 'auto' }} />
@@ -209,9 +238,9 @@ const StatisticsCards = () => (
       </div>
     </div>
     {/* BMI Calculator component */}
-    <h2 className="sub-header" style={{ marginTop: '10px', fontSize: '28px' , textAlign: 'center'}}>Are you healthy? Check your BMI below!</h2>
+    <h2 className="sub-header" style={{ marginTop: '10px', fontSize: '28px', textAlign: 'center' }}>Are you healthy? Check your BMI below!</h2>
     <BMICalculator />
-    </div>
+  </div>
 );
 
 
