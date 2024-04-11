@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, Router, Link, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 
 
 import Journey from "./Journey";
@@ -110,6 +110,9 @@ export default function App() {
             <div className="hidden lg:flex lg:items-center lg:w-auto text-black flex-grow justify-center" id="nav-content">
               <ul className="list-reset flex justify-end">
                 <li className="mr-3">
+                  <Link className="inline-block py-2 px-4 text-black font-bold no-underline" to="/">Home</Link>
+                </li>
+                <li className="mr-3">
                   <Link className="inline-block py-2 px-4 text-black font-bold no-underline" to="/Info">Information</Link>
                 </li>
                 <li className="mr-3">
@@ -117,6 +120,9 @@ export default function App() {
                 </li>
                 <li className="mr-3">
                   <Link className="inline-block py-2 px-4 text-black font-bold no-underline" to="/Snake">Snake</Link>
+                </li>
+                <li className="mr-3">
+                  <Link className="inline-block py-2 px-4 text-black font-bold no-underline" to="/FallingFood">FallingFood</Link>
                 </li>
               </ul>
             </div>

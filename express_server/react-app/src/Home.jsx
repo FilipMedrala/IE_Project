@@ -1,6 +1,10 @@
+import { Link } from 'react-router-dom';
+
 import family from "./assets/family.jpg";
 import game from "./assets/game.png";
 import play from "./assets/play.png";
+import Snake from "./Snake";
+import FallingFood from "./FallingFood";
 // import Journey from "./Journey";
 
 export default function App() {
@@ -122,9 +126,9 @@ export default function App() {
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div className="flex items-center justify-start">
-                <button className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                <Link to="/Snake" className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                   PLAY SNAKE
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -149,9 +153,9 @@ export default function App() {
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div className="flex items-center justify-center">
-                <button className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                <Link to="/FallingFood" className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                   PLAY FALLING FOOD
-                </button>
+                </Link>
               </div>
             </div>
           </div>
