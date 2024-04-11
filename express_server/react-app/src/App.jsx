@@ -94,7 +94,7 @@ export default function App() {
         <nav id="header" className="fixed w-full z-30 top-0 text-white bg-gradient-to-r from-cyan-300 to-blue-900">
           <div className="mx-auto flex items-center justify-between py-2">
             <div className="pl-4 flex items-center justify-center">
-              <img className="w-full w-1/12 z-50" src={pierogi} alt="Pierogi" />
+              <img className="w-1/12 z-50" src={pierogi} alt="Pierogi" />
               <Link className="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl ml-2" to="/">
                 Health Journey
               </Link>
