@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import family from "./assets/family.jpg";
 import game from "./assets/game.png";
 import play from "./assets/play.png";
+import Info from "./Info";
 import Snake from "./Snake";
 import FallingFood from "./FallingFood";
 // import Journey from "./Journey";
@@ -25,9 +26,9 @@ export default function App() {
               Embark on a noble quest with your children to uncover the wonders
               of healthy eating and why it matters! 🛡️🍏
             </p>
-            <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            <Link to="/Info" className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
               Want to learn more?
-            </button>
+            </Link>
           </div>
           <div className="w-full md:w-3/5 py-6 text-center">
             <img className="w-full md:w-4/5 z-50" src={family} alt="Family" />
@@ -54,12 +55,12 @@ export default function App() {
                 just the thing to help you... GAMES!
                 <br />
                 <br />
-                <a
+                <Link
                   className="text-pink-500 underline"
-                  href="https://undraw.co/"
+                  to="/Info"
                 >
                   Find out more
-                </a>
+                </Link>
               </p>
             </div>
             <div className="w-full sm:w-1/2 p-6">
@@ -85,12 +86,12 @@ export default function App() {
                   make informed decisions about what they eat.
                   <br />
                   <br />
-                  <a
+                  <Link
                     className="text-pink-500 underline"
-                    href="https://undraw.co/"
+                    to="/Info"
                   >
                     Find out more
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>
@@ -107,8 +108,8 @@ export default function App() {
           </div>
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-              <a
-                href="#"
+              <Link
+                to="/Snake"
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <p className="w-full text-gray-600 text-xs md:text-sm px-6">
@@ -122,7 +123,7 @@ export default function App() {
                   snake! Grow longer with each nutritious bite, but watch out
                   for the tempting treats that could shrink you down.
                 </p>
-              </a>
+              </Link>
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div className="flex items-center justify-start">
@@ -134,8 +135,8 @@ export default function App() {
           </div>
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-              <a
-                href="#"
+              <Link
+                to="/FallingFood"
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <p className="w-full text-gray-600 text-xs md:text-sm px-6">
@@ -149,7 +150,7 @@ export default function App() {
                   while dodging the bad stuff. Quick reflexes and nutrition
                   smarts make the game a tasty challenge for all ages!
                 </p>
-              </a>
+              </Link>
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div className="flex items-center justify-center">
@@ -161,8 +162,8 @@ export default function App() {
           </div>
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <p className="w-full text-gray-600 text-xs md:text-sm px-6">
@@ -174,7 +175,7 @@ export default function App() {
                 <p className="text-gray-800 text-base px-6 mb-5">
                   Placeholder description
                 </p>
-              </a>
+              </Link>
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div className="flex items-center justify-end">

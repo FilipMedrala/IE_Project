@@ -308,14 +308,14 @@ export default function Snake() {
               Embark on an exciting adventure with Slinky, the friendly snake! Explore a world filled with tasty treats, but watch out for those sneaky unhealthy snacks hiding among them.
             </p>
             <p className="leading-normal text-4xl mb-8">How to play:</p>
-              <ul className="leading-normal text-xl mb-8 list-disc ml-6">
-                <li><strong>A</strong> to move <strong>LEFT</strong></li>
-                <li><strong>W</strong> to move <strong>UP</strong></li>
-                <li><strong>S</strong> to move <strong>DOWN</strong></li>
-                <li><strong>D</strong> to move <strong>RIGHT</strong></li>
-                <li>Eating healthy food <strong>GROWS</strong> the Snake! 🍎</li>
-                <li>Eating unhealthy food <strong>SHRINKS</strong> the Snake 😢</li>
-              </ul>
+            <ul className="leading-normal text-xl mb-8 list-disc ml-6">
+              <li><strong>A</strong> to move <strong>LEFT</strong></li>
+              <li><strong>W</strong> to move <strong>UP</strong></li>
+              <li><strong>S</strong> to move <strong>DOWN</strong></li>
+              <li><strong>D</strong> to move <strong>RIGHT</strong></li>
+              <li>Eating healthy food <strong>GROWS</strong> the Snake! 🍎</li>
+              <li>Eating unhealthy food <strong>SHRINKS</strong> the Snake 😢</li>
+            </ul>
             <button onClick={startGame} className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">Let's play!</button>
           </div>
         )}
@@ -347,8 +347,8 @@ export default function Snake() {
           <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
             <h1 className="my-6 text-5xl font-bold leading-tight">Game Over!</h1>
             <p className="leading-normal text-2xl mb-8">
-            Oops! Looks like you got caught! Don't worry, it happens to the best of us.
-             How about giving it another try? Click 'Play Again' to start a fresh adventure with Slinky the Snake! 🐍
+              Oops! Looks like you got caught! Don't worry, it happens to the best of us.
+              How about giving it another try? Click 'Play Again' to start a fresh adventure with Slinky the Snake! 🐍
             </p>
             <button onClick={resetGame} className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">Play again!</button>
           </div>

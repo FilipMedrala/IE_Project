@@ -215,7 +215,7 @@ const StatisticsCards = () => (
           <img className="w-full md:w-4/5 z-50" src={info4} alt="Data" />
         </div>
         <h2 className="my-4 text-5xl font-bold leading-tight">
-            Key Statistics:
+          Key Statistics:
         </h2>
       </div>
       <div className="card-container p-6">

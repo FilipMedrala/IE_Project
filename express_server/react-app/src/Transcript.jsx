@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './FruitQuiz.css'; // Import the CSS file for styling
 
-import { Carousel, Button, Modal, Space } from 'antd';
+import { Button, Space } from 'antd';
 
 export default function Transcript(data) {
 

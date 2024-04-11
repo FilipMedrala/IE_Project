@@ -14,41 +14,6 @@ import Info from "./Info";
 export default function App() {
 
   useEffect(() => {
-    const scrollHandler = () => {
-      const scrollpos = window.scrollY;
-      const header = document.getElementById("header");
-      const navcontent = document.getElementById("nav-content");
-      const navaction = document.getElementById("navAction");
-      const toToggle = document.querySelectorAll(".toggleColour");
-
-      if (scrollpos > 10) {
-        header.classList.add("bg-white");
-        navaction.classList.remove("bg-white");
-        navaction.classList.add("gradient");
-        navaction.classList.remove("text-gray-800");
-        navaction.classList.add("text-white");
-        for (let i = 0; i < toToggle.length; i++) {
-          toToggle[i].classList.add("text-gray-800");
-          toToggle[i].classList.remove("text-white");
-        }
-        header.classList.add("shadow");
-        navcontent.classList.remove("bg-gray-100");
-        navcontent.classList.add("bg-white");
-      } else {
-        header.classList.remove("bg-white");
-        navaction.classList.remove("gradient");
-        navaction.classList.add("bg-white");
-        navaction.classList.remove("text-white");
-        navaction.classList.add("text-gray-800");
-        for (let i = 0; i < toToggle.length; i++) {
-          toToggle[i].classList.add("text-white");
-          toToggle[i].classList.remove("text-gray-800");
-        }
-        header.classList.remove("shadow");
-        navcontent.classList.remove("bg-white");
-        navcontent.classList.add("bg-gray-100");
-      }
-    };
 
     const check = (e) => {
       const target = (e && e.target) || (event && event.srcElement);
@@ -78,11 +43,9 @@ export default function App() {
       return false;
     };
 
-    document.addEventListener("scroll", scrollHandler);
     document.addEventListener("click", check);
 
     return () => {
-      document.removeEventListener("scroll", scrollHandler);
       document.removeEventListener("click", check);
     };
   }, []);
@@ -95,19 +58,19 @@ export default function App() {
           <div className="mx-auto flex items-center justify-between py-2">
             <div className="pl-4 flex items-center justify-center">
               <img className="w-1/12 z-50" src={pierogi} alt="Pierogi" />
-              <Link className="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl ml-2" to="/">
+              <Link className="toggleColour text-black no-underline hover:text-white no-underline font-bold text-2xl lg:text-4xl ml-2" to="/">
                 Health Journey
               </Link>
             </div>
             <div className="block lg:hidden pr-4">
-              <button id="nav-toggle" className="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                <svg className="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <button id="nav-toggle" className="flex items-center p-1 text-black-800 hover: text-black focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                <svg className="fill-current h-6 w-6" viewBox="0 0 20 20">
                   <title>Menu</title>
                   <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
                 </svg>
               </button>
             </div>
-            <div className="hidden lg:flex lg:items-center lg:w-auto text-black flex-grow justify-center" id="nav-content">
+            <div className="hidden lg:flex lg:items-center lg:w-auto flex-grow justify-center" id="nav-content">
               <ul className="list-reset flex justify-end">
                 <li className="mr-3">
                   <Link className="inline-block py-2 px-4 text-black font-bold no-underline" to="/">Home</Link>
