@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Statistic, Input, Button } from 'antd'; // Import Ant Design components
 import { FaPerson } from "react-icons/fa6";
-import { GiFruitBowl, GiWrappedSweet, GiSodaCan } from "react-icons/gi";
+import { GiFruitBowl, GiWrappedSweet, GiSodaCan, GiRun } from "react-icons/gi";
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import './StatisticsCards.css'; // Import CSS file for styling
 import './bmi.css'
@@ -214,6 +214,9 @@ const StatisticsCards = () => (
         <div className="w-full md:w-3/5 py-6 text-center">
           <img className="w-full md:w-4/5 z-50" src={info4} alt="Data" />
         </div>
+        <h2 className="my-4 text-5xl font-bold leading-tight">
+            Key Statistics:
+        </h2>
       </div>
       <div className="card-container p-6">
         {/* Statistic Cards Component */}
@@ -278,6 +281,22 @@ const StatisticsCards = () => (
             </div>
             <div className="card-back">
               <p>45% children consume sugary or diet drinks weekly (2-17 years)</p>
+            </div>
+          </div>
+        </div>
+        <div className="card">
+          <div className="card-inner">
+            <div className="card-front">
+              <Statistic
+                title="Physical Activity"
+                value={17}
+                suffix="%"
+                prefix={<GiRun />}
+                valueStyle={{ fontSize: '34px' }}
+              />
+            </div>
+            <div className="card-back">
+              <p>Only 16.6% of Child were doing sufficient physical activity</p>
             </div>
           </div>
         </div>
