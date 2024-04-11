@@ -308,8 +308,7 @@ export default function Snake() {
               Embark on an exciting adventure with Slinky, the friendly snake! Explore a world filled with tasty treats, but watch out for those sneaky unhealthy snacks hiding among them.
             </p>
             <p className="leading-normal text-4xl mb-8">How to play:</p>
-            <p className="leading-normal text-xl mb-8">
-              <ul className="list-disc ml-6">
+              <ul className="leading-normal text-xl mb-8 list-disc ml-6">
                 <li><strong>A</strong> to move <strong>LEFT</strong></li>
                 <li><strong>W</strong> to move <strong>UP</strong></li>
                 <li><strong>S</strong> to move <strong>DOWN</strong></li>
@@ -317,7 +316,6 @@ export default function Snake() {
                 <li>Eating healthy food <strong>GROWS</strong> the Snake! 🍎</li>
                 <li>Eating unhealthy food <strong>SHRINKS</strong> the Snake 😢</li>
               </ul>
-            </p>
             <button onClick={startGame} className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">Let's play!</button>
           </div>
         )}
