@@ -135,11 +135,11 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
 
-        <footer className="bg-gradient-to-r from-cyan-300 to-blue-900">
-  <div className="mx-auto px-8 py-6 text-white text-center">
-    <p>&copy; 2024 Journey Health. All rights reserved.</p>
-  </div>
-</footer>
+        <footer className="bg-gradient-to-r from-cyan-300 to-blue-900 fixed bottom-0 w-full">
+          <div className="mx-auto px-8 py-6 text-white text-center">
+            <p>&copy; 2024 Journey Health. All rights reserved.</p>
+          </div>
+        </footer>
 
       </BrowserRouter>
     </>

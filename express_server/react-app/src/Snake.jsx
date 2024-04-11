@@ -15,11 +15,19 @@ import tail_down from "./snake_assets/tail_down.png";
 import tail_left from "./snake_assets/tail_left.png";
 import tail_right from "./snake_assets/tail_right.png";
 import tail_up from "./snake_assets/tail_up.png";
+import snake_background from "./assets/snake_background.png";
+import fries from "./assets/fries.png";
+import snake_hurt from "./assets/snake_hurt.png";
 
 export default function Snake() {
   const gridX = 30; // Size of the x grid
   const gridY = 20; // Size of the y grid
-  const initialSnake = [{ x: 0, y: 0 }]; // Initial snake position
+  const initialSnake = [
+    { x: 4, y: 2 }, // Head
+    { x: 3, y: 2 }, // Body part 1
+    { x: 2, y: 2 }, // Body part 2
+    { x: 1, y: 2 } // Body part 3
+  ]; // Initial snake position
   const [snake, setSnake] = useState(initialSnake);
   const [healthyFood, setHealthyFood] = useState(generateFood());
   const [junkFood, setJunkFood] = useState(generateFood());
@@ -27,6 +35,13 @@ export default function Snake() {
   const [direction, setDirection] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [speed, setSpeed] = useState(150);
+  const [gameStarted, setGameStarted] = useState(false); // New state to track if the game has started
+  const [healthyFoodEaten, setHealthyFoodEaten] = useState(0);
+  const [unhealthyFoodEaten, setUnhealthyFoodEaten] = useState(0);
+
+  const startGame = () => {
+    setGameStarted(true);
+  };
 
   function generateFood() {
     const x = Math.floor(Math.random() * gridX);
@@ -56,7 +71,6 @@ export default function Snake() {
         break;
     }
   }
-  
 
   function moveSnake() {
     if (gameOver) return;
@@ -101,11 +115,13 @@ export default function Snake() {
     if (isColliding(newHead, healthyFood)) {
       setHealthyFood(generateFood());
       setScore(score + 1);
+      setHealthyFoodEaten(healthyFoodEaten + 1);
       setSpeed((prevSpeed) => Math.max(50, prevSpeed - 5));
     } else if (isColliding(newHead, junkFood)) {
       newSnake.pop(); // Remove last segment of the snake
       setJunkFood(generateFood());
       setScore(score - 1); // Decrease score when eating junk food
+      setUnhealthyFoodEaten(unhealthyFoodEaten + 1);
       newSnake.pop();
     } else {
       newSnake.pop();
@@ -116,8 +132,11 @@ export default function Snake() {
   }
 
   useEffect(() => {
-    const intervalId = setInterval(moveSnake, speed);
-    return () => clearInterval(intervalId);
+    // Check if direction is set before allowing movement
+    if (direction) {
+      const intervalId = setInterval(moveSnake, speed);
+      return () => clearInterval(intervalId);
+    }
   }, [snake, direction, speed]);
 
   useEffect(() => {
@@ -142,7 +161,7 @@ export default function Snake() {
         return { x: cell.x + 1, y: cell.y };
     }
   }
-  
+
   function getHeadImageSource(nextCell) {
     // Determine the appropriate head image based on the next cell position
     const dx = nextCell.x - snake[0].x;
@@ -157,32 +176,10 @@ export default function Snake() {
       return head_down;
     }
   }
-  
-  function getBodyImageSource(currentCell, nextCell) {
-    // Determine the appropriate body segment image based on current and next cell positions
-    const dx = nextCell.x - currentCell.x;
-    const dy = nextCell.y - currentCell.y;
-    if (dx === 1 && dy === 0) {
-      return body_horizontal;
-    } else if (dx === -1 && dy === 0) {
-      return body_horizontal;
-    } else if (dx === 0 && dy === -1) {
-      return body_vertical;
-    } else if (dx === 0 && dy === 1) {
-      return body_vertical;
-    } else if (dx === 1 && dy === 1) {
-      return body_bottomleft;
-    } else if (dx === -1 && dy === 1) {
-      return body_bottomright;
-    } else if (dx === 1 && dy === -1) {
-      return body_topleft;
-    } else if (dx === -1 && dy === -1) {
-      return body_topright;
-    }
-  }
-  
 
   function renderGrid() {
+    if (!gameStarted) return null;
+
     const grid = [];
     for (let y = 0; y < gridY; y++) {
       const row = [];
@@ -190,31 +187,82 @@ export default function Snake() {
         let cellType = "";
         let imageSource = "";
         let backgroundColor = "";
-  
-        // Check for snake, apple, and junk food collisions
+
         if (isColliding({ x, y }, snake[0])) {
           // Snake head
           const nextCell = getNextCell(snake[0]);
           imageSource = getHeadImageSource(nextCell);
         } else if (snake.some((cell) => isColliding(cell, { x, y }))) {
           // Snake body
-          const snakeCell = snake.find((cell) => isColliding(cell, { x, y }));
-          const nextCell = getNextCell(snakeCell);
-          imageSource = getBodyImageSource(snakeCell, nextCell);
+          const bodyIndex = snake.findIndex((cell) => isColliding(cell, { x, y }));
+          const currentCell = snake[bodyIndex];
+          const nextCell = snake[bodyIndex - 1];
+          const prevCell = snake[bodyIndex + 1];
+
+          if (nextCell && prevCell) {
+            // Body segment between two other segments
+            if (nextCell.x === prevCell.x) {
+              // Vertical segment
+              imageSource = body_vertical;
+            } else if (nextCell.y === prevCell.y) {
+              // Horizontal segment
+              imageSource = body_horizontal;
+            } else if (nextCell.x === currentCell.x && nextCell.y === currentCell.y + 1 && prevCell.x == currentCell.x - 1) {
+              // Top left corner
+              imageSource = body_bottomleft;
+            } else if (nextCell.x === currentCell.x && nextCell.y === currentCell.y + 1 && prevCell.x == currentCell.x + 1) {
+              // Top right corner
+              imageSource = body_bottomright;
+            } else if (nextCell.x === currentCell.x && nextCell.y === currentCell.y - 1 && prevCell.x == currentCell.x - 1) {
+              // Bottom left corner
+              imageSource = body_topleft;
+            } else if (nextCell.x === currentCell.x && nextCell.y === currentCell.y - 1 && prevCell.x == currentCell.x + 1) {
+              // Bottom right corner
+              imageSource = body_topright;
+            } else if (nextCell.y === currentCell.y && nextCell.x === currentCell.x - 1 && prevCell.y == currentCell.y - 1) {
+              // Top left corner
+              imageSource = body_topleft;
+            } else if (nextCell.y === currentCell.y && nextCell.x === currentCell.x - 1 && prevCell.y == currentCell.y + 1) {
+              // Bottom left corner
+              imageSource = body_bottomleft;
+            } else if (nextCell.y === currentCell.y && nextCell.x === currentCell.x + 1 && prevCell.y == currentCell.y - 1) {
+              // Top right corner
+              imageSource = body_topright;
+            } else if (nextCell.y === currentCell.y && nextCell.x === currentCell.x + 1 && prevCell.y == currentCell.y + 1) {
+              // Bottom right corner
+              imageSource = body_bottomright;
+            }
+          } else if (nextCell) {
+            // Tail segment
+            if (nextCell.x === currentCell.x + 1) {
+              // Tail pointing right
+              imageSource = tail_left;
+            } else if (nextCell.x === currentCell.x - 1) {
+              // Tail pointing left
+              imageSource = tail_right;
+            } else if (nextCell.y === currentCell.y - 1) {
+              // Tail pointing up
+              imageSource = tail_down;
+            } else if (nextCell.y === currentCell.y + 1) {
+              // Tail pointing down
+              imageSource = tail_up;
+            }
+          }
         } else if (isColliding({ x, y }, healthyFood)) {
           // Apple
           imageSource = apple;
         } else if (isColliding({ x, y }, junkFood)) {
-          // Handle junk food image if needed
-        } else {
-          // Checkered green background for empty cells
-          if ((x + y) % 2 === 0) {
-            backgroundColor = "#8BC34A"; // Lighter green
-          } else {
-            backgroundColor = "#689F38"; // Darker green
-          }
+          //  Junk food
+          imageSource = fries;
         }
-  
+        // Checkered green background for empty cells
+        if ((x + y) % 2 === 0) {
+          backgroundColor = "#8BC34A"; // Lighter green
+        } else {
+          backgroundColor = "#689F38"; // Darker green
+        }
+
+
         row.push(
           <div
             key={`${x}-${y}`}
@@ -236,12 +284,82 @@ export default function Snake() {
     }
     return grid;
   }
-  
+
+  const resetGame = () => {
+    setSnake(initialSnake);
+    setHealthyFood(generateFood());
+    setJunkFood(generateFood());
+    setScore(0);
+    setDirection(false);
+    setGameOver(false);
+    setSpeed(150);
+    setHealthyFoodEaten(0);
+    setUnhealthyFoodEaten(0);
+    setGameStarted(true);
+  };
 
   return (
-    <div className="my-40">
-      <div className="container px-3 mx-auto flex justify-center">
-        <div className="grid grid-cols-20 gap-0 mx-auto">{renderGrid()}</div>
+    <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900">
+      <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        {!gameStarted && !gameOver && (
+          <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+            <h1 className="my-6 text-5xl font-bold leading-tight">SNAKE</h1>
+            <p className="leading-normal text-2xl mb-8">
+              Embark on an exciting adventure with Slinky, the friendly snake! Explore a world filled with tasty treats, but watch out for those sneaky unhealthy snacks hiding among them.
+            </p>
+            <p className="leading-normal text-4xl mb-8">How to play:</p>
+            <p className="leading-normal text-xl mb-8">
+              <ul className="list-disc ml-6">
+                <li><strong>A</strong> to move <strong>LEFT</strong></li>
+                <li><strong>W</strong> to move <strong>UP</strong></li>
+                <li><strong>S</strong> to move <strong>DOWN</strong></li>
+                <li><strong>D</strong> to move <strong>RIGHT</strong></li>
+                <li>Eating healthy food <strong>GROWS</strong> the Snake! 🍎</li>
+                <li>Eating unhealthy food <strong>SHRINKS</strong> the Snake 😢</li>
+              </ul>
+            </p>
+            <button onClick={startGame} className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">Let's play!</button>
+          </div>
+        )}
+        {!gameStarted && !gameOver && (
+          <div className="w-full md:w-3/5 py-6 text-center">
+            <img className="w-full rounded-xl m-10 md:w-3/5 z-50" src={snake_background} alt="Snake" />
+          </div>
+        )}
+        {gameStarted && !gameOver && (
+          <div className="grid grid-cols-20 gap-0 mx-auto pt-24">{renderGrid()}</div>
+        )}
+        {gameStarted && !gameOver && (
+          <div className="w-full mx-auto md:w-3/5 py-6 text-center text-3xl">
+            <div className="flex justify-between">
+              <div className="mr-6">
+                <p className="inline-block">Score: {score}</p>
+              </div>
+              <div className="mx-auto">
+                <p className="inline-block">Healthy Food Eaten: {healthyFoodEaten}</p>
+              </div>
+              <div className="ml-6">
+                <p className="inline-block">Unhealthy Food Eaten: {unhealthyFoodEaten}</p>
+              </div>
+            </div>
+          </div>
+        )}
+        {gameOver && (
+
+          <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+            <h1 className="my-6 text-5xl font-bold leading-tight">Game Over!</h1>
+            <p className="leading-normal text-2xl mb-8">
+            Oops! Looks like you got caught! Don't worry, it happens to the best of us.
+             How about giving it another try? Click 'Play Again' to start a fresh adventure with Slinky the Snake! 🐍
+            </p>
+            <button onClick={resetGame} className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">Play again!</button>
+          </div>
+        )}
+        {gameOver && (
+          <div className="w-full md:w-3/5 py-6 text-center">
+            <img className="w-full rounded-xl m-10 md:w-3/5 z-50" src={snake_hurt} alt="Snake hurt" />
+          </div>
+        )}
       </div>
     </div>
   );
