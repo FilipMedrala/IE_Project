@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import './journey.css'
+import './App.css'
 // import { Carousel } from 'antd';
 //import { FullSlip, SlipItem } from "react-fullslip";
 import { Button, Popover } from 'antd';
@@ -18,6 +19,7 @@ import Quiz from "./Quiz"
 import axios from 'axios';
 import fixedImg from './assets/fixedImg.png'
 import fixedRoadImg from './assets/fixedRoadImg.png'
+import Character from './Character';
 
 
 export default function FallingFood() {
@@ -58,8 +60,9 @@ export default function FallingFood() {
 
   return (
     <div className="Journey">
-      <img className="fixedImg" src={fixedImg} />
-      <div className="fixedRoadImg" ></div>
+      <Character src={fixedImg} />
+      {/* <img className="fixedImg" src={fixedImg} />
+      <div className="fixedRoadImg" ></div> */}
       {/* <div className="header">Journey</div> */}
       {/* <FullSlip {...{
         navigation: false,           //是否开启导航点,      默认为true
@@ -84,7 +87,7 @@ export default function FallingFood() {
                   </ol>
                 </div>
                 } title="Apple">
-                  <img className="icons icons1" src={pic1} alt="" />
+                  <img className="icons icons0" src={pic1} alt="" />
                 </Popover>
             </div>
             <div>
@@ -194,12 +197,12 @@ export default function FallingFood() {
 
         {quizData?.length > 0 && <Quiz quizData={quizData[1]} type="stage2" />}
       </div>
-      <div className="itembox itembox3" style={{ backgroundColor: '#FFEC8B' }}>
+      {/* <div className="itembox itembox3" style={{ backgroundColor: '#FFEC8B' }}>
         page3
       </div>
       <div className="itembox itembox4" style={{ backgroundColor: '#cccccc' }}>
         page4
-      </div>
+      </div> */}
       {/* </FullSlip> */}
       {/* </Carousel> */}
 
