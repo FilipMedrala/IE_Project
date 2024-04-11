@@ -87,7 +87,7 @@ export default function FallingFood() {
                   </ol>
                 </div>
               } title="Apple">
-                <img className="icons icons1" src={pic1} alt="" />
+                <img className="icons icons0" src={pic1} alt="" />
               </Popover>
             </div>
             <div>
