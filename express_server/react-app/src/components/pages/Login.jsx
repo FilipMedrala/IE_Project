@@ -17,7 +17,6 @@ export default function Login() {
         try {
 
             await login(formData.username, formData.password)
-            // navigate("/")
 
         } catch (error) {
 

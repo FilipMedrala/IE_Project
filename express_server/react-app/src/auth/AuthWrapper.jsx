@@ -9,30 +9,39 @@ export const AuthWrapper = () => {
     const [user, setUser] = useState({ name: "", isAuthenticated: false });
 
     useEffect(() => {
-        // Check if user authentication state is stored in cookies
+        // Check if user authentication state is stored in localStorage
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
     }, []);
 
+
+    useEffect(() => {
+        console.log("Updated user");
+    }, [user]);
+
+
     const login = async (username, password) => {
         try {
-            const response = await axios.post('/login', { username, password });
-            console.log(response.data.success);
-
-            // If login is successful, update user state and store in cookies
-            setUser({ name: username, isAuthenticated: true });
-            localStorage.setItem("user", JSON.stringify({ name: username, isAuthenticated: true }));
-
-            return "success";
+            const response = axios.post('/login', { username, password }).then((result) => {
+                const { data } = response;
+                if (data.success) {
+                    setUser(prevUser => ({ ...prevUser, name: username, isAuthenticated: true }));
+                    console.log("Successful login in wrapper");
+                    return "success";
+                } else {
+                    throw new Error("Invalid username or password");
+                }
+            })
         } catch (error) {
             throw new Error('Login failed: ' + error.message);
         }
     };
 
+
     const logout = () => {
-        // Clear user state and remove from cookies
+        // Clear user state and remove from localStorage
         setUser({ name: "", isAuthenticated: false });
         localStorage.removeItem("user");
     };

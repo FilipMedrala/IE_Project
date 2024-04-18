@@ -39,7 +39,7 @@ export default function FallingFood() {
   const fetchQuizData = async () => {
     try {
       // Make a GET request to your Express server endpoint with query parameters
-      const response = await axios.get('http://localhost:8080/quiz', {
+      const response = await axios.get('/quiz', {
         params: {
           stage1: [1, 4],
           stage2: [2, 4],
