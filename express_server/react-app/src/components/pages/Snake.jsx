@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 
-import apple from "./snake_assets/apple.png";
-import body_bottomleft from "./snake_assets/body_bottomleft.png";
-import body_bottomright from "./snake_assets/body_bottomright.png";
-import body_horizontal from "./snake_assets/body_horizontal.png";
-import body_topleft from "./snake_assets/body_topleft.png";
-import body_topright from "./snake_assets/body_topright.png";
-import body_vertical from "./snake_assets/body_vertical.png";
-import head_down from "./snake_assets/head_down.png";
-import head_left from "./snake_assets/head_left.png";
-import head_right from "./snake_assets/head_right.png";
-import head_up from "./snake_assets/head_up.png";
-import tail_down from "./snake_assets/tail_down.png";
-import tail_left from "./snake_assets/tail_left.png";
-import tail_right from "./snake_assets/tail_right.png";
-import tail_up from "./snake_assets/tail_up.png";
-import snake_background from "./assets/snake_background.png";
-import fries from "./assets/fries.png";
-import snake_hurt from "./assets/snake_hurt.png";
+import apple from "../snake_assets/apple.png";
+import body_bottomleft from "../snake_assets/body_bottomleft.png";
+import body_bottomright from "../snake_assets/body_bottomright.png";
+import body_horizontal from "../snake_assets/body_horizontal.png";
+import body_topleft from "../snake_assets/body_topleft.png";
+import body_topright from "../snake_assets/body_topright.png";
+import body_vertical from "../snake_assets/body_vertical.png";
+import head_down from "../snake_assets/head_down.png";
+import head_left from "../snake_assets/head_left.png";
+import head_right from "../snake_assets/head_right.png";
+import head_up from "../snake_assets/head_up.png";
+import tail_down from "../snake_assets/tail_down.png";
+import tail_left from "../snake_assets/tail_left.png";
+import tail_right from "../snake_assets/tail_right.png";
+import tail_up from "../snake_assets/tail_up.png";
+import snake_background from "../assets/snake_background.png";
+import fries from "../assets/fries.png";
+import snake_hurt from "../assets/snake_hurt.png";
 
 export default function Snake() {
   const gridX = 30; // Size of the x grid

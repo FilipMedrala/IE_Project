@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
-import fries from "./assets/fries.png";
-import apple from "./snake_assets/apple.png";
-import astronaut from "./assets/astronaut.png";
-import astronaut_icon from "./assets/astronaut_icon.png";
-import astronaut_hurt from "./assets/astronaut_hurt.png";
-import planet1 from "./assets/planet1.png";
-import planet2 from "./assets/planet2.png";
-import planet3 from "./assets/planet3.png";
-import planet4 from "./assets/planet4.png";
-import planet5 from "./assets/planet5.png";
-import star1 from "./assets/star1.png";
-import star2 from "./assets/star2.png";
-import star3 from "./assets/star3.png";
-import star4 from "./assets/star4.png";
+import fries from "../assets/fries.png";
+import apple from "../snake_assets/apple.png";
+import astronaut from "../assets/astronaut.png";
+import astronaut_icon from "../assets/astronaut_icon.png";
+import astronaut_hurt from "../assets/astronaut_hurt.png";
+import planet1 from "../assets/planet1.png";
+import planet2 from "../assets/planet2.png";
+import planet3 from "../assets/planet3.png";
+import planet4 from "../assets/planet4.png";
+import planet5 from "../assets/planet5.png";
+import star1 from "../assets/star1.png";
+import star2 from "../assets/star2.png";
+import star3 from "../assets/star3.png";
+import star4 from "../assets/star4.png";
 
 export default function FallingFood() {
   const gridX = 30; // Size of the x grid

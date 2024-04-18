@@ -5,16 +5,16 @@ import { GiFruitBowl, GiWrappedSweet, GiSodaCan, GiRun } from "react-icons/gi";
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import './StatisticsCards.css'; // Import CSS file for styling
 import './bmi.css'
-import map from "./assets/map.png";
+import map from "../assets/map.png";
 
-import family from "./assets/family.jpg";
-import game from "./assets/game.png";
-import play from "./assets/play.png";
-import info1 from "./assets/info1.png";
-import info2 from "./assets/info2.png";
-import info3 from "./assets/info3.png";
-import info4 from "./assets/info4.png";
-import info5 from "./assets/info5.png";
+import family from "../assets/family.jpg";
+import game from "../assets/game.png";
+import play from "../assets/play.png";
+import info1 from "../assets/info1.png";
+import info2 from "../assets/info2.png";
+import info3 from "../assets/info3.png";
+import info4 from "../assets/info4.png";
+import info5 from "../assets/info5.png";
 
 
 const data = [

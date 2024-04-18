@@ -2,13 +2,28 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const port = process.env.PORT || 8080;
-
 var path = require('path');
-
 const app = express();
 app.use(express.static('react-app/dist'));
-
 app.use(cors());
+app.use(express.json());
+
+const sampleUser = {
+  username: 'user',
+  password: 'password'
+};
+
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  // Check if the provided username and password match the sample user
+  if (username === sampleUser.username && password === sampleUser.password) {
+    // If the credentials are correct, respond with a success message
+    res.json({ success: true, message: 'Login successful' });
+  } else {
+    // If the credentials are incorrect, respond with an error message
+    res.status(401).json({ success: false, message: 'Invalid username or password' });
+  }
+});
 
 // MySQL connection configuration
 const connection = mysql.createConnection({

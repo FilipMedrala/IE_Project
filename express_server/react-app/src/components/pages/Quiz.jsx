@@ -1,30 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './FruitQuiz.css'; // Import the CSS file for styling
-import apple from './quiz_photo/healthy/apple.png';
-import burger from './quiz_photo/unhealthy/burger.png';
-import cake from './quiz_photo/unhealthy/cake.png';
-import blue_berry from './quiz_photo/healthy/blue_berry.png';
-import candy from './quiz_photo/unhealthy/candy.png';
-import banana from './quiz_photo/healthy/banana.png';
-import broccoli from './quiz_photo/healthy/broccoli.png';
-import carrot from './quiz_photo/healthy/carrot.png';
-import potato from './quiz_photo/healthy/potato.png';
-import spinach from './quiz_photo/healthy/spinach.png';
-import cookie from './quiz_photo/unhealthy/cookie.png';
-import orange from './quiz_photo/healthy/orange.png';
-import fried_chicken from './quiz_photo/unhealthy/friend_chicken.png';
-import ice_cream from './quiz_photo/unhealthy/ice_cream.png';
-import donut from './quiz_photo/unhealthy/donut.png';
-import pizza from './quiz_photo/unhealthy/pizza.png';
-
-import pic5 from './assets/left-btn.png'
-import pic6 from './assets/right-btn.png'
-
 import { Carousel, Button, Modal } from 'antd';
-
 import Transcript from './Transcript'
-
 import { CloseCircleOutlined } from '@ant-design/icons';
+
+import './FruitQuiz.css'; // Import the CSS file for styling
+
+import apple from '../quiz_photo/healthy/apple.png';
+import burger from '../quiz_photo/unhealthy/burger.png';
+import cake from '../quiz_photo/unhealthy/cake.png';
+import blue_berry from '../quiz_photo/healthy/blue_berry.png';
+import candy from '../quiz_photo/unhealthy/candy.png';
+import banana from '../quiz_photo/healthy/banana.png';
+import broccoli from '../quiz_photo/healthy/broccoli.png';
+import carrot from '../quiz_photo/healthy/carrot.png';
+import potato from '../quiz_photo/healthy/potato.png';
+import spinach from '../quiz_photo/healthy/spinach.png';
+import cookie from '../quiz_photo/unhealthy/cookie.png';
+import orange from '../quiz_photo/healthy/orange.png';
+import fried_chicken from '../quiz_photo/unhealthy/friend_chicken.png';
+import ice_cream from '../quiz_photo/unhealthy/ice_cream.png';
+import donut from '../quiz_photo/unhealthy/donut.png';
+import pizza from '../quiz_photo/unhealthy/pizza.png';
+import pic5 from '../assets/left-btn.png'
+import pic6 from '../assets/right-btn.png'
+
 
 export default function Quiz(data) {
   const [currentQuestion, setCurrentQuestion] = useState(0);

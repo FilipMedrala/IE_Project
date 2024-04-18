@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jsPDF";
-import family from "./assets/family.jpg";
+import family from "../assets/family.jpg";
 // download html2canvas and jsPDF and save the files in app/ext, or somewhere else
 // the built versions are directly consumable
 // import {html2canvas, jsPDF} from 'app/ext';

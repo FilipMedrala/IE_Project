@@ -1,25 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
-import './journey.css'
-import './App.css'
-// import { Carousel } from 'antd';
-//import { FullSlip, SlipItem } from "react-fullslip";
-import { Button, Popover } from 'antd';
-import pic1 from './assets/3.png'
-import pic2 from './assets/4.png'
-import pic3 from './assets/5.png'
-import pic4 from './assets/6.png'
-import pic5 from './assets/left-btn.png'
-import pic6 from './assets/right-btn.png'
-import broccoli from './assets/broccoli.png'
-import carrot from './assets/carroct.png'
-import Spanish from './assets/Spanish.png'
-import sp from './assets/sweetpotato.png'
-import { Carousel } from 'antd';
 import Quiz from "./Quiz"
 import axios from 'axios';
-import fixedImg from './assets/fixedImg.png'
-import fixedRoadImg from './assets/fixedRoadImg.png'
 import Character from './Character';
+import { Button, Popover } from 'antd';
+
+import './journey.css'
+import './App.css'
+
+import pic1 from '../assets/3.png'
+import pic2 from '../assets/4.png'
+import pic3 from '../assets/5.png'
+import pic4 from '../assets/6.png'
+import pic5 from '../assets/left-btn.png'
+import pic6 from '../assets/right-btn.png'
+import broccoli from '../assets/broccoli.png'
+import carrot from '../assets/carroct.png'
+import Spanish from '../assets/Spanish.png'
+import sp from '../assets/sweetpotato.png'
+import fixedImg from '../assets/fixedImg.png'
+import fixedRoadImg from '../assets/fixedRoadImg.png'
 
 
 export default function FallingFood() {

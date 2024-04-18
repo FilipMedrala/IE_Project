@@ -1,12 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import family from "./assets/family.jpg";
-import game from "./assets/game.png";
-import play from "./assets/play.png";
-import Info from "./Info";
-import Snake from "./Snake";
-import FallingFood from "./FallingFood";
-// import Journey from "./Journey";
+import family from "../assets/family.jpg";
+import game from "../assets/game.png";
+import play from "../assets/play.png";
 
 export default function App() {
 
