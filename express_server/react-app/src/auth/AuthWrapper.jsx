@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from 'axios';
 import { RenderLayout } from "../components/structure/RenderLayout";
 
@@ -8,27 +8,33 @@ export const AuthData = () => useContext(AuthContext);
 export const AuthWrapper = () => {
     const [user, setUser] = useState({ name: "", isAuthenticated: false });
 
-    const login = async (username, password) => {
-        // try {
-        //     const response = await axios.post('/login', { username, password });
-        //     console.log(response.data)
-        return new Promise((resolve, reject) => {
-            if (password === "password") {
-                setUser({ name: username, isAuthenticated: true });
-                console.log("Successful login in wrapper")
-                resolve("success")
-            } else {
-                reject("Incorrect password")
-            }
-        })
+    useEffect(() => {
+        // Check if user authentication state is stored in cookies
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
 
-        // } catch (error) {
-        //     throw new Error('Login failed: ' + error.message);
-        // }
+    const login = async (username, password) => {
+        try {
+            const response = await axios.post('/login', { username, password });
+            console.log(response.data.success);
+
+            // If login is successful, update user state and store in cookies
+            setUser({ name: username, isAuthenticated: true });
+            localStorage.setItem("user", JSON.stringify({ name: username, isAuthenticated: true }));
+
+            return "success";
+        } catch (error) {
+            throw new Error('Login failed: ' + error.message);
+        }
     };
 
     const logout = () => {
-        setUser({ ...user, isAuthenticated: false });
+        // Clear user state and remove from cookies
+        setUser({ name: "", isAuthenticated: false });
+        localStorage.removeItem("user");
     };
 
     return (
