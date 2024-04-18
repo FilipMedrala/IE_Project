@@ -27,7 +27,8 @@ export const AuthWrapper = () => {
             const response = axios.post('/login', { username, password }).then((result) => {
                 const { data } = response;
                 if (data.success) {
-                    setUser(prevUser => ({ ...prevUser, name: username, isAuthenticated: true }));
+                    localStorage.setItem("user", JSON.stringify({ name: username, isAuthenticated: true }));
+                    setUser({ name: username, isAuthenticated: true });
                     console.log("Successful login in wrapper");
                     return "success";
                 } else {
