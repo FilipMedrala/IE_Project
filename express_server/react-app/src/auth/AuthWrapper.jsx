@@ -22,23 +22,37 @@ export const AuthWrapper = () => {
     }, [user]);
 
 
-    const login = async (username, password) => {
-        try {
-            const response = axios.post('/login', { username, password }).then((result) => {
-                const { data } = response;
-                if (data.success) {
-                    localStorage.setItem("user", JSON.stringify({ name: username, isAuthenticated: true }));
-                    setUser({ name: username, isAuthenticated: true });
-                    console.log("Successful login in wrapper");
-                    return "success";
-                } else {
-                    throw new Error("Invalid username or password");
-                }
-            })
-        } catch (error) {
-            throw new Error('Login failed: ' + error.message);
-        }
+    const login = (username, password) => {
+        return new Promise((resolve, reject) => {
+            if (password === "tp01ydaaf" && username === "admin") {
+                setUser({ name: username, isAuthenticated: true });
+                localStorage.setItem("user", JSON.stringify({ name: username, isAuthenticated: true }));
+                console.log("Successful login in wrapper")
+                resolve("success")
+            } else {
+                reject("Incorrect password")
+            }
+        })
     };
+
+
+    // const login = async (username, password) => {
+    //     try {
+    //         const response = axios.post('/login', { username, password }).then((result) => {
+    //             const { data } = response;
+    //             if (data.success) {
+    //                 localStorage.setItem("user", JSON.stringify({ name: username, isAuthenticated: true }));
+    //                 setUser({ name: username, isAuthenticated: true });
+    //                 console.log("Successful login in wrapper");
+    //                 return "success";
+    //             } else {
+    //                 throw new Error("Invalid username or password");
+    //             }
+    //         })
+    //     } catch (error) {
+    //         throw new Error('Login failed: ' + error.message);
+    //     }
+    // };
 
 
     const logout = () => {
