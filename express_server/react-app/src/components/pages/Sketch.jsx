@@ -25,21 +25,52 @@ export default function Sketch() {
         setEraserWidth(+event.target.value);
     };
 
+    // const handleDownloadImage = () => {
+    //     canvasRef.current
+    //         .exportImage("png")
+    //         .then((data) => {
+    //             const link = document.createElement('a');
+    //             link.href = data;
+    //             link.download = 'canvas_image.png';
+    //             document.body.appendChild(link);
+    //             link.click();
+    //             document.body.removeChild(link);
+    //         })
+    //         .catch((e) => {
+    //             console.log(e);
+    //         });
+    // };
+
     const handleDownloadImage = () => {
         canvasRef.current
             .exportImage("png")
             .then((data) => {
-                const link = document.createElement('a');
-                link.href = data;
-                link.download = 'canvas_image.png';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                // Send image data to the server
+                fetch('/uploadImage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ imageData: data })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to upload image');
+                        }
+                        return response.json();
+                    })
+                    .then(responseData => {
+                        console.log('Image uploaded successfully:', responseData);
+                    })
+                    .catch((error) => {
+                        console.error('Error uploading image:', error);
+                    });
             })
             .catch((e) => {
                 console.log(e);
             });
     };
+
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">

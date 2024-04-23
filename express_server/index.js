@@ -10,6 +10,39 @@ app.use(express.static('react-app/dist'));
 app.use(cors());
 app.use(express.json());
 
+// Handle image upload
+app.post('/uploadImage', (req, res) => {
+  const imageData = req.body.imageData;
+  // Save the image data to a file
+  fs.writeFile('image.png', imageData, 'base64', (err) => {
+      if (err) {
+          console.error('Error saving image:', err);
+          res.status(500).json({ error: 'Error saving image' });
+      } else {
+          // Call your Python script here, passing the image file path or data
+          const { spawn } = require('child_process');
+          const pythonProcess = spawn('python', ['predict.py', 'image.png']);
+
+          // Handle Python script output
+          pythonProcess.stdout.on('data', (data) => {
+              console.log(`Python script output: ${data}`);
+              // You can send any relevant data back to the client here if needed
+          });
+
+          pythonProcess.stderr.on('data', (data) => {
+              console.error(`Error from Python script: ${data}`);
+          });
+
+          pythonProcess.on('close', (code) => {
+              console.log(`Python script exited with code ${code}`);
+              // You can send any relevant response back to the client here
+              res.json({ message: 'Image received and processed by Python script' });
+          });
+      }
+  });
+});
+
+
 // MySQL connection configuration
 const connection = mysql.createConnection({
   host: 'sql6.freesqldatabase.com',
