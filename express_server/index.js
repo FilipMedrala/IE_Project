@@ -13,15 +13,16 @@ app.use(express.json());
 // Handle image upload
 app.post('/uploadImage', (req, res) => {
   const imageData = req.body.imageData;
-  // Save the image data to a file
-  fs.writeFile('image.png', imageData, 'base64', (err) => {
+  // Save the image data to a file in the 'sketch_images' folder
+  const imagePath = path.join(__dirname, 'sketch_images', 'sketch.png');
+  fs.writeFile(imagePath, imageData, 'base64', (err) => {
       if (err) {
           console.error('Error saving image:', err);
           res.status(500).json({ error: 'Error saving image' });
       } else {
           // Call your Python script here, passing the image file path or data
           const { spawn } = require('child_process');
-          const pythonProcess = spawn('python', ['predict.py', 'image.png']);
+          const pythonProcess = spawn('python', ['predict.py', imagePath]);
 
           // Handle Python script output
           pythonProcess.stdout.on('data', (data) => {
@@ -41,6 +42,7 @@ app.post('/uploadImage', (req, res) => {
       }
   });
 });
+
 
 
 // MySQL connection configuration
