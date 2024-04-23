@@ -10,36 +10,6 @@ app.use(express.static('react-app/dist'));
 app.use(cors());
 app.use(express.json());
 
-
-// app.post('/login', (req, res) => {
-//   const { username, password } = req.body;
-
-//   // Query to check if the user exists
-//   const query = 'SELECT * FROM users WHERE username = ? AND password = ?';
-//   // Execute the query
-//   connection.query(query, [username, password], (error, results) => {
-//     if (error) {
-//       console.error('Error querying database:', error);
-//       res.status(500).send('Error querying database');
-//       return;
-//     }
-
-//     // Check if any rows were returned
-//     if (results.length > 0) {
-//       // If the user exists, respond with a success message
-//       console.log(`Successful login as ${username}.`);
-//       res.json({ success: true, message: 'Login successful' });
-//     } else {
-//       // If the user does not exist or the password is incorrect, respond with an error message
-//       res.status(401).json({ success: false, message: 'Invalid username or password' });
-//     }
-//   });
-
-  // Close the connection
-  // connection.end();
-// });
-
-
 // MySQL connection configuration
 const connection = mysql.createConnection({
   host: 'sql6.freesqldatabase.com',

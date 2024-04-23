@@ -1,14 +1,15 @@
 import { Link, Route, Routes } from "react-router-dom";
 import { AuthData } from "../../auth/AuthWrapper";
-import Login from "../pages/Login"; // Make sure the path is correct
-import pierogi from "../assets/pierogi.png"; // Assuming 'pierogi' is the correct path
-import Home from "../pages/Home"; // Import the Home component
-import Info from "../pages/Info"; // Import the Info component
-import Journey from "../pages/Journey"; // Import the Journey component
-import Snake from "../pages/Snake"; // Import the Snake component
-import FallingFood from "../pages/FallingFood"; // Import the FallingFood component
-import Export from "../pages/Export"; // Import the Export component
-import NotFound from "../pages/NotFound"; // Import the NotFound component
+import Login from "../pages/Login";
+import pierogi from "../assets/pierogi.png";
+import Home from "../pages/Home";
+import Info from "../pages/Info";
+import Journey from "../pages/Journey";
+import Snake from "../pages/Snake";
+import FallingFood from "../pages/FallingFood";
+import Export from "../pages/Export";
+import NotFound from "../pages/NotFound";
+import Sketch from "../pages/Sketch";
 
 
 
@@ -101,6 +102,14 @@ export const RenderLayout = () => {
                                         Export PDF
                                     </Link>
                                 </li>
+                                <li className="mr-3">
+                                    <Link
+                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
+                                        to="/Sketch"
+                                    >
+                                        Sketch
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -113,6 +122,7 @@ export const RenderLayout = () => {
                     <Route path="/Snake" element={<Snake />} />
                     <Route path="/FallingFood" element={<FallingFood />} />
                     <Route path="/Export" element={<Export />} />
+                    <Route path="/Sketch" element={<Sketch />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
 
