@@ -1,9 +1,11 @@
+import React, { useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import { AuthData } from "../../auth/AuthWrapper";
 import Login from "../pages/Login";
 import pierogi from "../assets/pierogi.png";
 import Home from "../pages/Home";
 import Info from "../pages/Info";
+import BMICal from "../pages/BMI_calculator"; // Import BMI Calculator component
 import Journey from "../pages/Journey";
 import Snake from "../pages/Snake";
 import FallingFood from "../pages/FallingFood";
@@ -11,17 +13,17 @@ import Export from "../pages/Export";
 import NotFound from "../pages/NotFound";
 import Sketch from "../pages/Sketch";
 
-
-
 export const RenderLayout = () => {
-
     const { user } = AuthData();
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
 
     if (!user.isAuthenticated) {
-        // If user is not authenticated, return null or a placeholder
         return <Login />;
-    }
-    else {
+    } else {
         return (
             <>
                 <nav
@@ -65,18 +67,36 @@ export const RenderLayout = () => {
                                 <li className="mr-3">
                                     <Link
                                         className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        to="/Info"
-                                    >
-                                        Information
-                                    </Link>
-                                </li>
-                                <li className="mr-3">
-                                    <Link
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
                                         to="/Journey"
                                     >
                                         Journey
                                     </Link>
+                                </li>
+                                <li className="mr-3 relative">
+                                    <button
+                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
+                                        onClick={toggleDropdown}
+                                    >
+                                        Information {showDropdown ? '▲' : '▼'}
+                                    </button>
+                                    {showDropdown && (
+                                        <div className="absolute bg-white border rounded shadow-lg py-2 right-0 mt-8">
+                                            <Link
+                                                to="/info/topic1"
+                                                className="block px-4 py-2 text-sm text-black hover:bg-gray-100"
+                                                onClick={toggleDropdown}
+                                            >
+                                                Health Awareness
+                                            </Link>
+                                            <Link
+                                                to="/info/topic2"
+                                                className="block px-4 py-2 text-sm text-black hover:bg-gray-100"
+                                                onClick={toggleDropdown}
+                                            >
+                                                BMI Calculator
+                                            </Link>
+                                        </div>
+                                    )}
                                 </li>
                                 <li className="mr-3">
                                     <Link
@@ -118,6 +138,8 @@ export const RenderLayout = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/info" element={<Info />} />
+                    <Route path="/info/topic1" element={<Info />} />
+                    <Route path="/info/topic2" element={<BMICal />} /> {/* Updated to use BMICal component */}
                     <Route path="/Journey" element={<Journey />} />
                     <Route path="/Snake" element={<Snake />} />
                     <Route path="/FallingFood" element={<FallingFood />} />
@@ -134,4 +156,4 @@ export const RenderLayout = () => {
             </>
         );
     }
-}
+};
