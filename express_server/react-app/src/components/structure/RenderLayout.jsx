@@ -5,7 +5,8 @@ import Login from "../pages/Login";
 import pierogi from "../assets/pierogi.png";
 import Home from "../pages/Home";
 import Info from "../pages/Info";
-import BMICal from "../pages/BMI_calculator"; // Import BMI Calculator component
+import BMICal from "../pages/BMI_calculator"; 
+import Guideline from "../pages/Guideline";
 import Journey from "../pages/Journey";
 import Snake from "../pages/Snake";
 import FallingFood from "../pages/FallingFood";
@@ -96,6 +97,13 @@ export const RenderLayout = () => {
                                             >
                                                 BMI Calculator
                                             </Link>
+                                            <Link
+                                                to="/info/topic3"
+                                                className="block px-4 py-2 text-sm text-black hover:bg-gray-100"
+                                                onClick={toggleDropdown}
+                                            >
+                                                Healthy Guidelines (WIP)
+                                            </Link>
                                         </div>
                                     )}
                                 </li>
@@ -148,7 +156,8 @@ export const RenderLayout = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/info" element={<Info />} />
                     <Route path="/info/topic1" element={<Info />} />
-                    <Route path="/info/topic2" element={<BMICal />} /> {/* Updated to use BMICal component */}
+                    <Route path="/info/topic2" element={<BMICal />} /> 
+                    <Route path="/info/topic3" element={<Guideline />} /> 
                     <Route path="/Journey" element={<Journey />} />
                     <Route path="/Snake" element={<Snake />} />
                     <Route path="/FallingFood" element={<FallingFood />} />
