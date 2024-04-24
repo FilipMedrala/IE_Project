@@ -222,12 +222,13 @@ const Info = () => (
         </div>
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           <h1 className="my-4 text-4xl font-bold leading-tight">
-            Annual Health-Related Lifestyle Factors and Obesity Rates: 2008-2019
+            Annual Risk Factors and Mortality Rates: 2008-2019
           </h1>
           <p className="leading-normal text-2xl mb-8">
-            This chart depicts yearly trends (2008-2019) in lifestyle factors like low whole grain, fruit, and vegetable intake, obesity rates, and physical activity levels.
-            <br />
-            A clear pattern emerges: higher obesity rates align with more prevalent poor diets and reduced physical activity. This underscores the importance of balanced nutrition and exercise in combating obesity and promoting public health.        
+            This chart illustrates annual trends from 2008 to 2019 in key risk factors that contribute to mortality, such as diets low in whole grains, fruits, and vegetables, obesity, and lack of physical activity.
+          <br />
+          <br />
+            The data presents a compelling narrative: lifestyle choices and dietary habits are closely linked to health outcomes. Specifically, the analysis reveals a correlation between insufficient nutrition and sedentary lifestyles with elevated mortality rates. This information is pivotal for public health initiatives aiming to reduce premature deaths by promoting healthier diets and encouraging regular physical activity.
           </p>
           </div>
       </div>
