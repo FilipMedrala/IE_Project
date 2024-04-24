@@ -165,7 +165,10 @@ const Info = () => (
             Prevalence of Overweight Among Children and Adolescents by Country (1977-2016)
           </h1>
           <p className="leading-normal text-2xl mb-8">
-            The graph shows the increasing trend in overweight prevalence among children and adolescents in various countries from 1977 to 2016. In 2003, the United States led with 37.4%, followed by New Zealand and Australia, while Japan had the lowest rate at 13.9%. The data highlights a significant public health concern, pointing to the need for targeted interventions to combat the rising rates of overweight youths globally.            <br />
+            The graph shows the increasing trend in overweight prevalence among children and adolescents in various countries from 1977 to 2016. In 2003, the United States led with 37.4%, followed by New Zealand and Australia, while Japan had the lowest rate at 13.9%. 
+            <br />
+            <br />
+            The data highlights a significant public health concern, pointing to the need for targeted interventions to combat the rising rates of overweight youths globally.            
           </p>
           </div>
       </div>
