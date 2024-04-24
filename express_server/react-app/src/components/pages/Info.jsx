@@ -1,20 +1,14 @@
 import React, { useState } from 'react';
-import { Statistic, Input, Button } from 'antd'; // Import Ant Design components
-import { FaPerson } from "react-icons/fa6";
-import { GiFruitBowl, GiWrappedSweet, GiSodaCan, GiRun } from "react-icons/gi";
+import { Button } from 'antd'; // Import Ant Design components
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
-import './StatisticsCards.css'; // Import CSS file for styling
-import './bmi.css'
+import './information.css'; // Import CSS file for styling
+import StatisticsCards from './stat_cards';
+import ChildObeseTrend from './child_obese_trend';
+import DeathFactors from './death_factors';
+import './bmi.css';
 import map from "../assets/map.png";
-
-import family from "../assets/family.jpg";
-import game from "../assets/game.png";
-import play from "../assets/play.png";
 import info1 from "../assets/info1.png";
-import info2 from "../assets/info2.png";
-import info3 from "../assets/info3.png";
-import info4 from "../assets/info4.png";
-import info5 from "../assets/info5.png";
+
 
 
 const data = [
@@ -108,16 +102,13 @@ const BMICalculator = () => {
 };
 
 
-const StatisticsCards = () => (
+const Info = () => (
 
   <div className='info-page pt-10'>
 
     <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
       <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-          <p className="uppercase tracking-loose w-full">
-            Let's Dive into the Facts...
-          </p>
           <h1 className="my-4 text-5xl font-bold leading-tight">
             Nurturing Today for a Bright Tomorrow!
           </h1>
@@ -133,176 +124,52 @@ const StatisticsCards = () => (
     </div>
 
     <section className="bg-white border-b py-8s">
-      <div className="container max-w-5xl mx-auto m-8">
-        <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-          Welcome to Our Health Awareness Hub! (WORK IN PROGRESS)
-        </h2>
+      <div className="container max-w-5xl mx-auto m-8">        
         <div className="w-full mb-4">
           <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
-        <div className="flex flex-wrap">
-          <div className="w-5/6 sm:w-1/2 p-6">
-            <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-              Fight Against Sugar
-            </h3>
-            <p className="text-gray-600 mb-8">
-              Many parents may not realize the hidden risks lurking within sugary beverages, often overshadowed by their enticing flavors.
-              Yet, these drinks can stealthily contribute to weight gain, dental issues, and even chronic health conditions in children.
-              By becoming informed and making mindful choices, parents can take proactive steps to safeguard their children's health and promote a future of vitality and well-being.
-
-              <br />
-              <br />
-              <a
-                className="text-pink-500 underline"
-                href="https://undraw.co/"
-              >
-                Find out more
-              </a>
-            </p>
-          </div>
-          <div className="w-full sm:w-1/2 p-6">
-            <img className="w-full md:w-4/5 z-50" src={info5} alt="Sugar" />
-          </div>
-        </div>
-        <div className="flex flex-wrap flex-col-reverse sm:flex-row">
-          <div className="w-full sm:w-1/2 p-6 mt-6">
-            <img className="w-full md:w-4/5 z-50" src={info3} alt="Obesity" />
-          </div>
-          <div className="w-full sm:w-1/2 p-6 mt-6">
-            <div className="align-middle">
-              <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Shedding Light on Childhood Obesity
-              </h3>
-              <p className="text-gray-600 mb-8">
-                Explore the crucial insights into childhood obesity, tailored for parents seeking to navigate and address this pressing health concern.
-                Discover actionable strategies, informed by expert guidance, to support your child's journey toward a healthier lifestyle and brighter future.
-                <br />
-                <br />
-                <a
-                  className="text-pink-500 underline"
-                  href="https://undraw.co/"
-                >
-                  Find out more
-                </a>
+        <div className="container max-w-5xl mx-auto m-8">
+          <div className="grid md:grid-cols-1 gap-4">
+            <div className="text-gray-600 text-lg">
+              <h1 className="my-4 text-5xl font-bold leading-tight">
+                Welcome to the Health Awareness Hub
+              </h1>
+              <p className="text-center mb-4">
+              Begin your journey to health with the essential knowledge needed in our fast-paced world. Our platform offers up-to-date statistics and actionable insights for a healthier lifestyle. Remember, the numbers reflect our habits and the collective health of our society.
+              <br/>
+              <br/>
+              Explore the data, understand the trends, and learn how even small choices, like reducing sugary drinks, can significantly improve our well-being. Let’s make informed decisions to foster healthier lives for ourselves and our communities.
               </p>
+              <h3 className="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-800">
+                Explore to our key statistics
+                <div class="w-4/5 border-t border-gray-500 my-10 mx-auto"></div>
+                <StatisticsCards />
+                <div class="w-4/5 border-t border-gray-500 my-10 mx-auto"></div>
+              </h3>
+            </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-
-    <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
+    <h2 className="w-full my-2 text-4xl font-bold leading-tight text-center text-gray-800">
+      Let's Dive into the Facts.
+    </h2>
+    <div className="pt-24 bg-white" >
       <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div className="w-full md:w-3/5 py-6 text-center">
+          <div style={{ marginTop: '5px', textAlign: 'center' }}>
+          <ChildObeseTrend  />
+          </div>
+        </div>
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-          <p className="uppercase tracking-loose w-full">
-            Is it really that bad?
-          </p>
-          <h1 className="my-4 text-5xl font-bold leading-tight">
-            Understanding the scale of problem
+          <h1 className="my-4 text-4xl font-bold leading-tight">
+            Prevalence of Overweight Among Children and Adolescents by Country (1977-2016)
           </h1>
           <p className="leading-normal text-2xl mb-8">
-            Explore a series of informative cards that visually depict crucial data related to childhood obesity, sugar consumption and eating habits.
-            <br />
-            <br />
-            Gain insights into childhood obesity rates, adherence to healthy eating habits, awareness of sugar intake, and smart drinking practices.
-            <br />
-            <br />
-            Empower yourself with knowledge to make informed decisions for your child's well-being.
+            The graph shows the increasing trend in overweight prevalence among children and adolescents in various countries from 1977 to 2016. In 2003, the United States led with 37.4%, followed by New Zealand and Australia, while Japan had the lowest rate at 13.9%. The data highlights a significant public health concern, pointing to the need for targeted interventions to combat the rising rates of overweight youths globally.            <br />
           </p>
-        </div>
-        <div className="w-full md:w-3/5 py-6 text-center">
-          <img className="w-full md:w-4/5 z-50" src={info4} alt="Data" />
-        </div>
-        <h2 className="my-4 text-5xl font-bold leading-tight">
-          Key Statistics:
-        </h2>
-      </div>
-      <div className="card-container p-6">
-        {/* Statistic Cards Component */}
-        <div className="card">
-          <div className="card-inner">
-            <div className="card-front">
-              <Statistic
-                title="Childhood Obesity"
-                value={25}
-                suffix="%"
-                prefix={<FaPerson />}
-                valueStyle={{ fontSize: '34px' }}
-              />
-            </div>
-            <div className="card-back">
-              <p>25% overweight or obese (5-17 years)</p>
-            </div>
           </div>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <div className="card-front">
-              <Statistic
-                title="Healthy Eating Habits"
-                value={6}
-                suffix="%"
-                prefix={<GiFruitBowl />}
-                valueStyle={{ fontSize: '34px' }}
-              />
-            </div>
-            <div className="card-back">
-              <p>6% meet fruit and veg recommendations</p>
-            </div>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <div className="card-front">
-              <Statistic
-                title="Sugar Awareness"
-                value={9}
-                suffix="%"
-                prefix={<GiWrappedSweet />}
-                valueStyle={{ fontSize: '34px' }}
-              />
-            </div>
-            <div className="card-back">
-              <p>9% adults, 7% children drink sugary drinks daily</p>
-            </div>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <div className="card-front">
-              <Statistic
-                title="Drink Smart"
-                value={45}
-                suffix="%"
-                prefix={<GiSodaCan />}
-                valueStyle={{ fontSize: '34px' }}
-              />
-            </div>
-            <div className="card-back">
-              <p>45% children consume sugary or diet drinks weekly (2-17 years)</p>
-            </div>
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-inner">
-            <div className="card-front">
-              <Statistic
-                title="Physical Activity"
-                value={17}
-                suffix="%"
-                prefix={<GiRun />}
-                valueStyle={{ fontSize: '34px' }}
-              />
-            </div>
-            <div className="card-back">
-              <p>Only 16.6% of Child were doing sufficient physical activity</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
-
 
     <div className="pt-24 bg-white" >
       <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
@@ -346,22 +213,45 @@ const StatisticsCards = () => (
       <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <div className="w-full md:w-3/5 py-6 text-center">
           <div style={{ marginTop: '10px', textAlign: 'center' }}>
+            <p className="text-left font-bold mb-4">
+              Choose your option:
+              <br/>
+            </p>
+              <DeathFactors />
+          </div>
+        </div>
+        <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+          <h1 className="my-4 text-4xl font-bold leading-tight">
+            Annual Health-Related Lifestyle Factors and Obesity Rates: 2008-2019
+          </h1>
+          <p className="leading-normal text-2xl mb-8">
+            This chart depicts yearly trends (2008-2019) in lifestyle factors like low whole grain, fruit, and vegetable intake, obesity rates, and physical activity levels.
+            <br />
+            A clear pattern emerges: higher obesity rates align with more prevalent poor diets and reduced physical activity. This underscores the importance of balanced nutrition and exercise in combating obesity and promoting public health.        
+          </p>
+          </div>
+      </div>
+    </div>
+
+    <div className="pt-24 bg-white" >
+      <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+          <h1 className="my-4 text-5xl font-bold leading-tight">
+              In what zone are you?
+            </h1>
+            <p className="leading-normal text-2xl mb-8">
+              Discover how childhood obesity rates vary across Australia with a map showcasing the percentage of obese children per state.
+              <br />
+              <br />
+              By identifying areas with higher obesity rates, you can make better informed decisions about your children's lifestyle and healthcare, ensuring they receive the support and resources adequate to difficulties they face in their daily life.
+            </p>
+        </div>
+        <div className="w-full md:w-3/5 py-6 text-center">
+          <div style={{ marginTop: '10px', textAlign: 'center' }}>
             <div className="flex-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
               <img src={map} alt="Australia Obesity Map" style={{ width: '100%', maxWidth: '600px', height: 'auto' }} />
             </div>
           </div>
-        </div>
-        <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-          <h1 className="my-4 text-5xl font-bold leading-tight">
-            In what zone are you?
-          </h1>
-          <p className="leading-normal text-2xl mb-8">
-
-            Discover how childhood obesity rates vary across Australia with a map showcasing the percentage of obese children per state.
-            <br />
-            <br />
-            By identifying areas with higher obesity rates, you can make better informed decisions about your children's lifestyle and healthcare, ensuring they receive the support and resources adequate to difficulties they face in their daily life.
-          </p>
         </div>
       </div>
     </div>
@@ -389,8 +279,11 @@ const StatisticsCards = () => (
         </div>
       </div>
     </div>
+  </section>
   </div>
+
+
 );
 
 
-export default StatisticsCards;
+export default Info;
