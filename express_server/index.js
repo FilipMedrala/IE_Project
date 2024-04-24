@@ -6,42 +6,47 @@ const fs = require('fs');
 const port = process.env.PORT || 8080;
 const path = require('path');
 const app = express();
+const bodyParser = require('body-parser');
 app.use(express.static('react-app/dist'));
 app.use(cors());
 app.use(express.json());
 
-// Handle image upload
+const { exec } = require('child_process');
+
 app.post('/uploadImage', (req, res) => {
-  const imageData = req.body.imageData;
-  // Save the image data to a file in the 'sketch_images' folder
-  const imagePath = path.join(__dirname, 'sketch_images', 'sketch.png');
-  fs.writeFile(imagePath, imageData, 'base64', (err) => {
-      if (err) {
-          console.error('Error saving image:', err);
-          res.status(500).json({ error: 'Error saving image' });
-      } else {
-          // Call your Python script here, passing the image file path or data
-          const { spawn } = require('child_process');
-          const pythonProcess = spawn('python', ['predict.py', imagePath]);
+    // Assume req.body.imageData contains base64-encoded image data
+    const base64Data = req.body.imageData.replace(/^data:image\/png;base64,/, "");
 
-          // Handle Python script output
-          pythonProcess.stdout.on('data', (data) => {
-              console.log(`Python script output: ${data}`);
-              // You can send any relevant data back to the client here if needed
-          });
+    fs.writeFile("out.png", base64Data, 'base64', function(err) {
+        if (err) {
+            console.error('Error saving image:', err);
+            res.status(500).json({ error: 'Failed to save image' });
+        } else {
+            console.log('Image saved successfully: out.png');
+            
+            // Execute the Python script as a child process
+            exec('python predict.py out.png', (error, stdout, stderr) => {
+                if (error) {
+                    console.error('Error executing Python script:', error);
+                    res.status(500).json({ error: 'Failed to execute Python script' });
+                    return;
+                }
+                if (stderr) {
+                    console.error('Python script stderr:', stderr);
+                    res.status(500).json({ error: 'Python script encountered an error' });
+                    return;
+                }
 
-          pythonProcess.stderr.on('data', (data) => {
-              console.error(`Error from Python script: ${data}`);
-          });
+                // Parse the JSON output from the Python script
+                const predictionResult = JSON.parse(stdout);
 
-          pythonProcess.on('close', (code) => {
-              console.log(`Python script exited with code ${code}`);
-              // You can send any relevant response back to the client here
-              res.json({ message: 'Image received and processed by Python script' });
-          });
-      }
-  });
+                // Send the prediction result back to the client
+                res.json({ prediction: predictionResult });
+            });
+        }
+    });
 });
+
 
 
 

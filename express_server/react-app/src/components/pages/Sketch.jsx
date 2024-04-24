@@ -25,22 +25,6 @@ export default function Sketch() {
         setEraserWidth(+event.target.value);
     };
 
-    // const handleDownloadImage = () => {
-    //     canvasRef.current
-    //         .exportImage("png")
-    //         .then((data) => {
-    //             const link = document.createElement('a');
-    //             link.href = data;
-    //             link.download = 'canvas_image.png';
-    //             document.body.appendChild(link);
-    //             link.click();
-    //             document.body.removeChild(link);
-    //         })
-    //         .catch((e) => {
-    //             console.log(e);
-    //         });
-    // };
-
     const handleDownloadImage = () => {
         canvasRef.current
             .exportImage("png")

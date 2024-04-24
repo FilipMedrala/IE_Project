@@ -6,8 +6,6 @@ from keras.models import load_model
 
 def load_and_preprocess_image(file_path):
     # Load image
-    print("Test path")
-    print(file_path)
     x = Image.open(file_path)
     # Convert image to grayscale
     x = x.convert('L')
@@ -24,7 +22,7 @@ def load_and_preprocess_image(file_path):
         for j in range(len(x)):
             if x[i][j] > 50:
                 x[i][j] = min(255, x[i][j] + x[i][j] * 0.60)
-    x = normalize(x)
+    x = np.array(x /255.0)
     return x
 
 
@@ -34,9 +32,9 @@ def make_prediction(image_array):
     model = load_model('models/doodle_model.keras')
 
     # Make prediction
-    prediction = model.predict(np.array([image_array]))
+    prediction = model.predict(image_array)
 
-    return prediction
+    return prediction.tolist()
 
 def main():
     # Receive the image file path from command line arguments
@@ -48,11 +46,8 @@ def main():
     # Make prediction
     prediction = make_prediction(image_array)
 
-    # Convert prediction to a human-readable format
-    result = prediction.tolist()
-
-    # Print the result (you can modify this to return the result in any desired format)
-    print(result)
+    # Print the prediction result as JSON
+    print(json.dumps(prediction))
 
 if __name__ == "__main__":
     main()
