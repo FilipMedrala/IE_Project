@@ -1,17 +1,15 @@
-.header{
+.header {
     /* background: #8cb46d; */
 }
 
 .Journey {
-    height: 100%;
+    width: 1512px;
+    height: 5395px;
     position: relative;
-        display: grid;
-        grid-template-rows: 1fr 1fr 1fr 1fr; /* 四行等高 */
-        grid-template-columns: 1fr; /* 一列占满宽度 */
-        gap: 20px; /* 格子之间的间隙 */
-        padding: 20px; /* 网格的内边距 */
-
-      
+    background: url('../assets/journeyBg.png') no-repeat;
+    background-size: 100% calc(100% - 84px);
+    margin: 0 auto;
+    padding-top: 90px;
 }
 
 .swiper .swiperItem {
@@ -24,23 +22,72 @@
     top: 50%;
     z-index: 2;
     width: 150px;
-    /* 确保 transition 应用于 transform 属性，实现平滑翻转 */
     transition: transform 0.3s;
 }
 
-
-/* .fixedRoadImg {
-    width: 470px;
-    height: 50%;
-    background: url('./assets/fixedRoadImg.png');
-    background-size: 100% 100%;
-    position: absolute;
-    left: 50%;
-    top: 0%;
-    transform: translate(-50%, 0);
-    z-index: 1;
-} */
-
-.itembox{
+.page-wrapper {
     position: relative;
+    width: 100%;
+    height: 880px;
+}
+
+.page-wrapper .house-item {
+    position: absolute;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.house-item.item1 {
+    left: 836px;
+    top: 76px;
+    width: 112px;
+    height: 82px;
+}
+.house-item.item2 {
+    left: 462px;
+    top: 304px;
+    width: 112px;
+    height: 82px;
+}
+.house-item.item3 {
+    left: 820px;
+    top: 446px;
+    width: 112px;
+    height: 82px;
+}
+.house-item.item4 {
+    left: 478px;
+    top: 652px;
+    width: 212px;
+    height: 210px;
+}
+
+.cat-box {
+    position: absolute;
+}
+
+.finally-wrapper {
+    position: absolute;
+    bottom: 350px;
+    left: 50%;
+    transform: translate(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.finally-wrapper .title {
+    display: inline-block;
+    border-radius: 30px;
+    padding: 0 15px;
+    line-height: 50px;
+    background: rgba(0, 0, 0, .5);
+    font-size: 50px;
+    font-weight: 700;
+    color: #000;
+}
+
+.finally-wrapper .btn {
+    margin-top: 70px;
 }

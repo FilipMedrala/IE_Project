@@ -12,6 +12,7 @@ import FallingFood from "../pages/FallingFood";
 import Export from "../pages/Export";
 import NotFound from "../pages/NotFound";
 import Sketch from "../pages/Sketch";
+import MemoryGame from "../pages/MemoryGame";
 
 export const RenderLayout = () => {
     const { user } = AuthData();
@@ -117,6 +118,14 @@ export const RenderLayout = () => {
                                 <li className="mr-3">
                                     <Link
                                         className="inline-block py-2 px-4 text-black font-bold no-underline"
+                                        to="/MemoryGame"
+                                    >
+                                        MemoryGame
+                                    </Link>
+                                </li>
+                                <li className="mr-3">
+                                    <Link
+                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
                                         to="/Export"
                                     >
                                         Export PDF
@@ -144,6 +153,7 @@ export const RenderLayout = () => {
                     <Route path="/Snake" element={<Snake />} />
                     <Route path="/FallingFood" element={<FallingFood />} />
                     <Route path="/Export" element={<Export />} />
+                    <Route path="/MemoryGame" element={<MemoryGame />} />
                     <Route path="/Sketch" element={<Sketch />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>

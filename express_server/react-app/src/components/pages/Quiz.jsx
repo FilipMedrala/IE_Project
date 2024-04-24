@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useImperativeHandle } from 'react';
 import { Carousel, Button, Modal } from 'antd';
 import Transcript from './Transcript'
 import { CloseCircleOutlined } from '@ant-design/icons';
@@ -25,10 +25,11 @@ import pic5 from '../assets/left-btn.png'
 import pic6 from '../assets/right-btn.png'
 
 
-export default function Quiz(data) {
+const Quiz = React.forwardRef((data, ref) => {
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [quizData, setQuizData] = useState(data.quizData);
+  const [quizData, setQuizData] = useState(data.quizData || []);
 
   const myRef = useRef(null);
 
@@ -42,6 +43,11 @@ export default function Quiz(data) {
       reverse: Math.random() > 0.5
     })))
   }, [])
+
+  useImperativeHandle(
+    ref,
+    () => ({ showModal, isModalOpen })
+  );
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -101,11 +107,7 @@ export default function Quiz(data) {
 
   return (
     <>
-      <div className="exam-wrapper but">
-        <Button size="large" type="primary" shape="round" onClick={showModal}>START</Button>
-      </div>
-
-      <Modal width={800} open={isModalOpen} onCancel={handleCancel} footer={null} closeIcon={<CloseCircleOutlined />}>
+      <Modal destroyOnClose={true} maskClosable={false} width={800} open={isModalOpen} onCancel={handleCancel} footer={null} closeIcon={<CloseCircleOutlined />}>
         {
           !showResult && <>
             <div className="swiper">
@@ -170,4 +172,7 @@ export default function Quiz(data) {
       </Modal>
     </>
   );
-}
+})
+
+
+export default Quiz
