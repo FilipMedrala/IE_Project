@@ -1,4 +1,4 @@
-.card {
+.m-card {
     display: grid;
     position: relative;
     place-items: center;
@@ -13,7 +13,7 @@
     transition: transform 600ms ease;
   }
   
-  [disabled], .card.matched {
+  [disabled], .m-card.matched {
     opacity: .2;
     pointer-events: none;
     cursor: not-allowed;
@@ -24,11 +24,11 @@
     position: absolute;
   }
   
-  :is(.card.matched, .card.flipped, :focus) .back {
+  :is(.m-card.matched, .m-card.flipped, :focus) .back {
     transform: rotateY(0deg);
   }
   
-  :is(.card.matched, .card.flipped, :focus) .front {
+  :is(.m-card.matched, .m-card.flipped, :focus) .front {
     transform: rotateY(90deg);
   }
   
