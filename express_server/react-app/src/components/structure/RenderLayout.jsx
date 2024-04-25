@@ -14,14 +14,14 @@ import Export from "../pages/Export";
 import NotFound from "../pages/NotFound";
 import Sketch from "../pages/Sketch";
 import MemoryGame from "../pages/MemoryGame";
+import "../pages/information.css"
 
 export const RenderLayout = () => {
     const { user } = AuthData();
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const toggleDropdown = () => {
-        setShowDropdown(!showDropdown);
-    };
+    const toggleDropdown = () => setShowDropdown(!showDropdown);
+    const closeDropdown = () => setShowDropdown(false);
 
     if (!user.isAuthenticated) {
         return <Login />;
@@ -74,37 +74,16 @@ export const RenderLayout = () => {
                                         Journey
                                     </Link>
                                 </li>
-                                <li className="mr-3 relative">
-                                    <button
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        onClick={toggleDropdown}
-                                    >
-                                        Information {showDropdown ? '▲' : '▼'}
-                                    </button>
-                                    {showDropdown && (
-                                        <div className="absolute bg-white border rounded shadow-lg py-2 right-0 mt-8">
-                                            <Link
-                                                to="/info/topic1"
-                                                className="block px-4 py-2 text-sm text-black hover:bg-gray-100"
-                                                onClick={toggleDropdown}
-                                            >
-                                                Health Awareness
-                                            </Link>
-                                            <Link
-                                                to="/info/topic2"
-                                                className="block px-4 py-2 text-sm text-black hover:bg-gray-100"
-                                                onClick={toggleDropdown}
-                                            >
-                                                BMI Calculator
-                                            </Link>
-                                            <Link
-                                                to="/info/topic3"
-                                                className="block px-4 py-2 text-sm text-black hover:bg-gray-100"
-                                                onClick={toggleDropdown}
-                                            >
-                                                Healthy Guidelines (WIP)
-                                            </Link>
-                                        </div>
+                                <li className="mr-3 relative" onMouseLeave={closeDropdown}>
+                                <button className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" onClick={toggleDropdown}>
+                                    Information {showDropdown ? '▲' : '▼'}
+                                </button>
+                                {showDropdown && (
+                                    <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
+                                        <Link to="/info/health-awareness" className="block px-4 py-2 text-black hover:bg-gray-300" onClick={closeDropdown}>Health Awareness</Link>
+                                        <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black hover:bg-gray-300" onClick={closeDropdown}>BMI Calculator</Link>
+                                        <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black hover:bg-gray-300" onClick={closeDropdown}>Healthy Guidelines (WIP)</Link>
+                                    </div>
                                     )}
                                 </li>
                                 <li className="mr-3">
@@ -155,9 +134,9 @@ export const RenderLayout = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/info" element={<Info />} />
-                    <Route path="/info/topic1" element={<Info />} />
-                    <Route path="/info/topic2" element={<BMICal />} /> 
-                    <Route path="/info/topic3" element={<Guideline />} /> 
+                    <Route path="/info/health-awareness" element={<Info />} />
+                    <Route path="/info/bmi-calculator" element={<BMICal />} /> 
+                    <Route path="/info/healthy-guidelines" element={<Guideline />} /> 
                     <Route path="/Journey" element={<Journey />} />
                     <Route path="/Snake" element={<Snake />} />
                     <Route path="/FallingFood" element={<FallingFood />} />

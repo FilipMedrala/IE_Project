@@ -34,25 +34,26 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 
 const Info = () => (
-
-  <div className='info-page pt-10'>
-
-    <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
-      <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-        <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-          <h1 className="my-4 text-5xl font-bold leading-tight">
-            Nurturing Today for a Bright Tomorrow!
-          </h1>
-          <p className="leading-normal text-2xl mb-8">
-            Dive into our comprehensive guide on the critical importance of children's nutrition.
-            Backed by statistics and detailed insights, explore why prioritizing proper nutrition for kids is fundamental for their current well-being and sets the stage for a healthier, brighter future.
-          </p>
-        </div>
-        <div className="w-full md:w-3/5 py-6 text-center">
-          <img className="w-full md:w-4/5 z-50" src={info1} alt="Family" />
-        </div>
+  <div>
+      <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
+    <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+      {/* Text Column */}
+      <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+        <h1 className="my-4 text-5xl font-bold leading-tight">
+          Nurturing Today for a Bright Tomorrow!
+        </h1>
+        <p className="leading-normal text-2xl mb-8">
+          Dive into our comprehensive guide on the critical importance of children's nutrition.
+          Backed by statistics and detailed insights, explore why prioritizing proper nutrition for kids is fundamental for their current well-being and sets the stage for a healthier, brighter future.
+        </p>
+      </div>
+      
+      {/* Image Column */}
+      <div className="w-full md:w-3/5 py-6 text-center">
+        <img className="w-full md:w-4/5 z-50" src={info1} alt="Family" />
       </div>
     </div>
+  </div>
 
     <section className="bg-white border-b py-8s">
       <div className="container max-w-5xl mx-auto m-8">        
