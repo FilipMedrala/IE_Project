@@ -25,7 +25,7 @@ export default function Sketch() {
         setEraserWidth(+event.target.value);
     };
 
-    const handleDownloadImage = () => {
+    const handleUploadImage = () => {
         canvasRef.current
             .exportImage("png")
             .then((data) => {
@@ -45,6 +45,8 @@ export default function Sketch() {
                     })
                     .then(responseData => {
                         console.log('Image uploaded successfully:', responseData);
+                        // Get prediction after image upload
+                        getPrediction();
                     })
                     .catch((error) => {
                         console.error('Error uploading image:', error);
@@ -55,6 +57,23 @@ export default function Sketch() {
             });
     };
 
+    const getPrediction = () => {
+        // Get prediction from the server
+        fetch('/getPrediction')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to get prediction');
+                }
+                return response.json();
+            })
+            .then(predictionData => {
+                console.log('Prediction:', predictionData.prediction);
+                // Handle prediction result
+            })
+            .catch((error) => {
+                console.error('Error getting prediction:', error);
+            });
+    };
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -113,10 +132,10 @@ export default function Sketch() {
                         />
                     </div>
                     <button
-                        onClick={handleDownloadImage}
+                        onClick={handleUploadImage}
                         className="btn btn-primary"
                     >
-                        Download Image
+                        Upload Image & Get Prediction
                     </button>
                 </div>
             </div>

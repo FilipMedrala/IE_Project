@@ -13,35 +13,39 @@ app.use(express.json());
 
 const { exec } = require('child_process');
 
+// Route to handle image upload
 app.post('/uploadImage', (req, res) => {
-    // Assume req.body.imageData contains base64-encoded image data
-    const base64Data = req.body.imageData.replace(/^data:image\/png;base64,/, "");
+  // Assume req.body.imageData contains base64-encoded image data
+  const base64Data = req.body.imageData.replace(/^data:image\/png;base64,/, "");
 
-    fs.writeFile("out.png", base64Data, 'base64', (err) => {
-      if (err) {
-          console.error('Error saving image:', err);
-          res.status(500).json({ error: 'Error saving image' });
-      } else {
-          // Call your Python script here, passing the image file path or data
-          const { spawn } = require('child_process');
-          const pythonProcess = spawn('python', ['predict.py', "out.png"]);
+  fs.writeFile("recognition_nn/sketch_images/out.png", base64Data, 'base64', (err) => {
+    if (err) {
+      console.error('Error saving image:', err);
+      res.status(500).json({ error: 'Error saving image' });
+    } else {
+      res.json({ message: 'Image saved successfully' });
+    }
+  });
+});
 
-          // Handle Python script output
-          pythonProcess.stdout.on('data', (data) => {
-              console.log(`Python script output: ${data}`);
-              // You can send any relevant data back to the client here if needed
-          });
-
-          pythonProcess.stderr.on('data', (data) => {
-              console.error(`Error from Python script: ${data}`);
-          });
-
-          pythonProcess.on('close', (code) => {
-              console.log(`Python script exited with code ${code}`);
-              // You can send any relevant response back to the client here
-              res.json({ message: 'Image received and processed by Python script' });
-          });
-      }
+// Route to trigger and get Python result
+app.post('/getPrediction', (req, res) => {
+  // Call your Python script here, passing the image file path or data
+  exec('python recognition_nn/predict.py', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing Python script: ${error}`);
+      res.status(500).json({ error: 'Error executing Python script' });
+      return;
+    }
+    if (stderr) {
+      console.error(`Error from Python script: ${stderr}`);
+      res.status(500).json({ error: 'Error from Python script' });
+      return;
+    }
+    // Parse the prediction result
+    const predictionResult = stdout.trim();
+    console.log(predictionResult)
+    res.json({ prediction: predictionResult });
   });
 });
 
