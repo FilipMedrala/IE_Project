@@ -38,7 +38,6 @@ def load_and_preprocess_image():
             if x[i][j] > 50:
                 x[i][j] = min(255, x[i][j] + x[i][j] * 0.60)
     x = normalize(x)
-    print(x.shape)
     return x
 
 
@@ -53,7 +52,7 @@ def load_and_preprocess_image():
 
 
 
-def main():
+def get_prediction():
     # Load and preprocess the image
     x = load_and_preprocess_image()
 
@@ -62,10 +61,9 @@ def main():
     # Get the predicted class index
     predicted_fruit_index = np.argmax(prediction)
     predicted_fruit_name = str(ITEMS[predicted_fruit_index].lower())  # Convert predicted fruit name to lowercase
-    print(predicted_fruit_name)
-
-    # Print the prediction result as JSON
-    print(json.dumps(predicted_fruit_name))
+    return predicted_fruit_name
 
 if __name__ == "__main__":
-    main()
+    prediction_result = get_prediction()
+    print(prediction_result)
+    print(json.dumps(prediction_result))

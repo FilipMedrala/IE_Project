@@ -58,22 +58,26 @@ export default function Sketch() {
     };
 
     const getPrediction = () => {
-        // Get prediction from the server
-        fetch('/getPrediction')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to get prediction');
-                }
-                return response.json();
-            })
-            .then(predictionData => {
-                console.log('Prediction:', predictionData.prediction);
+        // Make a POST request to the '/getPrediction' route
+        fetch('/getPrediction', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({}) // No need to send image data if it's already saved
+        })
+            .then(response => response.json())
+            .then(data => {
                 // Handle prediction result
+                console.log('Prediction result:', data.prediction);
+                // Do something with the prediction result, e.g., display it on the UI
             })
-            .catch((error) => {
-                console.error('Error getting prediction:', error);
+            .catch(error => {
+                // Handle error
+                console.error('Error:', error);
             });
     };
+
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">

@@ -6,12 +6,10 @@ const fs = require('fs');
 const port = process.env.PORT || 8080;
 const path = require('path');
 const app = express();
-const bodyParser = require('body-parser');
 app.use(express.static('react-app/dist'));
 app.use(cors());
 app.use(express.json());
 
-const { exec } = require('child_process');
 
 // Route to handle image upload
 app.post('/uploadImage', (req, res) => {
@@ -31,21 +29,24 @@ app.post('/uploadImage', (req, res) => {
 // Route to trigger and get Python result
 app.post('/getPrediction', (req, res) => {
   // Call your Python script here, passing the image file path or data
-  exec('python recognition_nn/predict.py', (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing Python script: ${error}`);
-      res.status(500).json({ error: 'Error executing Python script' });
-      return;
-    }
-    if (stderr) {
-      console.error(`Error from Python script: ${stderr}`);
-      res.status(500).json({ error: 'Error from Python script' });
-      return;
-    }
+  const { spawn } = require('child_process');
+  const pythonProcess = spawn('python', ['predict.py']);
+
+  let result = '';
+
+  pythonProcess.stdout.on('data', (data) => {
     // Parse the prediction result
-    const predictionResult = stdout.trim();
-    console.log(predictionResult)
-    res.json({ prediction: predictionResult });
+    result += data.toString();
+    console.log("Result in python: ", result);
+  });
+
+
+  pythonProcess.on('close' , function(code) {
+    res.json({ prediction: result });
+  });
+  pythonProcess.on('error' , function(err){
+    console.error(`Python script process exited with code ${code}`);
+    res.status(500).json({ error: 'Python script process exited with non-zero code' });
   });
 });
 
