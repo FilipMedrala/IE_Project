@@ -69,7 +69,7 @@ export default function FallingFood() {
       {
         type: "video",
         content: 'Watch the Educationl Video',
-        url: VideoOne
+        url: 'https://nutrition-journey.s3.ap-southeast-2.amazonaws.com/Fruits_low.mp4'
       },
       {
         type: "quiz",
