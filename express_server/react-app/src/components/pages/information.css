@@ -11,7 +11,7 @@
 .card {
   width: 200px;
   height: 200px;
-  position: relative; /* Added */
+  position: relative; 
 }
 
 .card-inner {
@@ -96,8 +96,7 @@
 }
 
 .dropdown-menu {
-  background-color: #c3e3ef; /* Your preferred color */
-  border: 1px solid #504df6; /* Optional: if you want a border */
-  /* Add any additional styling you need for your dropdown */
+  background-color: #c3e3ef; 
+  border: 1px solid #504df6; 
 }
 

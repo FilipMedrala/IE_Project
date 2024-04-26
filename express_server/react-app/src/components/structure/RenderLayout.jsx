@@ -80,9 +80,9 @@ export const RenderLayout = () => {
                                 </button>
                                 {showDropdown && (
                                     <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                        <Link to="/info/health-awareness" className="block px-4 py-2 text-black hover:bg-gray-300" onClick={closeDropdown}>Health Awareness</Link>
-                                        <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black hover:bg-gray-300" onClick={closeDropdown}>BMI Calculator</Link>
-                                        <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black hover:bg-gray-300" onClick={closeDropdown}>Healthy Guidelines (WIP)</Link>
+                                        <Link to="/info/health-awareness" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>Health Awareness</Link>
+                                        <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>BMI Calculator</Link>
+                                        <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>Healthy Guidelines (WIP)</Link>
                                     </div>
                                     )}
                                 </li>
