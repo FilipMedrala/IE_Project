@@ -30,25 +30,41 @@ app.post('/uploadImage', (req, res) => {
 app.post('/getPrediction', (req, res) => {
   // Call your Python script here, passing the image file path or data
   const { spawn } = require('child_process');
-  const pythonProcess = spawn('python', ['predict.py']);
+  const pythonProcess = spawn('python', ['recognition_nn/predict.py']);
 
   let result = '';
+  let errorOccurred = false; // Flag to track if an error occurred
 
+  // Handle stderr data from the Python process
   pythonProcess.stdout.on('data', (data) => {
     // Parse the prediction result
     result += data.toString();
-    console.log("Result in python: ", result);
+    console.log('Received prediction result:', result); // Add this logging statement
   });
 
 
-  pythonProcess.on('close' , function(code) {
-    res.json({ prediction: result });
+  pythonProcess.on('close', (code) => {
+    console.log('Python script process exited with code:', code);
+    if (errorOccurred) {
+      // If an error occurred during execution, send an error response
+      console.error(`Python script process exited with code ${code}`);
+      res.status(500).json({ error: 'Error in Python script' });
+    } else {
+      // If the Python script exits successfully, send the prediction result
+      console.log('Prediction result:', result);
+      res.json({ prediction: result });
+    }
   });
-  pythonProcess.on('error' , function(err){
-    console.error(`Python script process exited with code ${code}`);
-    res.status(500).json({ error: 'Python script process exited with non-zero code' });
+
+  // Handle error event of the Python process
+  pythonProcess.on('error', (err) => {
+    // Handle errors related to spawning the Python process
+    console.error('Error spawning Python process:', err);
+    res.status(500).json({ error: 'Error spawning Python process' });
   });
 });
+
+
 
 
 

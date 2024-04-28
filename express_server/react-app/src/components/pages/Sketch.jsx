@@ -1,11 +1,14 @@
 import { ReactSketchCanvas } from "react-sketch-canvas";
 import { useRef, useState } from "react";
+import axios from 'axios';
 
 export default function Sketch() {
     const canvasRef = useRef(null);
     const [eraseMode, setEraseMode] = useState(false);
     const [strokeWidth, setStrokeWidth] = useState(5);
     const [eraserWidth, setEraserWidth] = useState(10);
+    const [prediction, setPrediction] = useState(null);
+    const [error, setError] = useState(null);
 
     const handlePenClick = () => {
         setEraseMode(false);
@@ -23,6 +26,10 @@ export default function Sketch() {
 
     const handleEraserWidthChange = (event) => {
         setEraserWidth(+event.target.value);
+    };
+
+    const handleClearCanvas = () => {
+        canvasRef.current.clearCanvas();
     };
 
     const handleUploadImage = () => {
@@ -45,11 +52,12 @@ export default function Sketch() {
                     })
                     .then(responseData => {
                         console.log('Image uploaded successfully:', responseData);
-                        // Get prediction after image upload
+                        // Call getPrediction after image upload
                         getPrediction();
                     })
                     .catch((error) => {
                         console.error('Error uploading image:', error);
+                        setError('Failed to upload image');
                     });
             })
             .catch((e) => {
@@ -57,25 +65,21 @@ export default function Sketch() {
             });
     };
 
-    const getPrediction = () => {
-        // Make a POST request to the '/getPrediction' route
-        fetch('/getPrediction', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({}) // No need to send image data if it's already saved
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Handle prediction result
-                console.log('Prediction result:', data.prediction);
-                // Do something with the prediction result, e.g., display it on the UI
-            })
-            .catch(error => {
-                // Handle error
-                console.error('Error:', error);
-            });
+    const getPrediction = async () => {
+        try {
+            // Make a POST request to the '/getPrediction' route
+            const response = await axios.post('/getPrediction', {});
+
+            // Handle prediction result
+            console.log('Prediction result:', response.data.prediction);
+            setPrediction(response.data.prediction);
+            setError(null);
+        } catch (error) {
+            // Handle error
+            console.error('Error:', error);
+            setError('Error fetching prediction');
+            setPrediction(null);
+        }
     };
 
 
@@ -137,10 +141,27 @@ export default function Sketch() {
                     </div>
                     <button
                         onClick={handleUploadImage}
-                        className="btn btn-primary"
+                        className="btn btn-primary mr-2"
                     >
                         Upload Image & Get Prediction
                     </button>
+                    <button
+                        onClick={handleClearCanvas}
+                        className="btn btn-secondary"
+                    >
+                        Clear Canvas
+                    </button>
+                    {prediction && (
+                        <div className="mt-4">
+                            <p className="text-lg font-semibold">Prediction:</p>
+                            <p className="text-xl">{prediction}</p>
+                        </div>
+                    )}
+                    {error && (
+                        <div className="mt-4">
+                            <p className="text-lg text-red-500">{error}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

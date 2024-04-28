@@ -3,7 +3,6 @@ from PIL import Image
 import numpy as np
 import sys
 import os
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 import json
 
 IMAGE = 'recognition_nn/sketch_images/out.png'
@@ -55,15 +54,12 @@ def load_and_preprocess_image():
 def get_prediction():
     # Load and preprocess the image
     x = load_and_preprocess_image()
-
-    prediction = MODEL.predict(np.array([x]))
-
+    prediction = MODEL.predict(np.array([x]), verbose=0)
     # Get the predicted class index
     predicted_fruit_index = np.argmax(prediction)
-    predicted_fruit_name = str(ITEMS[predicted_fruit_index].lower())  # Convert predicted fruit name to lowercase
+    predicted_fruit_name = ITEMS[predicted_fruit_index]  # Convert predicted fruit name to lowercase
     return predicted_fruit_name
 
 if __name__ == "__main__":
     prediction_result = get_prediction()
     print(prediction_result)
-    print(json.dumps(prediction_result))
