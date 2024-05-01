@@ -5,6 +5,7 @@ import './information.css'; // Import CSS file for styling
 import StatisticsCards from './stat_cards';
 import ChildObeseTrend from './child_obese_trend';
 import DeathFactors from './death_factors';
+import Daily_Consumption from './daily_consumption';
 import './bmi.css';
 import map from "../assets/map.png";
 import info1 from "../assets/info1.png";
@@ -89,7 +90,7 @@ const Info = () => (
       <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <div className="w-full md:w-3/5 py-6 text-center">
           <div style={{ marginTop: '5px', textAlign: 'center' }}>
-          <ChildObeseTrend  />
+          <Daily_Consumption  />
           </div>
         </div>
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
