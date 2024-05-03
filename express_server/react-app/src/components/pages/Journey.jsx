@@ -89,7 +89,7 @@ export default function FallingFood() {
       {
         type: "video",
         content: 'Watch the Educationl Video',
-        url: VideoTwo,
+        url: 'https://nutrition-journey.s3.ap-southeast-2.amazonaws.com/Vegetable.mp4',
       },
       {
         type: "quiz",
@@ -109,7 +109,7 @@ export default function FallingFood() {
       {
         type: "video",
         content: 'Watch the Educationl Video',
-        url: VideoOne
+        url: 'https://nutrition-journey.s3.ap-southeast-2.amazonaws.com/Dairy.mp4'
       },
       {
         type: "quiz",
@@ -129,7 +129,7 @@ export default function FallingFood() {
       {
         type: "video",
         content: 'Watch the Educationl Video',
-        url: VideoTwo,
+        url: 'https://nutrition-journey.s3.ap-southeast-2.amazonaws.com/Protine.mp4',
       },
       {
         type: "quiz",
@@ -149,7 +149,7 @@ export default function FallingFood() {
       {
         type: "video",
         content: 'Watch the Educationl Video',
-        url: VideoOne,
+        url: 'https://nutrition-journey.s3.ap-southeast-2.amazonaws.com/Grains.mp4',
       },
       {
         type: "quiz",
