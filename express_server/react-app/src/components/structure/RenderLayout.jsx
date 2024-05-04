@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import pierogi from "../assets/pierogi.png";
 import Home from "../pages/Home";
 import Info from "../pages/Info";
-import BMICal from "../pages/BMI_calculator"; 
+import BMICal from "../pages/BMI_calculator";
 import Guideline from "../pages/Guideline";
 import Journey from "../pages/Journey";
 import Snake from "../pages/Snake";
@@ -14,7 +14,7 @@ import Export from "../pages/Export";
 import NotFound from "../pages/NotFound";
 import Sketch from "../pages/Sketch";
 import MemoryGame from "../pages/MemoryGame";
-import "../pages/information.css"
+import "../pages/information.css";
 
 export const RenderLayout = () => {
     const { user } = AuthData();
@@ -27,7 +27,7 @@ export const RenderLayout = () => {
         return <Login />;
     } else {
         return (
-            <>
+            <div className="flex flex-col min-h-screen">
                 <nav
                     id="header"
                     className="fixed w-full z-30 top-0 text-white bg-gradient-to-r from-cyan-300 to-blue-900"
@@ -75,15 +75,15 @@ export const RenderLayout = () => {
                                     </Link>
                                 </li>
                                 <li className="mr-3 relative" onMouseLeave={closeDropdown}>
-                                <button className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" onClick={toggleDropdown}>
-                                    Information {showDropdown ? '▲' : '▼'}
-                                </button>
-                                {showDropdown && (
-                                    <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                        <Link to="/info/health-awareness" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>Health Awareness</Link>
-                                        <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>BMI Calculator</Link>
-                                        <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>Healthy Guidelines (WIP)</Link>
-                                    </div>
+                                    <button className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" onClick={toggleDropdown}>
+                                        Information {showDropdown ? '▲' : '▼'}
+                                    </button>
+                                    {showDropdown && (
+                                        <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
+                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>Health Awareness</Link>
+                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>BMI Calculator</Link>
+                                            <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>Healthy Guidelines (WIP)</Link>
+                                        </div>
                                     )}
                                 </li>
                                 <li className="mr-3">
@@ -131,27 +131,29 @@ export const RenderLayout = () => {
                     </div>
                 </nav>
 
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/info" element={<Info />} />
-                    <Route path="/info/health-awareness" element={<Info />} />
-                    <Route path="/info/bmi-calculator" element={<BMICal />} /> 
-                    <Route path="/info/healthy-guidelines" element={<Guideline />} /> 
-                    <Route path="/Journey" element={<Journey />} />
-                    <Route path="/Snake" element={<Snake />} />
-                    <Route path="/FallingFood" element={<FallingFood />} />
-                    <Route path="/Export" element={<Export />} />
-                    <Route path="/MemoryGame" element={<MemoryGame />} />
-                    <Route path="/Sketch" element={<Sketch />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
+                <div className="flex-grow">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/info" element={<Info />} />
+                        <Route path="/info/health-awareness" element={<Info />} />
+                        <Route path="/info/bmi-calculator" element={<BMICal />} />
+                        <Route path="/info/healthy-guidelines" element={<Guideline />} />
+                        <Route path="/Journey" element={<Journey />} />
+                        <Route path="/Snake" element={<Snake />} />
+                        <Route path="/FallingFood" element={<FallingFood />} />
+                        <Route path="/Export" element={<Export />} />
+                        <Route path="/MemoryGame" element={<MemoryGame />} />
+                        <Route path="/Sketch" element={<Sketch />} />
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </div>
 
-                <footer className="bg-gradient-to-r from-cyan-300 to-blue-900 fixed bottom-0 w-full">
+                <footer className="bg-gradient-to-r from-cyan-300 to-blue-900">
                     <div className="mx-auto px-8 py-6 text-white text-center">
                         <p>&copy; 2024 Health Journey. All rights reserved.</p>
                     </div>
                 </footer>
-            </>
+            </div>
         );
     }
 };
