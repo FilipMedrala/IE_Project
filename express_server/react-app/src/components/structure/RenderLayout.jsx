@@ -14,7 +14,7 @@ import Export from "../pages/Export";
 import NotFound from "../pages/NotFound";
 import Sketch from "../pages/Sketch";
 import MemoryGame from "../pages/MemoryGame";
-import "../pages/information.css";
+import "../pages/information.css"
 
 export const RenderLayout = () => {
     const { user } = AuthData();
@@ -27,7 +27,7 @@ export const RenderLayout = () => {
         return <Login />;
     } else {
         return (
-            <div className="flex flex-col min-h-screen">
+            <>
                 <nav
                     id="header"
                     className="fixed w-full z-30 top-0 text-white bg-gradient-to-r from-cyan-300 to-blue-900"
@@ -131,29 +131,27 @@ export const RenderLayout = () => {
                     </div>
                 </nav>
 
-                <div className="flex-grow">
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/info" element={<Info />} />
-                        <Route path="/info/health-awareness" element={<Info />} />
-                        <Route path="/info/bmi-calculator" element={<BMICal />} />
-                        <Route path="/info/healthy-guidelines" element={<Guideline />} />
-                        <Route path="/Journey" element={<Journey />} />
-                        <Route path="/Snake" element={<Snake />} />
-                        <Route path="/FallingFood" element={<FallingFood />} />
-                        <Route path="/Export" element={<Export />} />
-                        <Route path="/MemoryGame" element={<MemoryGame />} />
-                        <Route path="/Sketch" element={<Sketch />} />
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                </div>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/info" element={<Info />} />
+                    <Route path="/info/health-awareness" element={<Info />} />
+                    <Route path="/info/bmi-calculator" element={<BMICal />} />
+                    <Route path="/info/healthy-guidelines" element={<Guideline />} />
+                    <Route path="/Journey" element={<Journey />} />
+                    <Route path="/Snake" element={<Snake />} />
+                    <Route path="/FallingFood" element={<FallingFood />} />
+                    <Route path="/Export" element={<Export />} />
+                    <Route path="/MemoryGame" element={<MemoryGame />} />
+                    <Route path="/Sketch" element={<Sketch />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
 
-                <footer className="bg-gradient-to-r from-cyan-300 to-blue-900">
+                <footer className="bg-gradient-to-r from-cyan-300 to-blue-900 fixed bottom-0 w-full">
                     <div className="mx-auto px-8 py-6 text-white text-center">
                         <p>&copy; 2024 Health Journey. All rights reserved.</p>
                     </div>
                 </footer>
-            </div>
+            </>
         );
     }
 };

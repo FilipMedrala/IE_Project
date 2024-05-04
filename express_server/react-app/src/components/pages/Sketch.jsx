@@ -2,6 +2,12 @@ import { ReactSketchCanvas } from "react-sketch-canvas";
 import { useRef, useState } from "react";
 import axios from 'axios';
 
+const ITEMS = {
+    0: 'Apple', 1: 'Banana', 2: 'Grapes', 3: 'Pineapple', 4: 'Asparagus',
+    5: 'Blackberry', 6: 'Blueberry', 7: 'Mushroom', 8: 'Onion', 9: 'Peanut',
+    10: 'Pear', 11: 'Peas', 12: 'Potato', 13: 'Steak', 14: 'Strawberry'
+};
+
 export default function Sketch() {
     const canvasRef = useRef(null);
     const [eraseMode, setEraseMode] = useState(false);
@@ -9,6 +15,13 @@ export default function Sketch() {
     const [eraserWidth, setEraserWidth] = useState(10);
     const [prediction, setPrediction] = useState(null);
     const [error, setError] = useState(null);
+    const [round, setRound] = useState(1);
+
+    const startNextRound = () => {
+        setRound(round + 1);
+        setPrediction(null);
+        setError(null);
+    };
 
     const handlePenClick = () => {
         setEraseMode(false);
@@ -37,51 +50,31 @@ export default function Sketch() {
             .exportImage("png")
             .then((data) => {
                 // Send image data to the server
-                fetch('/uploadImage', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ imageData: data })
-                })
+                axios.post('/getPrediction', { imageData: data })
                     .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Failed to upload image');
+                        const predictedItem = response.data.prediction;
+                        if (predictedItem === ITEMS[round - 1]) {
+                            setPrediction(predictedItem);
+                            setError(null);
+                            if (round < 3) {
+                                startNextRound();
+                            } else {
+                                // Game completed
+                                console.log('Congratulations! Game completed.');
+                            }
+                        } else {
+                            setError(`Incorrect prediction: ${predictedItem}, try again!`);
                         }
-                        return response.json();
-                    })
-                    .then(responseData => {
-                        console.log('Image uploaded successfully:', responseData);
-                        // Call getPrediction after image upload
-                        getPrediction();
                     })
                     .catch((error) => {
-                        console.error('Error uploading image:', error);
-                        setError('Failed to upload image');
+                        console.error('Error fetching prediction:', error);
+                        setError('Error fetching prediction');
                     });
             })
-            .catch((e) => {
-                console.log(e);
+            .catch((error) => {
+                console.error('Error exporting image:', error);
             });
     };
-
-    const getPrediction = async () => {
-        try {
-            // Make a POST request to the '/getPrediction' route
-            const response = await axios.post('/getPrediction', {});
-
-            // Handle prediction result
-            console.log('Prediction result:', response.data.prediction);
-            setPrediction(response.data.prediction);
-            setError(null);
-        } catch (error) {
-            // Handle error
-            console.error('Error:', error);
-            setError('Error fetching prediction');
-            setPrediction(null);
-        }
-    };
-
 
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -162,6 +155,10 @@ export default function Sketch() {
                             <p className="text-lg text-red-500">{error}</p>
                         </div>
                     )}
+                    <div className="mt-4">
+                        <p className="text-lg font-semibold">Round: {round}</p>
+                        <p className="text-lg">Draw: {ITEMS[round - 1]}</p>
+                    </div>
                 </div>
             </div>
         </div>
