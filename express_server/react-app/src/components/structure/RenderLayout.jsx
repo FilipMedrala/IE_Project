@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { AuthData } from "../../auth/AuthWrapper";
 import Login from "../pages/Login";
 import pierogi from "../assets/pierogi.png";
@@ -18,10 +18,16 @@ import "../pages/information.css";
 
 export const RenderLayout = () => {
     const { user } = AuthData();
-    const [showDropdown, setShowDropdown] = useState(false);
+    const [showParentDropdown, setShowParentDropdown] = useState(false);
+    const [showKidsDropdown, setShowKidsDropdown] = useState(false);
+    const location = useLocation();
 
-    const toggleDropdown = () => setShowDropdown(!showDropdown);
-    const closeDropdown = () => setShowDropdown(false);
+    const toggleParentDropdown = () => setShowParentDropdown(!showParentDropdown);
+    const toggleKidsDropdown = () => setShowKidsDropdown(!showKidsDropdown);
+    const closeDropdowns = () => {
+        setShowParentDropdown(false);
+        setShowKidsDropdown(false);
+    };
 
     if (!user.isAuthenticated) {
         return <Login />;
@@ -58,73 +64,41 @@ export const RenderLayout = () => {
                             id="nav-content"
                         >
                             <ul className="list-reset flex justify-end">
-                                <li className="mr-3">
-                                    <Link
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        to="/"
-                                    >
-                                        Home
-                                    </Link>
-                                </li>
-                                <li className="mr-3">
-                                    <Link
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        to="/Journey"
-                                    >
-                                        Journey
-                                    </Link>
-                                </li>
-                                <li className="mr-3 relative" onMouseLeave={closeDropdown}>
-                                    <button className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" onClick={toggleDropdown}>
-                                        Information {showDropdown ? '▲' : '▼'}
+                                {location.pathname !== "/" && (
+                                    <li className="mr-3">
+                                        <Link
+                                            className="inline-block py-2 px-4 text-black font-bold no-underline"
+                                            to="/"
+                                        >
+                                            Home
+                                        </Link>
+                                    </li>
+                                )}
+                                <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
+                                    <button className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" onClick={toggleParentDropdown}>
+                                        For Parents {showParentDropdown ? '▲' : '▼'}
                                     </button>
-                                    {showDropdown && (
+                                    {showParentDropdown && (
                                         <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>Health Awareness</Link>
-                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>BMI Calculator</Link>
-                                            <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdown}>Healthy Guidelines (WIP)</Link>
+                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
+                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
+                                            <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guidelines (WIP)</Link>
                                         </div>
                                     )}
                                 </li>
-                                <li className="mr-3">
-                                    <Link
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        to="/Snake"
-                                    >
-                                        Snake
-                                    </Link>
-                                </li>
-                                <li className="mr-3">
-                                    <Link
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        to="/FallingFood"
-                                    >
-                                        FallingFood
-                                    </Link>
-                                </li>
-                                <li className="mr-3">
-                                    <Link
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        to="/MemoryGame"
-                                    >
-                                        MemoryGame
-                                    </Link>
-                                </li>
-                                <li className="mr-3">
-                                    <Link
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        to="/Export"
-                                    >
-                                        Export PDF
-                                    </Link>
-                                </li>
-                                <li className="mr-3">
-                                    <Link
-                                        className="inline-block py-2 px-4 text-black font-bold no-underline"
-                                        to="/Sketch"
-                                    >
-                                        Sketch
-                                    </Link>
+                                <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
+                                    <button className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" onClick={toggleKidsDropdown}>
+                                        For Kids {showKidsDropdown ? '▲' : '▼'}
+                                    </button>
+                                    {showKidsDropdown && (
+                                        <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
+                                            <Link to="/Journey" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Journey</Link>
+                                            <Link to="/Snake" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Snake</Link>
+                                            <Link to="/FallingFood" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>FallingFood</Link>
+                                            <Link to="/MemoryGame" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>MemoryGame</Link>
+                                            <Link to="/Sketch" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Sketch</Link>
+                                        </div>
+                                    )}
                                 </li>
                             </ul>
                         </div>
