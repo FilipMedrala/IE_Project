@@ -4,15 +4,16 @@ import axios from 'axios';
 import jsPDF from "jsPDF";
 import './journey.css'
 import './App.css'
-
 import CatImage from '../assets/cat.svg'
 import { Button, message, Popconfirm } from "antd";
-
 import Video from "./Video";
+// import goodImage from "../assets/certificate_good.jpeg";
 
-import VideoOne from '../assets/video/111111111.mp4'
-import VideoTwo from '../assets/video/2222222222222.mp4'
-import goodImage from "../assets/certificate_good.jpeg";
+import pic1 from '../assets/pic1.jpg'
+import pic2 from '../assets/pic2.jpg'
+import pic3 from '../assets/pic3.jpg'
+import pic4 from '../assets/pic4.png'
+
 
 export default function FallingFood() {
 
@@ -29,9 +30,11 @@ export default function FallingFood() {
     try {
       const response = await axios.get('/quiz', {
         params: {
-          stage1: [1, 4],
-          stage2: [2, 4],
-          stage3: [3, 4],
+          stage1: 'Fruit Nutrition',
+          stage2: 'Dairy Nutrition',
+          stage3: 'Grains Nutrition',
+          stage4: 'Protein Nutrition',
+          stage5: 'Vegetable Nutrition',
         }
       });
       const data = response.data;
@@ -76,8 +79,9 @@ export default function FallingFood() {
         content: 'Attempt Quiz',
       },
       {
-        type: "canvas",
+        type: "snake",
         content: 'Go to Canvas',
+        url: '/Sketch'
       },
       {
         type: "snake",
@@ -96,8 +100,9 @@ export default function FallingFood() {
         content: 'Attempt Quiz',
       },
       {
-        type: "canvas",
+        type: "snake",
         content: 'Go to Canvas',
+        url: '/Sketch'
       },
       {
         type: "snake",
@@ -116,8 +121,9 @@ export default function FallingFood() {
         content: 'Attempt Quiz',
       },
       {
-        type: "canvas",
+        type: "snake",
         content: 'Go to Canvas',
+        url: '/Sketch'
       },
       {
         type: "snake",
@@ -136,8 +142,9 @@ export default function FallingFood() {
         content: 'Attempt Quiz',
       },
       {
-        type: "canvas",
+        type: "snake",
         content: 'Go to Canvas',
+        url: '/Sketch'
       },
       {
         type: "snake",
@@ -156,8 +163,9 @@ export default function FallingFood() {
         content: 'Attempt Quiz',
       },
       {
-        type: "canvas",
+        type: "snake",
         content: 'Go to Canvas',
+        url: '/Sketch'
       },
       {
         type: "snake",
@@ -254,6 +262,15 @@ export default function FallingFood() {
   }
 
   const printDocument = () => {
+
+    let score = 0
+    let answers = JSON.parse(sessionStorage.getItem("answers"))
+    Object.keys(answers).forEach((key) => {
+      score += Object.values(answers[key]).filter(item => item).length
+    })
+
+    const goodImage = score === 25 ? pic1 : score >= 20 && score <= 24 ? pic2 : score >= 15 && score <= 19 ? pic3 : pic4
+
     const pdf = new jsPDF({
       orientation: "landscape",  // 可以根据图片的宽高比选择适当的方向
     });

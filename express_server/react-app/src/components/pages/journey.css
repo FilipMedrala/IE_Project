@@ -7,7 +7,7 @@
     height: 5395px;
     position: relative;
     background: url('../assets/journeyBg.png') no-repeat;
-    background-size: 100% calc(100% - 84px);
+    background-size: 100% 100%;
     margin: 0 auto;
     padding-top: 90px;
 }
