@@ -95,13 +95,13 @@ const Info = () => (
         </div>
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           <h1 className="my-4 text-4xl font-bold leading-tight">
-            Prevalence of Overweight Among Children and Adolescents by Country (1977-2016)
+            Daily Consumption of Food Groups Over Year (2018 - 2023).
           </h1>
           <p className="leading-normal text-2xl mb-8">
-            The graph shows the increasing trend in overweight prevalence among children and adolescents in various countries from 1977 to 2016. In 2003, the United States led with 37.4%, followed by New Zealand and Australia, while Japan had the lowest rate at 13.9%. 
+            The graph shows the trend in 5 different food groups and recommended serves. 
             <br />
             <br />
-            The data highlights a significant public health concern, pointing to the need for targeted interventions to combat the rising rates of overweight youths globally.            
+            The data highlights a significant public health concern, pointing to the need daily consumption to meet the recommended serves from Australian Guidelines.            
           </p>
           </div>
       </div>

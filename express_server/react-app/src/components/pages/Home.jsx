@@ -12,7 +12,7 @@ export default function App() {
       <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
         <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
           <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-            <p className="uppercase tracking-loose w-full">
+            <p className="text-5xl font-bold uppercase tracking-loose w-full">
               Does your kid know what's healthy?
             </p>
             <h1 className="my-4 text-5xl font-bold leading-tight">
