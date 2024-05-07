@@ -19,9 +19,13 @@ app.post('/uploadImage', (req, res) => {
   fs.writeFile("recognition_nn/sketch_images/out.png", base64Data, 'base64', (err) => {
     if (err) {
       console.error('Error saving image:', err);
-      res.status(500).json({ error: 'Error saving image' });
+      res.status(500).json({
+        error: 'Error saving image'
+      });
     } else {
-      res.json({ message: 'Image saved successfully' });
+      res.json({
+        message: 'Image saved successfully'
+      });
     }
   });
 });
@@ -29,7 +33,9 @@ app.post('/uploadImage', (req, res) => {
 // Route to trigger and get Python result
 app.post('/getPrediction', (req, res) => {
   // Call your Python script here, passing the image file path or data
-  const { spawn } = require('child_process');
+  const {
+    spawn
+  } = require('child_process');
   const pythonProcess = spawn('python', ['recognition_nn/predict.py']);
 
   let result = '';
@@ -48,11 +54,15 @@ app.post('/getPrediction', (req, res) => {
     if (errorOccurred) {
       // If an error occurred during execution, send an error response
       console.error(`Python script process exited with code ${code}`);
-      res.status(500).json({ error: 'Error in Python script' });
+      res.status(500).json({
+        error: 'Error in Python script'
+      });
     } else {
       // If the Python script exits successfully, send the prediction result
       console.log('Prediction result:', result);
-      res.json({ prediction: result });
+      res.json({
+        prediction: result
+      });
     }
   });
 
@@ -60,7 +70,9 @@ app.post('/getPrediction', (req, res) => {
   pythonProcess.on('error', (err) => {
     // Handle errors related to spawning the Python process
     console.error('Error spawning Python process:', err);
-    res.status(500).json({ error: 'Error spawning Python process' });
+    res.status(500).json({
+      error: 'Error spawning Python process'
+    });
   });
 });
 
@@ -88,7 +100,7 @@ connection.connect((err) => {
 
 // Route to pull data from 'quiz' table with filtering based on stage and number of rows
 app.get('/quiz', async (req, res) => {
-  const { stage1, stage2, stage3 } = req.query;
+  const queryObj = req.query;
   try {
     // Function to execute a SQL query with parameters and return a promise
     const queryDatabase = (sql, params) => {
@@ -112,22 +124,14 @@ app.get('/quiz', async (req, res) => {
 
     // Fetch and send data for each stage
     const stageData = [];
-    for (const stage of [stage1, stage2, stage3]) {
-      if (stage) {
-        // Parse the input parameters to ensure they are integers
-        const stageInt = parseInt(stage[0]);
-        const countInt = parseInt(stage[1]);
-        
-        // Check if the parsed integers are valid numbers
-        if (!isNaN(stageInt) && !isNaN(countInt)) {
-          const randomRows = await fetchRandomRowsForStage(stageInt, countInt);
-          stageData.push(randomRows);
-        } else {
-          console.error('Invalid input:', stage);
-        }
-      }
-    }
 
+    let stageValue = Object.values(queryObj);
+
+    for (const stage of stageValue) {
+      let sql = `SELECT *FROM (  SELECT *  FROM QuizQuestions  WHERE Category = '${stage}'  ORDER BY RAND()  LIMIT 5) AS Category1`;
+      const rows = await queryDatabase(sql, null);
+      stageData.push(rows);
+    }
     res.json(stageData);
   } catch (error) {
     console.error('Error querying database:', error);

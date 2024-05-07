@@ -5,22 +5,6 @@ import { CloseCircleOutlined } from '@ant-design/icons';
 
 import './FruitQuiz.css'; // Import the CSS file for styling
 
-import apple from '../quiz_photo/healthy/apple.png';
-import burger from '../quiz_photo/unhealthy/burger.png';
-import cake from '../quiz_photo/unhealthy/cake.png';
-import blue_berry from '../quiz_photo/healthy/blue_berry.png';
-import candy from '../quiz_photo/unhealthy/candy.png';
-import banana from '../quiz_photo/healthy/banana.png';
-import broccoli from '../quiz_photo/healthy/broccoli.png';
-import carrot from '../quiz_photo/healthy/carrot.png';
-import potato from '../quiz_photo/healthy/potato.png';
-import spinach from '../quiz_photo/healthy/spinach.png';
-import cookie from '../quiz_photo/unhealthy/cookie.png';
-import orange from '../quiz_photo/healthy/orange.png';
-import fried_chicken from '../quiz_photo/unhealthy/friend_chicken.png';
-import ice_cream from '../quiz_photo/unhealthy/ice_cream.png';
-import donut from '../quiz_photo/unhealthy/donut.png';
-import pizza from '../quiz_photo/unhealthy/pizza.png';
 import pic5 from '../assets/left-btn.png'
 import pic6 from '../assets/right-btn.png'
 
@@ -29,20 +13,12 @@ const Quiz = React.forwardRef((data, ref) => {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [quizData, setQuizData] = useState(data.quizData || []);
 
   const myRef = useRef(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [showResult, setShowResult] = useState(false);
-
-  useEffect(() => {
-    setQuizData(quizData.map(item => ({
-      ...item,
-      reverse: Math.random() > 0.5
-    })))
-  }, [])
 
   useImperativeHandle(
     ref,
@@ -65,43 +41,25 @@ const Quiz = React.forwardRef((data, ref) => {
     myRef?.current?.goTo?.(0)
   }
 
-  const imagesObj = {
-    apple,
-    burger,
-    cake,
-    blue_berry,
-    candy,
-    banana,
-    cookie,
-    orange,
-    fried_chicken,
-    ice_cream,
-    broccoli,
-    carrot,
-    potato,
-    spinach,
-    donut,
-    pizza,
-  }
-
-  const handleOptionClick = (value) => {
+  const handleOptionClick = (value, flag) => {
     setAnswers(prevState => {
       return {
         ...prevState,
-        [`q${currentQuestion}`]: value
+        [`q${currentQuestion}`]: value === flag
       }
     })
   };
 
   useEffect(() => {
-    if (Object.keys(answers).length === quizData.length) {
+    if (Object.keys(answers).length === data.quizData.length) {
       setTimeout(() => {
+        let params = JSON.parse(sessionStorage.getItem('answers'))
         sessionStorage.setItem('answers', JSON.stringify({
-          type: data.type,
-          answers,
+          ...params,
+          [data.type]: answers
         }))
         setShowResult(true)
-      }, 1000)
+      }, 2000)
     }
   }, [answers])
 
@@ -119,26 +77,28 @@ const Quiz = React.forwardRef((data, ref) => {
                   <img src={pic6} alt="" />
                 </div>
                 <Carousel dotPosition='bottom' ref={myRef} infinite={false} afterChange={setCurrentQuestion}>
-                  {quizData?.map((item, index) => (
+                  {data.quizData?.map((item, index) => (
                     <div className="swiperItem" key={index}>
                       <div className="container">
                         <div className="question">
-                          <p>{item.question}</p>
-                          <div className={`options ${item.reverse ? 'reverse' : ''}`}>
-                            <button
+                          <p>{item.QuestionText}</p>
+                          <div className='options'>
+                            <Button
+                              type="dashed"
                               disabled={index === currentQuestion && answers[`q${currentQuestion}`]}
-                              onClick={() => handleOptionClick('a')}
-                              className={index === currentQuestion && answers[`q${currentQuestion}`] === 'a' ? 'selected' : ''}
+                              onClick={() => handleOptionClick('A', item.CorrectAnswer)}
+                              className={index === currentQuestion && answers[`q${currentQuestion}`] !== undefined ? answers[`q${currentQuestion}`] && item.CorrectAnswer === "A" ? 'selected' : !answers[`q${currentQuestion}`] && item.CorrectAnswer === "A" ? 'selected ' : 'selected incor' : ''}
                             >
-                              <img src={imagesObj[item.corAnswer]} alt="Option A" />
-                            </button>
-                            <button
+                              A: {item.OptionA}
+                            </Button>
+                            <Button
+                              type="dashed"
                               disabled={index === currentQuestion && answers[`q${currentQuestion}`]}
-                              onClick={() => handleOptionClick('b')}
-                              className={index === currentQuestion && answers[`q${currentQuestion}`] === 'b' ? 'selected incor' : ''}
+                              onClick={() => handleOptionClick('B', item.CorrectAnswer)}
+                              className={index === currentQuestion && answers[`q${currentQuestion}`] !== undefined ? answers[`q${currentQuestion}`] && item.CorrectAnswer === "B" ? 'selected' : !answers[`q${currentQuestion}`] && item.CorrectAnswer === "B" ? 'selected ' : 'selected incor' : ''}
                             >
-                              <img src={imagesObj[item.incorAnswer]} alt="Option B" />
-                            </button>
+                              B: {item.OptionB}
+                            </Button>
                           </div>
                         </div>
                       </div>
@@ -148,17 +108,10 @@ const Quiz = React.forwardRef((data, ref) => {
               </div>
             </div>
             {
-              answers[`q${currentQuestion}`] ? (
+              typeof answers[`q${currentQuestion}`] === 'boolean' ? (
                 <div className='result'>
                   {
-                    answers[`q${currentQuestion}`] === 'a'
-                      ?
-                      (<div className='right'>
-                        you are right
-                      </div>)
-                      :
-                      (<div className='wrong'>you are wrong</div>)
-
+                    answers[`q${currentQuestion}`] ? (<div className='right'> you are right </div>) : (<div className='wrong'>you are wrong</div>)
                   }
                 </div>
               )

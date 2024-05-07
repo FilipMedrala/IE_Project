@@ -11,7 +11,7 @@ export default function Transcript(data) {
   useEffect(() => {
     let values = Object.values(data.result);
     setTotal(values.length);
-    setCount(values.filter(item => item === 'a').length)
+    setCount(values.filter(item => item === true).length)
   }, [])
 
   return (
