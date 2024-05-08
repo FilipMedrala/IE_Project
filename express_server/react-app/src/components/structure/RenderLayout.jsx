@@ -75,28 +75,28 @@ export const RenderLayout = () => {
                                     </li>
                                 )}
                                 <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
-                                    <button className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" onClick={toggleParentDropdown}>
+                                    <button className="inline-block text-black text-2xl no-underline hover:text-gray-800 hover:text-underline py-2 px-4 delay-3s" onClick={toggleParentDropdown}>
                                         For Parents {showParentDropdown ? '▲' : '▼'}
                                     </button>
                                     {showParentDropdown && (
                                         <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
-                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
-                                            <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guidelines (WIP)</Link>
+                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
+                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
+                                            <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guidelines (WIP)</Link>
                                         </div>
                                     )}
                                 </li>
                                 <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
-                                    <button className="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" onClick={toggleKidsDropdown}>
+                                    <button className="inline-block text-black text-2xl no-underline hover:text-gray-800 hover:text-underline py-2 px-4 delay-3s" onClick={toggleKidsDropdown}>
                                         For Kids {showKidsDropdown ? '▲' : '▼'}
                                     </button>
                                     {showKidsDropdown && (
                                         <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                            <Link to="/Journey" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Journey</Link>
-                                            <Link to="/Snake" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Snake</Link>
-                                            <Link to="/FallingFood" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>FallingFood</Link>
-                                            <Link to="/MemoryGame" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>MemoryGame</Link>
-                                            <Link to="/Sketch" className="block px-4 py-2 text-black hover:bg-sky-300" onClick={closeDropdowns}>Sketch</Link>
+                                            <Link to="/Journey" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Journey</Link>
+                                            <Link to="/Snake" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Snake</Link>
+                                            <Link to="/FallingFood" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>FallingFood</Link>
+                                            <Link to="/MemoryGame" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>MemoryGame</Link>
+                                            <Link to="/Sketch" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Sketch</Link>
                                         </div>
                                     )}
                                 </li>
