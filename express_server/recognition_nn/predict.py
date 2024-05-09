@@ -7,7 +7,7 @@ import json
 
 IMAGE = 'recognition_nn/sketch_images/out.png'
 # Load the model
-MODEL = load_model('recognition_nn/models/doodle_conv.keras')
+MODEL = load_model('recognition_nn/models/resnet_model.keras')
 
 ITEMS = {0: 'Apple', 1: 'Banana', 2: 'Grapes', 3: 'Pineapple', 4: 'Asparagus', 5: 'Blackberry', 6: 'Blueberry',
           7: 'Mushroom', 8: 'Onion', 9: 'Peanut', 10: 'Pear', 11: 'Peas', 12: 'Potato', 13: 'Steak', 14: 'Strawberry'}
