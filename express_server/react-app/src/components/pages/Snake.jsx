@@ -266,7 +266,7 @@ export default function Snake() {
         row.push(
           <div
             key={`${x}-${y}`}
-            className="w-12 h-12"
+            className="w-6 h-6"
             style={{
               backgroundImage: `url(${imageSource})`,
               backgroundSize: "cover",

@@ -38,11 +38,11 @@ export const RenderLayout = () => {
                     id="header"
                     className="fixed w-full z-30 top-0 text-white bg-gradient-to-r from-cyan-300 to-blue-900"
                 >
-                    <div className="mx-auto flex items-center justify-between py-2">
+                    <div className="mx-auto flex items-center justify-between py-1">
                         <div className="pl-4 flex items-center justify-center">
-                            <img className="w-1/12 z-50" src={pierogi} alt="Pierogi" />
+                            <img className="w-10 z-50" src={pierogi} alt="Pierogi" />
                             <Link
-                                className="toggleColour text-black no-underline hover:text-white no-underline font-bold text-2xl lg:text-4xl ml-2"
+                                className="toggleColour text-black no-underline hover:text-white no-underline font-bold text-2xl lg:text-2xl ml-2"
                                 to="/"
                             >
                                 Health Journey
@@ -63,7 +63,7 @@ export const RenderLayout = () => {
                             className="hidden lg:flex lg:items-center lg:w-auto flex-grow justify-center"
                             id="nav-content"
                         >
-                            <ul className="list-reset flex justify-end">
+                            <ul className="list-reset flex justify-end flex -1">
                                 {location.pathname !== "/" && (
                                     <li className="mr-3">
                                         <Link
@@ -75,14 +75,14 @@ export const RenderLayout = () => {
                                     </li>
                                 )}
                                 <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
-                                    <button className="inline-block text-black text-2xl no-underline hover:text-gray-800 hover:text-underline py-2 px-4 delay-3s" onClick={toggleParentDropdown}>
+                                    <button className="inline-block text-black text-lg no-underline hover:text-gray-800 hover:text-underline py-2 px-4 delay-3s" onClick={toggleParentDropdown}>
                                         For Parents {showParentDropdown ? '▲' : '▼'}
                                     </button>
                                     {showParentDropdown && (
                                         <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
-                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
-                                            <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guidelines (WIP)</Link>
+                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
+                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
+                                            <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guidelines (WIP)</Link>
                                         </div>
                                     )}
                                 </li>
@@ -92,11 +92,11 @@ export const RenderLayout = () => {
                                     </button>
                                     {showKidsDropdown && (
                                         <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                            <Link to="/Journey" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Journey</Link>
-                                            <Link to="/Snake" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Snake</Link>
-                                            <Link to="/FallingFood" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>FallingFood</Link>
-                                            <Link to="/MemoryGame" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>MemoryGame</Link>
-                                            <Link to="/Sketch" className="block px-4 py-2 text-black text-2xl hover:bg-sky-300" onClick={closeDropdowns}>Sketch</Link>
+                                            <Link to="/Journey" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Journey</Link>
+                                            <Link to="/Snake" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Snake</Link>
+                                            <Link to="/FallingFood" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>FallingFood</Link>
+                                            <Link to="/MemoryGame" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>MemoryGame</Link>
+                                            <Link to="/Sketch" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Sketch</Link>
                                         </div>
                                     )}
                                 </li>

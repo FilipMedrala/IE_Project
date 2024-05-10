@@ -164,26 +164,26 @@ export default function FallingFood() {
         if (food) {
           if (food.type === "green") {
             row.push(
-              <div key={`${x}-${y}`} className={`w-12 h-12`} style={{ ...cellStyle }}>
+              <div key={`${x}-${y}`} className={`w-6 h-6`} style={{ ...cellStyle }}>
                 <img src={apple} alt="Apple" className="w-full h-full" />
               </div>
             );
           } else {
             row.push(
-              <div key={`${x}-${y}`} className={`w-12 h-12`} style={{ ...cellStyle }}>
+              <div key={`${x}-${y}`} className={`w-6 h-6`} style={{ ...cellStyle }}>
                 <img src={fries} alt="Fries" className="w-full h-full" />
               </div>
             );
           }
         } else if (player.x === x && player.y === y) {
           row.push(
-            <div key={`${x}-${y}`} className={`w-12 h-12`} style={{ ...cellStyle }}>
+            <div key={`${x}-${y}`} className={`w-6 h-6`} style={{ ...cellStyle }}>
               <img src={astronaut} alt="Astronaut" className="w-full h-full" />
             </div>
           );
         } else {
           row.push(
-            <div key={`${x}-${y}`} className={`w-12 h-12`} style={{ ...cellStyle }} />
+            <div key={`${x}-${y}`} className={`w-6 h-6`} style={{ ...cellStyle }} />
           );
         }
       }
