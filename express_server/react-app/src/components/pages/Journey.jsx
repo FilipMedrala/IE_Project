@@ -61,6 +61,8 @@ export default function FallingFood() {
   const [flag, setFlag] = useState(true)
   const [isFinally, setIsFinally] = useState(false)
 
+  const [maxIndex, setMaxIndex] = useState(-1)
+
   const movingElementStyle = {
     transition: 'top 1s, left 1s',
     top: position.y + 'px',
@@ -176,16 +178,26 @@ export default function FallingFood() {
   ]
 
   const handleMouseDown = (module, index) => {
+    setFlag(false)
+    let tempIndex = Number(`${module}${index}`);
+    if (tempIndex <= maxIndex) {
+      setCurrIndex(index);
+      setCurrModule(module);
+      const currentPoint = housePointArr[index];
+      setPosition({ x: currentPoint[0], y: currentPoint[1] + 900 * module });
+      return;
+    }
     if (!flag) {
       message.error("You need to complete the previous level")
       return;
     }
     setIsFinally(false)
     if (module - currModule === 1) {
+      debugger
       if (currIndex == 3 && index == 0) {
         setCurrIndex(index);
         const currentPoint = housePointArr[index];
-        setPosition({ x: currentPoint[0], y: currentPoint[1] + 877 * module });
+        setPosition({ x: currentPoint[0], y: currentPoint[1] + 900 * module });
         setCurrModule(module);
         setFlag(false)
         return;
@@ -194,38 +206,51 @@ export default function FallingFood() {
         return;
       }
     } else if (module === currModule) {
+      if (index === currIndex) {
+        setFlag(true)
+        return
+      }
       if (index - currIndex <= 1) {
         setCurrIndex(index);
         const currentPoint = housePointArr[index];
-        setPosition({ x: currentPoint[0], y: currentPoint[1] + 877 * module });
+        setPosition({ x: currentPoint[0], y: currentPoint[1] + 900 * module });
         setFlag(false)
-
         return;
+      } else if (tempIndex < maxIndex) {
+        setCurrIndex(index);
+        const currentPoint = housePointArr[index];
+        setPosition({ x: currentPoint[0], y: currentPoint[1] + 900 * module });
       } else {
-        message.error("You need to complete the previous level");
+        message.error("You need to complete the previous level")
+        return;
       }
-    } else if (module < currModule) {
+    } else if (module <= currModule) {
       setCurrIndex(index);
       const currentPoint = housePointArr[index];
-      setPosition({ x: currentPoint[0], y: currentPoint[1] + 877 * module });
-      setFlag(false)
-
+      setPosition({ x: currentPoint[0], y: currentPoint[1] + 900 * module });
       return;
     } else {
       message.error("You need to complete the previous level");
     }
   };
+  
 
   const handleAction = (mIndex, index, type, url) => {
+    setFlag(true)
+    if (index === 3) {
+      setMaxIndex(Math.max(maxIndex, Number(`${mIndex + 1}0`)));
+    } else {
+      setMaxIndex(Math.max(maxIndex, Number(`${mIndex}${index + 1}`)));
+    }
     type === 'quiz' && !quizRefs.current[mIndex]?.isModalOpen && quizRefs.current[mIndex]?.showModal()
     type === 'snake' && window.open(url)
     type === 'video' && !videoRefs.current[mIndex]?.isModalOpen && videoRefs.current[mIndex]?.showModal()
-    setFlag(true)
     if (mIndex === 4 && index === 3) {
-      setPosition({ x: 698, y: 5030 });
+      setPosition({ x: 698, y: 5120 });
       setIsFinally(true)
     }
   }
+  
 
   const popconfirmOpen = (mIndex, index) => {
     return !flag && currModule === mIndex && currIndex === index
