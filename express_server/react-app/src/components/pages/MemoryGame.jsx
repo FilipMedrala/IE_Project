@@ -4,6 +4,16 @@ import { useState } from 'react'
 import '../pages/MemoryGame.css'
 import Card from '../pages/MemoryCard'
 
+// import img1 from '../assets/3.png';
+// import img2 from '../assets/4.png';
+// import img3 from '../assets/5.png';
+// import img4 from '../assets/6.png';
+// import img5 from '../assets/carroct.png';
+// import img6 from '../assets/Spanish.png';
+// import img7 from '../assets/sweetpotato.png';
+// import img8 from '../assets/broccoli.png';
+
+
 function MemoryGame() {
   const [cards, setCards] = useState(null);
   const [score, setScore] = useState(0);
@@ -17,49 +27,49 @@ function MemoryGame() {
 
   const items = [
   {
-    emoji: "👇",
+    emoji: "🍎",
     id: "1",
     matchFound: false,
     flipped: false,
   },
   {
-    emoji: "👀",
+    emoji: "🍉",
     id: "2",
     matchFound: false,
     flipped: false,
   },
   {
-    emoji: "🙌",
+    emoji: "🍍",
     id: "3",
     matchFound: false,
     flipped: false,
   },
   {
-    emoji: "👋",
+    emoji: "🍑",
     id: "4",
     matchFound: false,
     flipped: false,
   },
   {
-    emoji: "🙏",
+    emoji: "🍓",
     id: "5",
     matchFound: false,
     flipped: false,
   },
   {
-    emoji: "🤔",
+    emoji: "🥑",
     id: "6",
     matchFound: false,
     flipped: false,
   },
   {
-    emoji: "🤦‍♂️",
+    emoji: "🍐",
     id: "7",
     matchFound: false,
     flipped: false,
   },
  {
-   emoji: "😔",
+   emoji: "🍌",
    id: "8",
    matchFound: false,
    flipped: false,
@@ -182,21 +192,21 @@ function MemoryGame() {
 
 
   return (
-    <div className="MG">
+    <div className= 'memory-game'>
       <div className="header">
         <p>Time Left: {timeLeft}s</p>
         <p>Total Score: {score}</p>
       </div>
       <div>
-      {gameOver && !win && ( // 仅在输掉游戏时显示
+      {gameOver && !win && ( 
         <div className="modal">
           <p>You are lose</p>
           <button onClick={resetGame}>Try Again</button>
         </div>
       )}
-      {win && ( // 当赢得游戏时显示
+      {win && (
         <div className="modal">
-          <p>恭喜你</p>
+          <p>yeah～</p>
           <button onClick={resetGame}>Play Again</button>
           <button onClick={resetGame}>Quit</button>
         </div>

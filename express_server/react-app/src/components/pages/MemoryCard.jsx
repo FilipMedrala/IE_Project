@@ -1,4 +1,4 @@
-import head from '../assets/Spanish.png'
+import head from '../assets/logo.jpeg'
 import "../pages/MemoryCard.css"
 
 const MemoryCard = ({card, handleCardClick, disabled}) => {
