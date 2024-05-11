@@ -1,0 +1,101 @@
+.nutri-calc-container {
+  background-color: #d3f8db; /* Soft blue background */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin: auto;
+  width: 90%; /* Adjust as necessary */
+  max-width: 600px; /* Limits the size on larger screens */
+}
+
+.nutri-calc-input-container {
+  margin: 15px 0;
+}
+
+.nutri-calc-input, .nutri-calc-select {
+  width: 100%;
+  padding: 10px 15px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 16px; /* Larger font size for better readability */
+}
+
+.nutri-calc-button {
+  background-color: #4CAF50; /* A nice, friendly green */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px; /* Larger font size for better visibility */
+  cursor: pointer;
+  width: 100%; /* Full width button */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.nutri-calc-button:hover {
+  background-color: #45a049; /* Slightly darker green on hover */
+}
+
+label {
+  font-size: 16px; /* Increases label font size */
+  display: block; /* Makes label take the full width, easier for alignment */
+}
+
+/* Add some custom styling for the result display */
+.nutri-calc-result {
+  background-color: #e8f5e9; /* Light green background */
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 4px;
+  font-size: 16px; /* Consistent font size */
+  text-align: center; /* Centering the text */
+}
+
+@media (max-width: 768px) {
+  .nutri-calc-container {
+    width: 95%; /* Slightly more padding on smaller screens */
+    padding: 15px;
+    font-size: 20px; /* Slightly smaller font size on mobile devices */
+  }
+
+  .nutri-calc-input, .nutri-calc-select, .nutri-calc-button {
+    font-size: 14px; /* Smaller font on mobile for better fit */
+  }
+}
+
+.result_nutri p {
+  font-size: 16px; /* Adjust base font size if needed */
+  color: #333; /* Optional: Sets the text color for better readability */
+}
+
+.result_nutri strong {
+  font-weight: bold; /* Makes the label bold */
+}
+
+.calories-value {
+  font-size: 24px; /* Increases the font size of the calorie value */
+  color: #4CAF50; /* Optional: Adds a color to highlight the calorie value */
+}
+
+.nutrition-info table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.nutrition-info th, .nutrition-info td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.nutrition-info th {
+  background-color: #333;
+  color: white;
+}
+
+.nutrition-info tr:nth-child(even) {
+  background-color: #f2f2f2;
+}

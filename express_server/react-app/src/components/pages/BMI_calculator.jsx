@@ -1,38 +1,63 @@
 import React, { useState } from 'react';
-import { Button } from 'antd'; // Import Ant Design components
+import { Button, message } from 'antd'; // Use the message component from Ant Design for alerts
 import './information.css'; // Import CSS file for styling
 import './bmi.css';
-    
 
-const BMICalculator= () => {
+const BMICalculator = () => {
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
     const [bmiValue, setBMIValue] = useState(null);
     const [bmiCategory, setBMICategory] = useState('');
-  
+    const [activityRecommendation, setActivityRecommendation] = useState('');
+
     const calculateBMI = () => {
       if (height && weight) {
         const heightInMeters = height / 100;
         const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
         setBMIValue(bmi);
-  
+
         let category = '';
+        let recommendation = '';
         if (bmi < 18.5) {
           category = 'underweight';
+          recommendation = 'Strength training exercises like weight lifting, and high-calorie nutritious meals.';
         } else if (bmi >= 18.5 && bmi < 25) {
           category = 'normal';
+          recommendation = 'A balanced mix of cardio, strength training, and flexibility exercises.';
         } else if (bmi >= 25 && bmi < 30) {
           category = 'overweight';
+          recommendation = 'Low-impact cardio such as swimming or cycling, combined with a healthy diet.';
         } else {
           category = 'obese';
+          recommendation = 'Start with gentle activities like walking or water aerobics. Gradually increase intensity as comfort allows.';
         }
         setBMICategory(category);
+        setActivityRecommendation(recommendation);
       } else {
         setBMIValue('');
         setBMICategory('');
+        setActivityRecommendation('');
       }
     };
-  
+
+    const handleHeightChange = (e) => {
+      const newHeight = Number(e.target.value);
+      if (newHeight > 250) {
+        message.warning('Height cannot exceed 250 cm');
+      } else {
+        setHeight(newHeight);
+      }
+    };
+
+    const handleWeightChange = (e) => {
+      const newWeight = Number(e.target.value);
+      if (newWeight > 300) {
+        message.warning('Weight cannot exceed 300 kg');
+      } else {
+        setWeight(newWeight);
+      }
+    };
+
     return (
       <div className={`bmi-calculator-box ${bmiCategory}`}>
         <h2 className="sub-header" style={{ fontSize: "23px" }}>Calculate Your BMI</h2>
@@ -42,7 +67,7 @@ const BMICalculator= () => {
             type="number"
             placeholder="Enter your height (cm)"
             value={height}
-            onChange={(e) => setHeight(e.target.value)}
+            onChange={handleHeightChange}
             className="input-field"
           />
         </div>
@@ -52,7 +77,7 @@ const BMICalculator= () => {
             type="number"
             placeholder="Enter your weight (kg)"
             value={weight}
-            onChange={(e) => setWeight(e.target.value)}
+            onChange={handleWeightChange}
             className="input-field"
           />
         </div>
@@ -67,19 +92,22 @@ const BMICalculator= () => {
             <p className="bmi-category">
               Result: You are <span className="bmi-message">{bmiCategory}</span> weight
             </p>
+            <p className="bmi-activity">
+              Recommended Activities: <span className="activity-message">{activityRecommendation}</span>
+            </p>
           </div>
         )}
       </div>
     );
-  };
-  
-    
+};
+
+
 const BMICal = () => (
-    <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
+    <div className="pt-40 bg-gradient-to-r from-cyan-300 to-blue-900" >
         <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
             <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
                 <h1 className="my-4 text-5xl font-bold leading-tight">
-                Calculate Your BMI
+                BMI Calculator
                 </h1>
                 <p className="leading-normal text-2xl mb-8">
 
@@ -89,9 +117,6 @@ const BMICal = () => (
                 <br />
                 Regularly monitoring your child's BMI can serve as a proactive measure in maintaining optimal health and preventing potential health complications associated with weight-related issues.
                 </p>
-                <button className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Want to learn more?
-                </button>
             </div>
             <div className="w-full md:w-3/5 py-6 text-center">
                 <BMICalculator />

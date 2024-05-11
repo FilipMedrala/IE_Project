@@ -1,6 +1,6 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
-import consumption from "./data/daily_consumption.json"
+import consumption from "./data/daily_consumption.json";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -9,7 +9,8 @@ import {
     Title,
     Tooltip,
     Legend,
-    PointElement
+    PointElement,
+    ScatterController
 } from 'chart.js';
 
 ChartJS.register(
@@ -19,16 +20,9 @@ ChartJS.register(
     Title,
     Tooltip,
     Legend,
-    PointElement
+    PointElement,
+    ScatterController
 );
-
-const images = [
-    'url-to-image-for-grains.jpg', // Replace with actual image path
-    'url-to-image-for-vegetables.jpg',
-    'url-to-image-for-fruit.jpg',
-    'url-to-image-for-dairy.jpg',
-    'url-to-image-for-meats.jpg'
-];
 
 const DailyConsumption = () => {
     const foodGroups = consumption.map(item => item.Food_group);
@@ -42,11 +36,32 @@ const DailyConsumption = () => {
         '2022-23': '#ffa600'
     };
 
-    const datasets = dataYears.map(year => ({
+    const barDatasets = dataYears.map(year => ({
+        type: 'bar',
         label: year,
         data: consumption.map(item => item[year.trim()]),
         backgroundColor: yearColors[year]
     }));
+
+    const recommendedServesDataset = {
+        type: 'scatter',
+        label: 'Recommended serves',
+        data: consumption.map((item, index) => ({
+            x: index,
+            y: item.Recommended_serves
+        })),
+        borderColor: 'blue',
+        backgroundColor: 'blue',
+        pointRadius: 5,
+        showLine: false,
+        tooltip: {
+            callbacks: {
+                label: function(context) {
+                    return 'Recommended: ' + context.raw.y;
+                }
+            }
+        }
+    };
 
     const options = {
         responsive: true,
@@ -64,9 +79,12 @@ const DailyConsumption = () => {
                         return tooltipItem.dataset.label + ": " + tooltipItem.raw;
                     }
                 }
-            }
+            },
         },
         scales: {
+            x: {
+                labels: foodGroups
+            },
             y: {
                 beginAtZero: true,
                 suggestedMax: 6
@@ -74,31 +92,12 @@ const DailyConsumption = () => {
         }
     };
 
-    // Define a plugin to draw images on the canvas
-    const imagePlugin = {
-        id: 'imagesOnChart',
-        afterDatasetsDraw: function(chart) {
-            const ctx = chart.ctx;
-            chart.data.datasets.forEach((dataset, i) => {
-                chart.getDatasetMeta(i).data.forEach((point, index) => {
-                    if (i === 0) { // Only draw on the first dataset
-                        const image = new Image();
-                        image.src = images[index];
-                        const x = point.x - 12; // Adjust image position as needed
-                        const y = point.y - 24;
-                        ctx.drawImage(image, x, y, 24, 24); // Adjust image size as needed
-                    }
-                });
-            });
-        }
-    };
-
     const chartData = {
         labels: foodGroups,
-        datasets
+        datasets: [...barDatasets, recommendedServesDataset]
     };
 
-    return <Bar options={options} plugins={[imagePlugin]} data={chartData} />;
+    return <Bar options={options} data={chartData} />;
 };
 
 export default DailyConsumption;
