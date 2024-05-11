@@ -1,11 +1,10 @@
 import { ReactSketchCanvas } from "react-sketch-canvas";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from 'axios';
 
 const ITEMS = {
-    0: 'Apple', 1: 'Banana', 2: 'Grapes', 3: 'Pineapple', 4: 'Asparagus',
-    5: 'Blackberry', 6: 'Blueberry', 7: 'Mushroom', 8: 'Onion', 9: 'Peanut',
-    10: 'Pear', 11: 'Peas', 12: 'Potato', 13: 'Steak', 14: 'Strawberry'
+    0: 'Apple', 1: 'Banana', 2: 'Grapes', 3: 'Pineapple', 4: 'Asparagus', 5: 'Blackberry', 6: 'Blueberry',
+    7: 'Mushroom', 8: 'Onion', 9: 'Peanut', 10: 'Pear', 11: 'Peas', 12: 'Potato', 13: 'Steak', 14: 'Strawberry'
 };
 
 export default function Sketch() {
@@ -15,12 +14,16 @@ export default function Sketch() {
     const [eraserWidth, setEraserWidth] = useState(10);
     const [prediction, setPrediction] = useState(null);
     const [error, setError] = useState(null);
-    const [round, setRound] = useState(1);
+    const [drawingObjective, setDrawingObjective] = useState('');
 
-    const startNextRound = () => {
-        setRound(round + 1);
-        setPrediction(null);
-        setError(null);
+    useEffect(() => {
+        // Generate a random item as the drawing objective when the component mounts
+        generateDrawingObjective();
+    }, []);
+
+    const generateDrawingObjective = () => {
+        const randomItemId = Math.floor(Math.random() * Object.keys(ITEMS).length);
+        setDrawingObjective(ITEMS[randomItemId]);
     };
 
     const handlePenClick = () => {
@@ -50,30 +53,55 @@ export default function Sketch() {
             .exportImage("png")
             .then((data) => {
                 // Send image data to the server
-                axios.post('/getPrediction', { imageData: data })
+                fetch('/uploadImage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ imageData: data })
+                })
                     .then(response => {
-                        const predictedItem = response.data.prediction;
-                        if (predictedItem === ITEMS[round - 1]) {
-                            setPrediction(predictedItem);
-                            setError(null);
-                            if (round < 3) {
-                                startNextRound();
-                            } else {
-                                // Game completed
-                                console.log('Congratulations! Game completed.');
-                            }
-                        } else {
-                            setError(`Incorrect prediction: ${predictedItem}, try again!`);
+                        if (!response.ok) {
+                            throw new Error('Failed to upload image');
                         }
+                        return response.json();
+                    })
+                    .then(responseData => {
+                        console.log('Image uploaded successfully:', responseData);
+                        // Call getPrediction after image upload
+                        getPrediction();
                     })
                     .catch((error) => {
-                        console.error('Error fetching prediction:', error);
-                        setError('Error fetching prediction');
+                        console.error('Error uploading image:', error);
+                        setError('Failed to upload image');
                     });
             })
-            .catch((error) => {
-                console.error('Error exporting image:', error);
+            .catch((e) => {
+                console.log(e);
             });
+    };
+
+    const getPrediction = async () => {
+        try {
+            // Make a POST request to the '/getPrediction' route
+            const response = await axios.post('/getPrediction', {});
+
+            // Handle prediction result
+            setPrediction(response.data.prediction);
+            console.log("Objective: ", drawingObjective.toLowerCase(), "Prediction result: ", response.data.prediction.toLowerCase())
+            // Check if prediction matches the drawing objective
+            if (response.data.prediction.toLowerCase() === drawingObjective.toLowerCase()) {
+                setError(null);
+                alert('Congratulations! Your drawing matches the objective.');
+            } else {
+                setError(`Your drawing does not match the objective (${drawingObjective}). Try again!`);
+            }
+        } catch (error) {
+            // Handle error
+            console.error('Error:', error);
+            setError('Error fetching prediction');
+            setPrediction(null);
+        }
     };
 
     return (
@@ -144,21 +172,15 @@ export default function Sketch() {
                     >
                         Clear Canvas
                     </button>
-                    {prediction && (
-                        <div className="mt-4">
-                            <p className="text-lg font-semibold">Prediction:</p>
-                            <p className="text-xl">{prediction}</p>
-                        </div>
-                    )}
+                    <div className="mt-4">
+                        <p className="text-lg font-semibold">Drawing Objective:</p>
+                        <p className="text-xl">{drawingObjective}</p>
+                    </div>
                     {error && (
                         <div className="mt-4">
                             <p className="text-lg text-red-500">{error}</p>
                         </div>
                     )}
-                    <div className="mt-4">
-                        <p className="text-lg font-semibold">Round: {round}</p>
-                        <p className="text-lg">Draw: {ITEMS[round - 1]}</p>
-                    </div>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ import json
 
 IMAGE = 'recognition_nn/sketch_images/out.png'
 # Load the model
-MODEL = load_model('recognition_nn/models/resnet_model.keras')
+MODEL = load_model('recognition_nn/models/cnn_model.keras')
 
 ITEMS = {0: 'Apple', 1: 'Banana', 2: 'Grapes', 3: 'Pineapple', 4: 'Asparagus', 5: 'Blackberry', 6: 'Blueberry',
           7: 'Mushroom', 8: 'Onion', 9: 'Peanut', 10: 'Pear', 11: 'Peas', 12: 'Potato', 13: 'Steak', 14: 'Strawberry'}
@@ -36,19 +36,10 @@ def load_and_preprocess_image():
         for j in range(len(x)):
             if x[i][j] > 50:
                 x[i][j] = min(255, x[i][j] + x[i][j] * 0.60)
-    x = normalize(x)
+    # x = normalize(x)
+    processed_image = Image.fromarray(x.reshape(28, 28).astype(np.uint8))
+    processed_image.save('processed_image.png')  # Save the processed image
     return x
-
-
-# def visualize2(array):
-#     array = np.reshape(array, (32, 32))
-#     img = Image.fromarray(array.astype('uint8'))  # Convert array to unsigned integer
-#     return img
-
-# image_array = load_and_preprocess_image('steak.png')
-# visualize2(image_array)
-
-
 
 
 def get_prediction():
