@@ -51,11 +51,13 @@ app.post('/getPrediction', (req, res) => {
 
   pythonProcess.on('close', (code) => {
     console.log('Python script process exited with code:', code);
+    console.log(errorMessage)
     if (errorOccurred) {
       // If an error occurred during execution, send an error response
       console.error(`Python script process exited with code ${code}`);
       res.status(500).json({
-        error: 'Error in Python script'
+        error: 'Error in Python script',
+        errorMessage: errorMessage // Add the captured error message here
       });
     } else {
       // If the Python script exits successfully, send the prediction result
