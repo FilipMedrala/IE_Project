@@ -3,6 +3,8 @@ import './FruitQuiz.css'; // Import the CSS file for styling
 
 import { Button, Space } from 'antd';
 
+import congratulationImg from '../assets/congratulation.gif'
+
 export default function Transcript(data) {
 
   const [total, setTotal] = useState(0);
@@ -18,12 +20,16 @@ export default function Transcript(data) {
     <>
       <div className="result-wrapper">
         <div className='score'>
-          {count}/{total}
+          {/* {count}/{total} */}
+          <img src={congratulationImg} alt="CONGRATULATIONS！" />
+        </div>
+        <div className='congrats'>
+          <span>CONGRATULATIONS！</span>
+          <span>You've done a great job, keep going</span>
         </div>
         <div className='detail'>
           <Space>
             <span>CORRECT {count}</span>
-            <span>INCORRECT {total - count}</span>
           </Space>
         </div>
         <div className='btn-wrapper'>

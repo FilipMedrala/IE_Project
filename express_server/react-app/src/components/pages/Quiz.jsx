@@ -8,6 +8,9 @@ import './FruitQuiz.css'; // Import the CSS file for styling
 import pic5 from '../assets/left-btn.png'
 import pic6 from '../assets/right-btn.png'
 
+import RightImg from '../assets/right.png'
+import WrongImg from '../assets/wrong.png'
+
 
 const Quiz = React.forwardRef((data, ref) => {
 
@@ -41,7 +44,8 @@ const Quiz = React.forwardRef((data, ref) => {
     myRef?.current?.goTo?.(0)
   }
 
-  const handleOptionClick = (value, flag) => {
+  const handleOptionClick = (event, value, flag) => {
+    event.target.style.backgroundColor = value === flag ? '#22C134' : '#F5222D';
     setAnswers(prevState => {
       return {
         ...prevState,
@@ -49,6 +53,7 @@ const Quiz = React.forwardRef((data, ref) => {
       }
     })
   };
+
 
   useEffect(() => {
     if (Object.keys(answers).length === data.quizData.length) {
@@ -82,23 +87,47 @@ const Quiz = React.forwardRef((data, ref) => {
                       <div className="container">
                         <div className="question">
                           <p>{item.QuestionText}</p>
-                          <div className='options'>
-                            <Button
+                          <div className='options' disabled={answers[`q${currentQuestion}`] !== undefined} >
+                            <div
+                              disabled={answers[`q${currentQuestion}`]}
+                              className="option-btn"
+                              onClick={(event) => handleOptionClick(event, 'A', item.CorrectAnswer)}
+                            >
+                              A: {item.OptionA}
+                            </div>
+                            <div
+                              disabled={answers[`q${currentQuestion}`]}
+                              className="option-btn"
+                              onClick={(event) => handleOptionClick(event, 'B', item.CorrectAnswer)}
+                            >
+                              B: {item.OptionB}
+                            </div>
+                            {/* <Button
+                              block
                               type="dashed"
                               disabled={index === currentQuestion && answers[`q${currentQuestion}`]}
                               onClick={() => handleOptionClick('A', item.CorrectAnswer)}
-                              className={index === currentQuestion && answers[`q${currentQuestion}`] !== undefined ? answers[`q${currentQuestion}`] && item.CorrectAnswer === "A" ? 'selected' : !answers[`q${currentQuestion}`] && item.CorrectAnswer === "A" ? 'selected ' : 'selected incor' : ''}
+                              className={
+                                index === currentQuestion && answers[`q${currentQuestion}`] !== undefined
+                                  ? answers[`q${currentQuestion}`] && item.CorrectAnswer === "A"
+                                    ? 'selected'
+                                    : !answers[`q${currentQuestion}`] && item.CorrectAnswer === "A"
+                                      ? 'selected '
+                                      : 'selected incor'
+                                  : ''
+                              }
                             >
                               A: {item.OptionA}
                             </Button>
                             <Button
+                              block
                               type="dashed"
                               disabled={index === currentQuestion && answers[`q${currentQuestion}`]}
                               onClick={() => handleOptionClick('B', item.CorrectAnswer)}
                               className={index === currentQuestion && answers[`q${currentQuestion}`] !== undefined ? answers[`q${currentQuestion}`] && item.CorrectAnswer === "B" ? 'selected' : !answers[`q${currentQuestion}`] && item.CorrectAnswer === "B" ? 'selected ' : 'selected incor' : ''}
                             >
                               B: {item.OptionB}
-                            </Button>
+                            </Button> */}
                           </div>
                         </div>
                       </div>
@@ -111,7 +140,7 @@ const Quiz = React.forwardRef((data, ref) => {
               typeof answers[`q${currentQuestion}`] === 'boolean' ? (
                 <div className='result'>
                   {
-                    answers[`q${currentQuestion}`] ? (<div className='right'> you are right </div>) : (<div className='wrong'>you are wrong</div>)
+                    answers[`q${currentQuestion}`] ? (<div className='right'> <img src={RightImg} alt="right" /> you are right </div>) : (<div className='wrong'> <img src={WrongImg} alt="wrong" /> you are wrong</div>)
                   }
                 </div>
               )
