@@ -9,7 +9,7 @@
     background: url('../assets/journeyBg.png') no-repeat;
     background-size: 100% 100%;
     margin: 0 auto;
-    padding-top: 90px;
+    /* padding-top: 80px; */
 }
 
 .swiper .swiperItem {
@@ -28,7 +28,7 @@
 .page-wrapper {
     position: relative;
     width: 100%;
-    height: 880px;
+    height: 902px;
 }
 
 .page-wrapper .house-item {
@@ -39,27 +39,30 @@
 
 .house-item.item1 {
     left: 836px;
-    top: 76px;
+    top: 154px;
     width: 112px;
-    height: 82px;
+    height: 100px;
 }
+
 .house-item.item2 {
     left: 462px;
-    top: 304px;
-    width: 112px;
-    height: 82px;
+    top: 386px;
+    width: 114px;
+    height: 98px;
 }
+
 .house-item.item3 {
     left: 820px;
-    top: 446px;
+    top: 530px;
     width: 112px;
-    height: 82px;
+    height: 98px;
 }
+
 .house-item.item4 {
     left: 478px;
-    top: 652px;
+    top: 752px;
     width: 212px;
-    height: 210px;
+    height: 216px;
 }
 
 .cat-box {
@@ -90,4 +93,93 @@
 
 .finally-wrapper .btn {
     margin-top: 70px;
+}
+
+.bottom-img {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.nav-box {
+    position: fixed;
+    top: 50%;
+    right: 1%;
+    z-index: 2;
+    transform: translateY(-50%) scale(0.8);
+
+}
+
+.nav-box ul {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid #1677ff; */
+    background: #fff;
+    border-radius: 10px;
+    padding: 12px 4px;
+}
+
+.nav-box ul li {
+    color: #000;
+    font-size: 18px;
+    padding: 10px;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 10px;
+    margin-bottom: 6px;
+}
+
+.nav-box ul li:hover {
+    background: #1677ff;
+    color: #fff;
+    font-weight: 700;
+}
+
+.nav-box ul .active {
+    color: #8cb46d;
+    background: #1677ff;
+    font-weight: 700;
+}
+
+/* .empty {
+    margin-top: -50px;
+} */
+
+.left-img {
+    width: 24px;
+    height: 24px;
+}
+
+.left-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.label-box {
+    position: absolute;
+    top: 100px;
+    right: 100px;
+}
+
+.label-box .label-title {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.label-box .label-content {
+    width: 240px;
+    font-size: 12px;
+    text-align: right;
+}
+.start-btn {
+    color: #fff !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    background: #4D84A7 !important;
 }

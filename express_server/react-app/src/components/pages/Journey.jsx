@@ -5,7 +5,7 @@ import jsPDF from "jsPDF";
 import './journey.css'
 import './App.css'
 import CatImage from '../assets/cat.svg'
-import { Button, message, Popconfirm } from "antd";
+import { Button, message, Popconfirm, Tooltip, Modal } from "antd";
 import Video from "./Video";
 // import goodImage from "../assets/certificate_good.jpeg";
 
@@ -14,6 +14,15 @@ import pic2 from '../assets/pic2.jpg'
 import pic3 from '../assets/pic3.jpg'
 import pic4 from '../assets/pic4.png'
 
+import BottomImage from '../assets/bottom.png'
+
+import fruitImg from '../assets/fruit.png'
+import vegImg from '../assets/veg.png'
+import proteinImg from '../assets/protein.png'
+import grainsImg from '../assets/grains.png'
+import dairyImg from '../assets/dairy.png'
+
+import guidelineImg from '../assets/guideline.jpeg'
 
 export default function FallingFood() {
 
@@ -28,13 +37,13 @@ export default function FallingFood() {
 
   const fetchQuizData = async () => {
     try {
-      const response = await axios.get('/quiz', {
+      const response = await axios.get('http://localhost:8080/quiz', {
         params: {
           stage1: 'Fruit Nutrition',
-          stage2: 'Dairy Nutrition',
+          stage2: 'Vegetable Nutrition',
           stage3: 'Grains Nutrition',
           stage4: 'Protein Nutrition',
-          stage5: 'Vegetable Nutrition',
+          stage5: 'Dairy Nutrition',
         }
       });
       const data = response.data;
@@ -175,6 +184,66 @@ export default function FallingFood() {
         url: "/FallingFood",
       }
     ],
+    [],
+  ]
+
+  const moduleList = [
+    {
+      prop: 'Fruit',
+      img: fruitImg,
+    },
+    {
+      prop: 'Vegetable',
+      img: vegImg,
+    },
+    {
+      prop: 'Grains',
+      img: grainsImg,
+    },
+    {
+      prop: 'Protein',
+      img: proteinImg,
+    },
+    {
+      prop: 'Dairy',
+      img: dairyImg,
+    },
+    {
+      prop: 'Finally',
+    }
+  ]
+
+  const labelConfig = [
+    {
+      title: 'FRUITS!',
+      content: 'Fruit NutritionFruit NutritionFruit NutritionFruit NutritionFruit Nutrition',
+      titleStyle: { color: "#fff" },
+      contentStyle: { color: "#fff" },
+    },
+    {
+      title: 'VEGETABLES!',
+      content: 'Vegetable Nutrition',
+      titleStyle: { color: "#000" },
+      contentStyle: { color: "#000" },
+    },
+    {
+      title: 'GRAINS!',
+      content: 'Grains Nutrition',
+      titleStyle: { color: "#000" },
+      contentStyle: { color: "#000" },
+    },
+    {
+      title: 'PROTEIN!',
+      content: 'Protein Nutrition',
+      titleStyle: { color: "#000" },
+      contentStyle: { color: "#000" },
+    },
+    {
+      title: 'DAIRY!',
+      content: 'Dairy Nutrition',
+      titleStyle: { color: "#000" },
+      contentStyle: { color: "#000" },
+    },
   ]
 
   const handleMouseDown = (module, index) => {
@@ -193,7 +262,6 @@ export default function FallingFood() {
     }
     setIsFinally(false)
     if (module - currModule === 1) {
-      debugger
       if (currIndex == 3 && index == 0) {
         setCurrIndex(index);
         const currentPoint = housePointArr[index];
@@ -233,7 +301,6 @@ export default function FallingFood() {
       message.error("You need to complete the previous level");
     }
   };
-  
 
   const handleAction = (mIndex, index, type, url) => {
     setFlag(true)
@@ -250,7 +317,6 @@ export default function FallingFood() {
       setIsFinally(true)
     }
   }
-  
 
   const popconfirmOpen = (mIndex, index) => {
     return !flag && currModule === mIndex && currIndex === index
@@ -275,9 +341,19 @@ export default function FallingFood() {
     return childs
   }
 
+  const createLabel = (mIndex) => {
+    let label = labelConfig[mIndex]
+    return <div className="label-box">
+      <div className="label-title" style={label.titleStyle}>{label.title}</div>
+      <div className="label-content" style={label.contentStyle}>{label.content}</div>
+    </div>
+  }
+
   const createModule = (arr) => {
     let modules = arr.map((item, index) => {
-      return <div key={index} className="page-wrapper">
+      if (item.length === 0) return <div key={index} className="page-wrapper empty " id={`section${index + 1}`} ></div>
+      return <div key={index} className="page-wrapper" id={`section${index + 1}`} >
+        {createLabel(index)}
         {createItem(index, item)}
         {quizData?.length > 0 && quizData[index]?.length && <Quiz ref={(ref) => quizRefs.current[index] = ref} quizData={quizData[index]} type={`stage${index + 1}`} />}
         {item[0]?.url && <Video ref={(ref) => videoRefs.current[index] = ref} videoSrc={item[0].url} />}
@@ -317,9 +393,64 @@ export default function FallingFood() {
     img.src = goodImage;
   }
 
+  const [activeAnchor, setActiveAnchor] = useState('section1');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      let timeoutId = null;
+      timeoutId && clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const scrollPosition = window.scrollY;
+        const sections = document.querySelectorAll('[id^="section"]')
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            setActiveAnchor(section.id);
+            // window.history.replaceState(null, null, `#${section.id}`);
+          }
+        });
+      }, 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const boxElement = document.getElementById('Journey');
+    if (boxElement) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // window.history.replaceState(null, null, `#section1`);
+    }
+  }, [])
+
+  const scrollToAnchor = (anchorId) => {
+    if (!anchorId) return
+    setActiveAnchor(anchorId)
+    const element = document.getElementById(anchorId);
+    if (element) {
+      if (activeAnchor === anchorId) return
+      const offsetTop = element.offsetTop;
+      if (anchorId === 'section1') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const nextModel = () => {
+    scrollToAnchor(`section${Number(activeAnchor.slice(-1)) + 1}`)
+  }
+
+  const [open, setOpen] = useState(true);
+
+  const handleOk = () => {
+    setOpen(false);
+  };
 
   return (
-    <div className="Journey">
+    <div className="Journey" id="Journey">
       <img className="cat-box" src={CatImage} style={movingElementStyle} />
       {
         createModule(configData)
@@ -334,6 +465,43 @@ export default function FallingFood() {
           </div>
         )
       }
+      <nav className="nav-box">
+        <ul>
+          {
+            moduleList.map((item, index) => {
+              if (index === moduleList.length - 1) return null;
+              return (
+                <Tooltip key={index} placement="left" title={item.prop} color='geekblue' arrow={false}>
+                  <li key={index} className={activeAnchor === `section${index + 1}` ? 'active' : ''} onClick={() => scrollToAnchor(`section${index + 1}`)}>
+                    <img className="left-img" src={item.img} />
+                  </li>
+                </Tooltip>
+              )
+            })
+          }
+        </ul>
+      </nav>
+      {
+        (activeAnchor !== 'section6') && <img className="bottom-img" onClick={() => nextModel()} src={BottomImage} />
+      }
+
+      <Modal
+        width={800}
+        open={open}
+        onOk={handleOk}
+        onCancel={handleOk}
+        footer={[
+          <Button
+            block
+            onClick={handleOk}
+            className="start-btn"
+          >
+            START NOW!
+          </Button>
+        ]}
+      >
+        <img src={guidelineImg} alt="guideline" />
+      </Modal>
     </div>
   );
 }
