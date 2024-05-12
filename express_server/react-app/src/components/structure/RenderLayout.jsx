@@ -60,9 +60,10 @@ export const RenderLayout = () => {
                             </button>
                         </div>
                         <div
-                            className="hidden lg:flex lg:items-center lg:w-auto flex-grow justify-center"
+                            className="hidden lg:flex lg:items-center lg:w-auto flex-grow justify-between"
                             id="nav-content"
                         >
+                            <ul></ul>
                             <ul className="list-reset flex justify-end flex -1">
                                 {location.pathname !== "/" && (
                                     <li className="mr-3">
@@ -74,7 +75,10 @@ export const RenderLayout = () => {
                                         </Link>
                                     </li>
                                 )}
-                                <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
+                                
+                            </ul>
+                            <ul className="list-reset flex justify-end flex -1">
+                            <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
                                     <button className="inline-block text-black text-lg no-underline hover:text-gray-800 hover:text-underline py-2 px-4 delay-3s" onClick={toggleParentDropdown}>
                                         For Parents {showParentDropdown ? '▲' : '▼'}
                                     </button>
