@@ -80,30 +80,30 @@ export const RenderLayout = () => {
                                 </div>
                             <ul></ul>
                             
-                                <ul className="list-reset flex justify-end flex-1">
-                                <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
-                                        <button className="text-black text-lg no-underline hover:text-gray-800 py-2 px-4" onClick={toggleParentDropdown}>
-                                            PARENTS {showParentDropdown ? '▲' : '▼'}
-                                        </button>
-                                        {showParentDropdown && (
-                                            <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                                <Link to="/info/health-awareness" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
-                                                <Link to="/info/guideline" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guideline</Link>
-                                                <div className="relative">
-                                                    <button className="block w-full text-left px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={toggleHealthToolsDropdown}>
-                                                        Health Tools {showHealthToolsDropdown ? '▲' : '▼'}
-                                                    </button>
-                                                    {showHealthToolsDropdown && (
-                                                        <div className="absolute left-full top-0 dropdown-menu rounded shadow-lg py-2">
-                                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
-                                                            <Link to="/info/calorie-calculator" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Calorie Calculator</Link>
-                                                        </div>
-                                                    )}
-                                                </div>
+                            <ul className="list-reset flex justify-end flex-1">
+                                <li className="mr-3 relative">
+                                    <button className="text-black text-lg no-underline hover:text-gray-800 py-2 px-4" onClick={toggleParentDropdown}>
+                                        PARENTS {showParentDropdown ? '▲' : '▼'}
+                                    </button>
+                                    {showParentDropdown && (
+                                        <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
+                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
+                                            <Link to="/info/guideline" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guideline</Link>
+                                            <div className="relative">
+                                                <button className="block w-full text-left px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={toggleHealthToolsDropdown}>
+                                                    Health Tools {showHealthToolsDropdown ? '▲' : '▼'}
+                                                </button>
+                                                {showHealthToolsDropdown && (
+                                                    <div className="absolute left-full top-0 dropdown-menu rounded shadow-lg py-2">
+                                                        <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
+                                                        <Link to="/info/calorie-calculator" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Calorie Calculator</Link>
+                                                    </div>
+                                                )}
                                             </div>
-                                        )}
-                                    </li>
-                                <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
+                                        </div>
+                                    )}
+                                </li>
+                                <li className="mr-3 relative">
                                     <button className="text-black text-lg no-underline hover:text-gray-800 py-2 px-4" onClick={toggleKidsDropdown}>
                                         KIDS {showKidsDropdown ? '▲' : '▼'}
                                     </button>
