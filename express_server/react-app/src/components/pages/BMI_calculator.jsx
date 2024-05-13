@@ -103,27 +103,27 @@ const BMICalculator = () => {
 
 
 const BMICal = () => (
-    <div className="pt-40 bg-gradient-to-r from-cyan-300 to-blue-900" >
-        <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-            <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-                <h1 className="my-4 text-5xl font-bold leading-tight">
-                BMI Calculator
-                </h1>
-                <p className="leading-normal text-2xl mb-8">
-
-                Assessing your health status is a very important step in understanding your overall well-being.
-                By calculating your Body Mass Index (BMI), you can gain valuable insights into whether your weight falls within a healthy range for your height.
-                <br />
-                <br />
-                Regularly monitoring your child's BMI can serve as a proactive measure in maintaining optimal health and preventing potential health complications associated with weight-related issues.
-                </p>
-            </div>
-            <div className="w-full md:w-3/5 py-6 text-center">
-                <BMICalculator />
-            </div>
-        </div>
-    </div>
-
+  <div className="pt-40 bg-gradient-to-r from-cyan-300 to-blue-900" >
+      <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+          <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+              <h1 className="my-4 text-5xl font-bold leading-tight">
+                  BMI Calculator
+              </h1>
+              <p className="leading-normal text-2xl mb-8">
+                  Assessing your health status is a very important step in understanding your overall well-being.
+                  By calculating your Body Mass Index (BMI), you can gain valuable insights into whether your weight falls within a healthy range for your height.
+                  <br /><br />
+                  Regularly monitoring your child's BMI can serve as a proactive measure in maintaining optimal health and preventing potential health complications associated with weight-related issues.
+              </p>
+              <p className="text-xl italic mt-4">
+                  Note: The BMI calculation may not be accurate for all individuals as it does not take into account muscle mass, bone density, overall body composition, and racial and ethnic differences. Always consult with a healthcare professional for a more comprehensive health assessment.
+              </p>
+          </div>
+          <div className="w-full md:w-3/5 py-6 text-center">
+              <BMICalculator />
+          </div>
+      </div>
+  </div>
 );
 
 export default BMICal;

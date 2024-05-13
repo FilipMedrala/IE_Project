@@ -6,6 +6,7 @@ import pierogi from "../assets/pierogi.png";
 import Home from "../pages/Home";
 import Info from "../pages/Info";
 import BMICal from "../pages/BMI_calculator";
+import CalorieCal from "../pages/calorie_calculator";
 import Guideline from "../pages/Guideline";
 import Journey from "../pages/Journey";
 import Snake from "../pages/Snake";
@@ -20,13 +21,15 @@ export const RenderLayout = () => {
     const { user } = AuthData();
     const [showParentDropdown, setShowParentDropdown] = useState(false);
     const [showKidsDropdown, setShowKidsDropdown] = useState(false);
-    const location = useLocation();
+    const [showHealthToolsDropdown, setShowHealthToolsDropdown] = useState(false);
 
     const toggleParentDropdown = () => setShowParentDropdown(!showParentDropdown);
     const toggleKidsDropdown = () => setShowKidsDropdown(!showKidsDropdown);
+    const toggleHealthToolsDropdown = () => setShowHealthToolsDropdown(!showHealthToolsDropdown);
     const closeDropdowns = () => {
         setShowParentDropdown(false);
         setShowKidsDropdown(false);
+        setShowHealthToolsDropdown(false);
     };
 
     if (!user.isAuthenticated) {
@@ -60,10 +63,9 @@ export const RenderLayout = () => {
                             </button>
                         </div>
                         <div
-                            className="hidden lg:flex lg:items-center lg:w-auto flex-grow justify-between"
+                            className="hidden lg:flex lg:items-center lg:w-auto flex-grow justify-center"
                             id="nav-content"
                         >
-                            <ul></ul>
                             <ul className="list-reset flex justify-end flex -1">
                                 {location.pathname !== "/" && (
                                     <li className="mr-3">
@@ -75,21 +77,28 @@ export const RenderLayout = () => {
                                         </Link>
                                     </li>
                                 )}
-                                
-                            </ul>
-                            <ul className="list-reset flex justify-end flex -1">
-                            <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
-                                    <button className="inline-block text-black text-lg no-underline hover:text-gray-800 hover:text-underline py-2 px-4 delay-3s" onClick={toggleParentDropdown}>
-                                        For Parents {showParentDropdown ? '▲' : '▼'}
-                                    </button>
-                                    {showParentDropdown && (
-                                        <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
-                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
-                                            <Link to="/info/healthy-guidelines" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guidelines (WIP)</Link>
-                                        </div>
-                                    )}
-                                </li>
+                                <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
+                                        <button className="text-black text-lg no-underline hover:text-gray-800 py-2 px-4" onClick={toggleParentDropdown}>
+                                            For Parents {showParentDropdown ? '▲' : '▼'}
+                                        </button>
+                                        {showParentDropdown && (
+                                            <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
+                                                <Link to="/info/health-awareness" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
+                                                <Link to="/info/guideline" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guideline</Link>
+                                                <div className="relative">
+                                                    <button className="block w-full text-left px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={toggleHealthToolsDropdown}>
+                                                        Health Tools {showHealthToolsDropdown ? '▲' : '▼'}
+                                                    </button>
+                                                    {showHealthToolsDropdown && (
+                                                        <div className="absolute left-full top-0 dropdown-menu rounded shadow-lg py-2">
+                                                            <Link to="/info/bmi-calculator" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
+                                                            <Link to="/info/calorie-calculator" className="block px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={closeDropdowns}>Calorie Calculator</Link>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </li>
                                 <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
                                     <button className="inline-block text-black text-2xl no-underline hover:text-gray-800 hover:text-underline py-2 px-4 delay-3s" onClick={toggleKidsDropdown}>
                                         For Kids {showKidsDropdown ? '▲' : '▼'}
@@ -115,7 +124,8 @@ export const RenderLayout = () => {
                         <Route path="/info" element={<Info />} />
                         <Route path="/info/health-awareness" element={<Info />} />
                         <Route path="/info/bmi-calculator" element={<BMICal />} />
-                        <Route path="/info/healthy-guidelines" element={<Guideline />} />
+                        <Route path="/info/calorie-calculator" element={<CalorieCal />} />
+                        <Route path="/info/guideline" element={<Guideline />} />
                         <Route path="/Journey" element={<Journey />} />
                         <Route path="/Snake" element={<Snake />} />
                         <Route path="/FallingFood" element={<FallingFood />} />

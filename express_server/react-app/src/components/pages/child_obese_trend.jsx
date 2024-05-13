@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Label } from 'recharts';
-import JsonData from './data/stage_1.json';
+import obeseTrend from './data/obese_trend.json';
 
 function ChildObeseTrend() {
   const [data, setData] = useState([]);
-  const [currentYear, setCurrentYear] = useState(null);
+  const [currentYear, setCurrentYear] = useState(2006); // Start from 2006
   const [isAnimating, setIsAnimating] = useState(false);
   const [colors, setColors] = useState({});
 
   useEffect(() => {
-    const transformedData = JsonData.map(info => ({
+    const transformedData = obeseTrend.map(info => ({
       entity: info.Entity || '',
       year: parseInt(info.Year, 10) || 0,
       prevalence: parseFloat(info['Prevalence of overweight among children and adolescents']) || 0
     }));
     setData(transformedData);
 
-    // Generate and set colors for entities
+    // Generate and set fixed colors for entities
     const entityColors = {};
     const entities = [...new Set(transformedData.map(d => d.entity))];
-    entities.forEach(entity => {
-      entityColors[entity] = getColor();
+    entities.forEach((entity, index) => {
+      entityColors[entity] = `hsl(${index * 30}, 70%, 50%)`; // Fixed color based on index
     });
     setColors(entityColors);
   }, []);
@@ -33,13 +33,16 @@ function ChildObeseTrend() {
     return acc;
   }, {});
 
-  const chartData = Object.keys(groupedData).map(year => {
+  let chartData = Object.keys(groupedData).map(year => {
     const entry = { year };
     Object.keys(groupedData[year]).forEach(entity => {
       entry[entity] = groupedData[year][entity];
     });
     return entry;
-  }).filter(entry => currentYear === null || entry.year <= currentYear);
+  }).filter(entry => entry.year >= 2006 && (currentYear === null || entry.year <= currentYear));
+
+  // Sort chart data by year
+  chartData = chartData.sort((a, b) => a.year - b.year);
 
   useEffect(() => {
     let interval;
@@ -55,31 +58,21 @@ function ChildObeseTrend() {
           }
           return nextYear;
         });
-      }, 500); // Adjust time as needed
+      }, 100); // Adjust time as needed
     }
     return () => clearInterval(interval);
   }, [isAnimating, data]);
 
   function handlePlay() {
-    if (!isAnimating) {
-      setCurrentYear(Math.min(...data.map(d => d.year)));
+    if (!isAnimating && currentYear < Math.max(...data.map(d => d.year))) {
+      setCurrentYear(2006); // Start from 2006 if not already started
       setIsAnimating(true);
     }
   }
 
   function handleReset() {
     setIsAnimating(false);
-    setCurrentYear(null);
-  }
-
-  // Function to generate colors for the lines
-  function getColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+    setCurrentYear(2006); // Reset to 2006
   }
 
   // Custom tooltip component that shows the country name and orders by highest percentage
@@ -101,6 +94,7 @@ function ChildObeseTrend() {
 
   return (
     <div>
+      <h2 className="text-2xl font-bold mb-4">Prevalence of Overweight among Children and Adolescents</h2>
       <button
       onClick={handlePlay}
       style={{
@@ -135,7 +129,7 @@ function ChildObeseTrend() {
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 10 }}>
           <XAxis dataKey="year" />
-          <YAxis />
+          <YAxis domain={[10, 45]} tickFormatter={value => `${value}%`} /> {/* Limit y-axis to 50 */}
           <Tooltip content={<CustomTooltip />} />
           {Object.keys(colors).map(entity => (
             <Line key={entity} type="monotone" dataKey={entity} name={entity} stroke={colors[entity]}>

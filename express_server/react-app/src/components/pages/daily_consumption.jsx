@@ -71,8 +71,12 @@ const DailyConsumption = () => {
             },
             title: {
                 display: true,
-                text: 'Daily Consumption of Food Groups Over Years',
-            },
+                text: 'Daily Consumption of Food Groups Over Years (2018 - 2023)',
+                font: {
+                    size: 24,
+                    weight: 'bold'
+                }
+            },            
             tooltip: {
                 callbacks: {
                     label: function(tooltipItem) {
@@ -86,6 +90,14 @@ const DailyConsumption = () => {
                 labels: foodGroups
             },
             y: {
+                title: {
+                    display: true,
+                    text: 'Serves', // Title for the y-axis
+                    font: {
+                        size: 16,
+                        weight: 'bold'
+                    }
+                },
                 beginAtZero: true,
                 suggestedMax: 6
             }
