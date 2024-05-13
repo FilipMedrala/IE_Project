@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import family from "../assets/family.jpg";
 import game from "../assets/game.png";
 import play from "../assets/play.png";
+import user from "../assets/user.jpeg";
 
 export default function App() {
 
@@ -33,8 +34,11 @@ export default function App() {
       </div>
       <section className="bg-white border-b py-8s">
         <div className="container max-w-5xl mx-auto m-8">
+       
+         
           <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
             Welcome to Health Journey!
+            <img src={user} alt="Descriptive Text" className="mx-auto my-8 rounded-lg shadow-lg" style={{maxWidth: '80%'}} />
           </h2>
           <div className="w-full mb-4">
             <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
@@ -84,7 +88,7 @@ export default function App() {
                   <br />
                   <Link
                     className="text-pink-500 underline"
-                    to="/Info"
+                    to="/Journey"
                   >
                     Find out more
                   </Link>
@@ -120,6 +124,7 @@ export default function App() {
                   for the tempting treats that could shrink you down.
                 </p>
               </Link>
+              
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div className="flex items-center justify-start">
@@ -163,25 +168,26 @@ export default function App() {
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <p className="w-full text-gray-600 text-xs md:text-sm px-6">
-                  NEXT GAME
+                  MEMORY GAME
                 </p>
                 <div className="w-full font-bold text-xl text-gray-800 px-6">
-                  PLACEHOLDER TITLE.
+                NutriCatch: The Healthy Harvest 🎮
                 </div>
                 <p className="text-gray-800 text-base px-6 mb-5">
-                  Placeholder description
+                Step into Memory Match, a game where you pair up identical cards to clear the board. Sharp memory skills and quick thinking are key as you race against the clock to uncover matches. Fun for players of all ages, it's a delightful challenge that tests and improves your memory prowess!
                 </p>
               </Link>
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-              <div className="flex items-center justify-end">
-                <button className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                  PLAY PLACEHOLDER
-                </button>
+              <div className="flex items-center justify-center">
+                <Link to="/MemoryGame" className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                  PLAY FALLING FOOD
+                </Link>
               </div>
             </div>
+            </div>
           </div>
-        </div>
+      
       </section>
     </div>
   );

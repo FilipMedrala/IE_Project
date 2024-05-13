@@ -79,6 +79,7 @@ const Info = () => (
                 <StatisticsCards />
                 <div class="w-4/5 border-t border-gray-500 my-10 mx-auto"></div>
               </h3>
+              
             </div>
             </div>
           </div>
@@ -236,6 +237,23 @@ const Info = () => (
       </div>
     </div>
   </section>
+  {/* <Modal
+        width={800}
+        open={open}
+        onOk={handleOk}
+        onCancel={handleOk}
+        footer={[
+          <Button
+            block
+            onClick={handleOk}
+            className="start-btn"
+          >
+            VIEW INFORMATION!
+          </Button>
+        ]}
+      >
+        <img src={guidelineImg} alt="guideline" />
+      </Modal> */}
 </div>
 
 

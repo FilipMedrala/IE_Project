@@ -63,23 +63,27 @@ export const RenderLayout = () => {
                             </button>
                         </div>
                         <div
-                            className="hidden lg:flex lg:items-center lg:w-auto flex-grow justify-center"
+                            className="hidden lg:flex lg:items-center lg:w-auto flex-grow justify-between"
                             id="nav-content"
                         >
-                            <ul className="list-reset flex justify-end flex -1">
+                            <div className="list-reset flex justify-center flex -1">
                                 {location.pathname !== "/" && (
                                     <li className="mr-3">
                                         <Link
-                                            className="inline-block py-2 px-4 text-black font-bold no-underline"
+                                            className="inline-white py-2 px-4 text-white font-bold no-underline"
                                             to="/"
                                         >
-                                            Home
+                                            HOME
                                         </Link>
                                     </li>
                                 )}
+                                </div>
+                            <ul></ul>
+                            
+                                <ul className="list-reset flex justify-end flex-1">
                                 <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
                                         <button className="text-black text-lg no-underline hover:text-gray-800 py-2 px-4" onClick={toggleParentDropdown}>
-                                            For Parents {showParentDropdown ? '▲' : '▼'}
+                                            PARENTS {showParentDropdown ? '▲' : '▼'}
                                         </button>
                                         {showParentDropdown && (
                                             <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
@@ -100,8 +104,8 @@ export const RenderLayout = () => {
                                         )}
                                     </li>
                                 <li className="mr-3 relative" onMouseLeave={closeDropdowns}>
-                                    <button className="inline-block text-black text-2xl no-underline hover:text-gray-800 hover:text-underline py-2 px-4 delay-3s" onClick={toggleKidsDropdown}>
-                                        For Kids {showKidsDropdown ? '▲' : '▼'}
+                                    <button className="text-black text-lg no-underline hover:text-gray-800 py-2 px-4" onClick={toggleKidsDropdown}>
+                                        KIDS {showKidsDropdown ? '▲' : '▼'}
                                     </button>
                                     {showKidsDropdown && (
                                         <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
@@ -114,6 +118,7 @@ export const RenderLayout = () => {
                                     )}
                                 </li>
                             </ul>
+
                         </div>
                     </div>
                 </nav>

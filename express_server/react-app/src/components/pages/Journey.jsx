@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Quiz from "./Quiz"
 import axios from 'axios';
-import jsPDF from "jsPDF";
+import jsPDF from "jspdf";
 import './journey.css'
 import './App.css'
 import CatImage from '../assets/cat.svg'
@@ -12,7 +12,7 @@ import Video from "./Video";
 import pic1 from '../assets/pic1.jpg'
 import pic2 from '../assets/pic2.jpg'
 import pic3 from '../assets/pic3.jpg'
-import pic4 from '../assets/pic4.png'
+import pic4 from '../assets/pic4.jpg'
 
 import BottomImage from '../assets/bottom.png'
 
