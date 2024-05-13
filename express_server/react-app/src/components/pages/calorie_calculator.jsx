@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { message } from 'antd'; // Use the message component from Ant Design for alerts
+import { message } from 'antd'; // Importing message component from Ant Design for alerts
 import axios from 'axios';
-import './nutrition-calculator.css'; // Ensure this CSS contains appropriate styling
+import './nutrition-calculator.css'; // Importing CSS file for styling
 
+// KidsNutritionCalculator component
 const KidsNutritionCalculator = () => {
+  // State variables for age, height, weight, activity level, calories needed, food query, and nutrition data
   const [age, setAge] = useState('');
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
@@ -12,18 +14,18 @@ const KidsNutritionCalculator = () => {
   const [foodQuery, setFoodQuery] = useState('Last night we ordered a 14oz prime rib and mashed potatoes.');
   const [nutritionData, setNutritionData] = useState([]);
 
-
+  // Function to fetch nutrition details based on food query
   const fetchNutritionDetails = () => {
     axios.get('https://api.calorieninjas.com/v1/nutrition', {
       params: { query: foodQuery },
-      headers: { 'X-Api-Key': 'rkVD/Pr21pqRSrgBoHtT3w==H7PUAkImdNhM3JAJ' } 
+      headers: { 'X-Api-Key': 'rkVD/Pr21pqRSrgBoHtT3w==H7PUAkImdNhM3JAJ' }
     })
-    .then(response => {
-      setNutritionData(response.data.items);
-    })
-    .catch(error => {
-      console.error('Error fetching nutrition data:', error);
-    });
+      .then(response => {
+        setNutritionData(response.data.items); // Setting fetched nutrition data
+      })
+      .catch(error => {
+        console.error('Error fetching nutrition data:', error);
+      });
   };
 
   // Function to calculate total of each nutrient
@@ -44,6 +46,7 @@ const KidsNutritionCalculator = () => {
     { key: 'protein_g', label: 'Protein (g)' }
   ];
 
+  // Function to calculate calories needed based on age, height, weight, and activity level
   const calculateCaloriesNeeded = () => {
     if (weight && height && age) {
       const baseCalories = 10 * weight + 6.25 * height - 5 * age;
@@ -65,41 +68,46 @@ const KidsNutritionCalculator = () => {
           adjustedCalories *= 1.9;
           break;
       }
-      setCaloriesNeeded(adjustedCalories);
+      setCaloriesNeeded(adjustedCalories); // Setting calculated calories needed
     }
   };
 
+  // Event handler for age input change
   const handleAgeChange = (e) => {
     const newAge = Number(e.target.value);
     if (newAge > 100) {
       message.warning('Age cannot exceed 100 year old');
     } else {
-      setAge(newAge);
+      setAge(newAge); // Updating age state
     }
   };
 
+  // Event handler for height input change
   const handleHeightChange = (e) => {
     const newHeight = Number(e.target.value);
     if (newHeight > 250) {
       message.warning('Height cannot exceed 250 cm');
     } else {
-      setHeight(newHeight);
+      setHeight(newHeight); // Updating height state
     }
   };
 
+  // Event handler for weight input change
   const handleWeightChange = (e) => {
     const newWeight = Number(e.target.value);
     if (newWeight > 300) {
       message.warning('Weight cannot exceed 300 kg');
     } else {
-      setWeight(newWeight);
+      setWeight(newWeight); // Updating weight state
     }
   };
 
+  // Rendering nutrition calculator UI
   return (
     <div className="nutrition-component">
       <div className="nutri-calc-container">
         <label>Calorie Calculator</label>
+        {/* Inputs for age, height, weight, and activity level */}
         <div className="nutri-calc-input-container">
           <label>Age (years):</label>
           <input type="number" value={age} onChange={handleAgeChange} />
@@ -123,64 +131,63 @@ const KidsNutritionCalculator = () => {
             <option value="extraActive">Extra active</option>
           </select>
         </div>
+        {/* Button to calculate calories needed */}
         <button onClick={calculateCaloriesNeeded} disabled={!age || !height || !weight || !activityLevel}>
           Calculate Calories
         </button>
+        {/* Displaying calculated calories needed */}
         {caloriesNeeded > 0 && (
           <div className="nutri-calc-result">
             <strong>Calories Needed Per Day:</strong> <span>{caloriesNeeded.toFixed(2)}</span>
           </div>
         )}
       </div>
-      <br/>      
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      {/* Food query input and nutrition details */}
       <div className="nutri-calc-container">
         <div className="nutri-calc-input-container">
-        <label>Food Query:</label>
+          <label>Food Query:</label>
           <p>
             Enter food or drink items with optional quantities. Default is 100 grams per item if not specified. Limit: 1500 characters.
-            <br/><br/>
+            <br /><br />
             Example: Input: "2 apples, 100g chicken, 1 soda".
             Returns detailed nutrition information based on specified or default quantities.
           </p>
-          <input className="nutri-calc-input" type="text" value={foodQuery} onChange={setFoodQuery} />
+          <input className="nutri-calc-input" type="text" value={foodQuery} onChange={(e) => setFoodQuery(e.target.value)} />
+          {/* Button to fetch nutrition details */}
           <button className="nutri-calc-button" onClick={fetchNutritionDetails}>Get Nutrition Details</button>
         </div>
-        {/* Displaying nutrition information fetched */}
+        {/* Displaying fetched nutrition information */}
         {nutritionData.length > 0 && (
-                <div className="nutrition-info">
-                  <h4>Nutrition Details</h4>
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Nutrient</th>
-                        {nutritionData.map((item, index) => <th key={index}>{item.name}</th>)}
-                        <th>Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {nutrients.map((nutrient, index) => (
-                        <tr key={index}>
-                          <td>{nutrient.label}</td>
-                          {nutritionData.map((item, idx) => (
-                            <td key={idx}>{item[nutrient.key]}</td>
-                          ))}
-                          <td>{getTotal(nutrient.key)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-              </div>
-            </div>
-          );
-        };
+          <div className="nutrition-info">
+            <h4>Nutrition Details</h4>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nutrient</th>
+                  {nutritionData.map((item, index) => <th key={index}>{item.name}</th>)}
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {nutrients.map((nutrient, index) => (
+                  <tr key={index}>
+                    <td>{nutrient.label}</td>
+                    {nutritionData.map((item, idx) => (
+                      <td key={idx}>{item[nutrient.key]}</td>
+                    ))}
+                    <td>{getTotal(nutrient.key)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
+// NutritionCal component
 const NutritionCal = () => (
   <div className="pt-40 bg-gradient-to-r from-cyan-300 to-blue-900">
     <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
@@ -197,7 +204,7 @@ const NutritionCal = () => (
         <p className="text-xl italic mt-4">
           Note: Please determine your daily calorie needs using the Calorie Calculator before entering food details to assess nutritional information.
         </p>
-      {/* Nutrition Details Calculator Section */}
+        {/* Nutrition Details Calculator Section */}
         <h1 className="my-4 text-5xl font-bold leading-tight">
           Nutrition Details
         </h1>
@@ -209,11 +216,10 @@ const NutritionCal = () => (
       </div>
       {/* Calculator Display Section */}
       <div className="w-full md:w-3/5 py-6 text-center">
-        <KidsNutritionCalculator />
+        <KidsNutritionCalculator /> {/* Rendering KidsNutritionCalculator component */}
       </div>
     </div>
   </div>
 );
 
-export default NutritionCal;
-
+export default NutritionCal; // Exporting NutritionCal component as default

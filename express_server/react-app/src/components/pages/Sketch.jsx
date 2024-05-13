@@ -1,14 +1,19 @@
-import { ReactSketchCanvas } from "react-sketch-canvas";
-import { useRef, useState, useEffect } from "react";
-import axios from 'axios';
+import { ReactSketchCanvas } from "react-sketch-canvas"; // Importing the Sketch Canvas component
+import { useRef, useState, useEffect } from "react"; // Importing necessary hooks from React
+import axios from 'axios'; // Importing Axios for making HTTP requests
 
+// Dictionary of items with their corresponding IDs
 const ITEMS = {
     0: 'Apple', 1: 'Banana', 2: 'Grapes', 3: 'Pineapple', 4: 'Asparagus', 5: 'Blackberry', 6: 'Blueberry',
     7: 'Mushroom', 8: 'Onion', 9: 'Peanut', 10: 'Pear', 11: 'Peas', 12: 'Potato', 13: 'Steak', 14: 'Strawberry'
 };
 
+// React functional component for the sketching functionality
 export default function Sketch() {
+    // Ref for accessing the canvas component
     const canvasRef = useRef(null);
+
+    // State variables for managing drawing mode, stroke width, eraser width, prediction, error, and drawing objective
     const [eraseMode, setEraseMode] = useState(false);
     const [strokeWidth, setStrokeWidth] = useState(5);
     const [eraserWidth, setEraserWidth] = useState(10);
@@ -16,50 +21,50 @@ export default function Sketch() {
     const [error, setError] = useState(null);
     const [drawingObjective, setDrawingObjective] = useState('');
 
+    // useEffect hook to generate a random drawing objective when the component mounts
     useEffect(() => {
-        // Generate a random item as the drawing objective when the component mounts
         generateDrawingObjective();
     }, []);
 
+    // Function to generate a random drawing objective from ITEMS dictionary
     const generateDrawingObjective = () => {
         const randomItemId = Math.floor(Math.random() * Object.keys(ITEMS).length);
         setDrawingObjective(ITEMS[randomItemId]);
     };
 
+    // Event handler for pen button click
     const handlePenClick = () => {
         setEraseMode(false);
         canvasRef.current?.eraseMode(false);
     };
 
+    // Event handler for changing stroke width
     const handleStrokeWidthChange = (event) => {
         setStrokeWidth(+event.target.value);
     };
 
+    // Event handler for eraser button click
     const handleEraserClick = () => {
         setEraseMode(true);
         canvasRef.current?.eraseMode(true);
     };
 
+    // Event handler for changing eraser width
     const handleEraserWidthChange = (event) => {
         setEraserWidth(+event.target.value);
     };
 
+    // Event handler for clearing the canvas
     const handleClearCanvas = () => {
         canvasRef.current.clearCanvas();
     };
 
+    // Event handler for uploading the image and getting prediction
     const handleUploadImage = () => {
         canvasRef.current
             .exportImage("png")
             .then((data) => {
-                // Send image data to the server
-                fetch('/uploadImage', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ imageData: data })
-                })
+                axios.post('/uploadImage', { imageData: data }) // Making a POST request to upload the image data
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('Failed to upload image');
@@ -68,8 +73,7 @@ export default function Sketch() {
                     })
                     .then(responseData => {
                         console.log('Image uploaded successfully:', responseData);
-                        // Call getPrediction after image upload
-                        getPrediction();
+                        getPrediction(); // Call getPrediction after image upload
                     })
                     .catch((error) => {
                         console.error('Error uploading image:', error);
@@ -81,15 +85,12 @@ export default function Sketch() {
             });
     };
 
+    // Function to get prediction from the server
     const getPrediction = async () => {
         try {
-            // Make a POST request to the '/getPrediction' route
-            const response = await axios.post('/getPrediction', {});
-
-            // Handle prediction result
-            setPrediction(response.data.prediction);
-            console.log("Objective: ", drawingObjective.toLowerCase(), "Prediction result: ", response.data.prediction.toLowerCase())
-            // Check if prediction matches the drawing objective
+            const response = await axios.post('/getPrediction', {}); // Making a POST request to fetch prediction
+            setPrediction(response.data.prediction); // Setting prediction result
+            // Checking if prediction matches the drawing objective
             if (response.data.prediction.toLowerCase() === drawingObjective.toLowerCase()) {
                 setError(null);
                 alert('Congratulations! Your drawing matches the objective.');
@@ -97,13 +98,13 @@ export default function Sketch() {
                 setError(`Your drawing does not match the objective (${drawingObjective}). Try again!`);
             }
         } catch (error) {
-            // Handle error
             console.error('Error:', error);
             setError('Error fetching prediction');
             setPrediction(null);
         }
     };
 
+    // Rendering JSX
     return (
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">
             <div className="flex items-center">
