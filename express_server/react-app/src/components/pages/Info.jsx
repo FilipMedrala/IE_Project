@@ -74,7 +74,7 @@ const Info = () => (
                 Explore the data, understand the trends, and learn how even small choices, like reducing sugary drinks, can significantly improve our well-being. Let’s make informed decisions to foster healthier lives for ourselves and our communities.
                 </p>
                 <h3 className="w-full my-2 text-3xl font-bold leading-tight text-center text-gray-800">
-                  Explore to our key statistics
+                  Explore our key statistics
                 <div class="w-4/5 border-t border-gray-500 my-10 mx-auto"></div>
                 <StatisticsCards />
                 <div class="w-4/5 border-t border-gray-500 my-10 mx-auto"></div>
