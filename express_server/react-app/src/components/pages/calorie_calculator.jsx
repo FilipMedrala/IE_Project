@@ -77,30 +77,43 @@ const KidsNutritionCalculator = () => {
     const newAge = Number(e.target.value);
     if (newAge > 100) {
       message.warning('Age cannot exceed 100 year old');
+    } else if (newAge < 0) {
+      // Displaying a warning message if a negative number is entered
+      message.warning('Age cannot be negative');
+      setAge(''); // Resetting Age to blank
     } else {
-      setAge(newAge); // Updating age state
+      setAge(newAge); // Updating Age state
     }
   };
+  // Function to handle height input change
+const handleHeightChange = (e) => {
+  const newHeight = Number(e.target.value);
+  if (newHeight > 250) {
+    // Displaying a warning message if height exceeds the limit
+    message.warning('Height cannot exceed 250 cm');
+  } else if (newHeight < 0) {
+    // Displaying a warning message if a negative number is entered
+    message.warning('Height cannot be negative');
+    setHeight(''); // Resetting height to blank
+  } else {
+    setHeight(newHeight); // Updating height state
+  }
+};
 
-  // Event handler for height input change
-  const handleHeightChange = (e) => {
-    const newHeight = Number(e.target.value);
-    if (newHeight > 250) {
-      message.warning('Height cannot exceed 250 cm');
-    } else {
-      setHeight(newHeight); // Updating height state
-    }
-  };
-
-  // Event handler for weight input change
-  const handleWeightChange = (e) => {
-    const newWeight = Number(e.target.value);
-    if (newWeight > 300) {
-      message.warning('Weight cannot exceed 300 kg');
-    } else {
-      setWeight(newWeight); // Updating weight state
-    }
-  };
+// Function to handle weight input change
+const handleWeightChange = (e) => {
+  const newWeight = Number(e.target.value);
+  if (newWeight > 300) {
+    // Displaying a warning message if weight exceeds the limit
+    message.warning('Weight cannot exceed 300 kg');
+  } else if (newWeight < 0) {
+    // Displaying a warning message if a negative number is entered
+    message.warning('Weight cannot be negative');
+    setWeight(''); // Resetting weight to blank
+  } else {
+    setWeight(newWeight); // Updating weight state
+  }
+};
 
   // Rendering nutrition calculator UI
   return (
