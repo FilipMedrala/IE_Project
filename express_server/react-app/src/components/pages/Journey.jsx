@@ -37,7 +37,7 @@ export default function FallingFood() {
 
   const fetchQuizData = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/quiz', {
+      const response = await axios.get('https://getkidhealthy-backend.onrender.com/quiz', {
         params: {
           stage1: 'Fruit Nutrition',
           stage2: 'Vegetable Nutrition',
@@ -92,12 +92,12 @@ export default function FallingFood() {
       {
         type: "snake",
         content: 'Go to Canvas',
-        url: '/Sketch'
+         url: '/#/Sketch'
       },
       {
         type: "snake",
         content: 'Play Game',
-        url: "/Snake",
+        url: "/#/Snake",
       }
     ],
     [
@@ -113,19 +113,19 @@ export default function FallingFood() {
       {
         type: "snake",
         content: 'Go to Canvas',
-        url: '/Sketch'
+         url: '/#/Sketch'
       },
       {
         type: "snake",
         content: 'Play Game',
-        url: "/FallingFood",
+        url: "/#/FallingFood",
       }
     ],
     [
       {
         type: "video",
         content: 'Watch the Educationl Video',
-        url: 'https://nutrition-journey.s3.ap-southeast-2.amazonaws.com/Dairy.mp4'
+        url: 'https://nutrition-journey.s3.ap-southeast-2.amazonaws.com/Grains.mp4'
       },
       {
         type: "quiz",
@@ -134,12 +134,12 @@ export default function FallingFood() {
       {
         type: "snake",
         content: 'Go to Canvas',
-        url: '/Sketch'
+         url: '/#/Sketch'
       },
       {
         type: "snake",
         content: 'Play Game',
-        url: "/Snake",
+        url: "/#/Snake",
       }
     ],
     [
@@ -155,19 +155,19 @@ export default function FallingFood() {
       {
         type: "snake",
         content: 'Go to Canvas',
-        url: '/Sketch'
+         url: '/#/Sketch'
       },
       {
         type: "snake",
         content: 'Play Game',
-        url: "/FallingFood",
+        url: "/#/FallingFood",
       }
     ],
     [
       {
         type: "video",
         content: 'Watch the Educationl Video',
-        url: 'https://nutrition-journey.s3.ap-southeast-2.amazonaws.com/Grains.mp4',
+        url: 'https://nutrition-journey.s3.ap-southeast-2.amazonaws.com/Dairy.mp4',
       },
       {
         type: "quiz",
@@ -176,12 +176,12 @@ export default function FallingFood() {
       {
         type: "snake",
         content: 'Go to Canvas',
-        url: '/Sketch'
+         url: '/#/Sketch'
       },
       {
         type: "snake",
         content: 'Play Game',
-        url: "/FallingFood",
+        url: "/#/FallingFood",
       }
     ],
     [],
@@ -460,7 +460,7 @@ export default function FallingFood() {
           <div className="finally-wrapper">
             <div className="title">CONGRATULATIONS</div>
             <div className="btn">
-              <Button type="primary" onClick={printDocument}>Get your cartifate</Button>
+              <Button type="primary" onClick={printDocument}>Get your certificate</Button>
             </div>
           </div>
         )

@@ -82,11 +82,22 @@ const KidsNutritionCalculator = () => {
       message.warning('Age cannot be negative');
       setAge(''); // Resetting Age to blank
     } else {
-      setAge(newAge); // Updating Age state
-    }
+  //     setAge(newAge); // Updating age state
+  //   }
+  // };
+
+  // // Event handler for height input change
+  // const handleHeightChange = (e) => {
+  //   const newHeight = Number(e.target.value);
+  //   if (newHeight > 250) {
+  //     message.warning('Height cannot exceed 250 cm');
+  //   } else {
+  //     setHeight(newHeight); // Updating height state
+  setAge(newAge); // Updating Age state
+}
   };
-  // Function to handle height input change
-const handleHeightChange = (e) => {
+ // Function to handle height input change
+ const handleHeightChange = (e) => {
   const newHeight = Number(e.target.value);
   if (newHeight > 250) {
     // Displaying a warning message if height exceeds the limit
@@ -100,7 +111,7 @@ const handleHeightChange = (e) => {
   }
 };
 
-// Function to handle weight input change
+  // Function to handle weight input change
 const handleWeightChange = (e) => {
   const newWeight = Number(e.target.value);
   if (newWeight > 300) {

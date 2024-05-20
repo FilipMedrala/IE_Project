@@ -52,7 +52,7 @@ export default function Sketch() {
         canvasRef.current
             .exportImage("png")
             .then((data) => {
-                fetch('/uploadImage', {
+                fetch('https://getkidhealthy-backend.onrender.com/uploadImage', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ export default function Sketch() {
 
     const getPrediction = async () => {
         try {
-            const response = await axios.post('/getPrediction', {});
+            const response = await axios.post('https://getkidhealthy-backend.onrender.com/getPrediction', {});
             setPrediction(response.data.prediction);
         } catch (error) {
             console.error('Error:', error);

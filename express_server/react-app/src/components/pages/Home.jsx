@@ -8,6 +8,7 @@ import user from "../assets/user.jpeg";
 export default function App() {
 
 
+
   return (
     <div>
       <div className="pt-24 bg-gradient-to-r from-cyan-300 to-blue-900" >
@@ -31,6 +32,7 @@ export default function App() {
             <img className="w-full md:w-4/5 z-50" src={family} alt="Family" />
           </div>
         </div>
+        
       </div>
       <section className="bg-white border-b py-8s">
         <div className="container max-w-5xl mx-auto m-8">
@@ -38,8 +40,21 @@ export default function App() {
          
           <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
             Welcome to Health Journey!
-            <img src={user} alt="Descriptive Text" className="mx-auto my-8 rounded-lg shadow-lg" style={{maxWidth: '80%'}} />
+            
           </h2>
+
+          
+          <div className="relative flex justify-center items-center">
+        <img src={user} alt="Descriptive Text" className="my-8 rounded-lg shadow-lg" style={{maxWidth: '80%'}} />
+        <div className="absolute flex flex-col justify-center items-center left-full ml-4" style={{top: '50%', transform: 'translateY(-50%)'}}>
+          <Link to="/#/Info" className="bg-blue-500 text-white font-bold py-2 px-4 rounded-full mb-4 shadow-lg hover:bg-blue-700 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+            Go from Parents
+          </Link>
+          <Link to="/#/Journey" className="bg-green-500 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:bg-green-700 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out mt-4">
+            Go from Kids
+          </Link>
+        </div>
+      </div>
           <div className="w-full mb-4">
             <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
           </div>
@@ -57,7 +72,7 @@ export default function App() {
                 <br />
                 <Link
                   className="text-pink-500 underline"
-                  to="/Info"
+                  to="/#/Info"
                 >
                   Find out more
                 </Link>
@@ -88,7 +103,7 @@ export default function App() {
                   <br />
                   <Link
                     className="text-pink-500 underline"
-                    to="/Journey"
+                    to="/#/Journey"
                   >
                     Find out more
                   </Link>
@@ -109,7 +124,7 @@ export default function App() {
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
               <Link
-                to="/Snake"
+                to="/#/Snake"
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <p className="w-full text-gray-600 text-xs md:text-sm px-6">
@@ -128,7 +143,7 @@ export default function App() {
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div className="flex items-center justify-start">
-                <Link to="/Snake" className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                <Link to="/#/Snake" className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                   PLAY SNAKE
                 </Link>
               </div>
@@ -137,7 +152,7 @@ export default function App() {
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
               <Link
-                to="/FallingFood"
+                to="/#/FallingFood"
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <p className="w-full text-gray-600 text-xs md:text-sm px-6">
@@ -155,7 +170,7 @@ export default function App() {
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div className="flex items-center justify-center">
-                <Link to="/FallingFood" className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                <Link to="/#/FallingFood" className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                   PLAY FALLING FOOD
                 </Link>
               </div>
@@ -164,7 +179,7 @@ export default function App() {
           <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
             <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
               <Link
-                to="/"
+                to="/#/MemoryGame"
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <p className="w-full text-gray-600 text-xs md:text-sm px-6">
@@ -180,8 +195,8 @@ export default function App() {
             </div>
             <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div className="flex items-center justify-center">
-                <Link to="/MemoryGame" className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                  PLAY FALLING FOOD
+                <Link to="/#/MemoryGame" className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                  PLAY MEMORY GAME
                 </Link>
               </div>
             </div>

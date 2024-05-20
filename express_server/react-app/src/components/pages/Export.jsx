@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import html2canvas from "html2canvas";
-import jsPDF from "jsPDF";
+import jsPDF from "jspdf";
 import family from "../assets/family.jpg";
 import goodImage from "../assets/certificate_good.jpeg";  
 
