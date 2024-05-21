@@ -87,16 +87,16 @@ export const RenderLayout = () => {
                                     </button>
                                     {showParentDropdown && (
                                         <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                            <Link to="/#/info/health-awareness" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
-                                            <Link to="/#/info/guideline" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guideline</Link>
+                                            <Link to="/info/health-awareness" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Health Awareness</Link>
+                                            <Link to="/info/guideline" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Healthy Guideline</Link>
                                             <div className="relative">
                                                 <button className="block w-full text-left px-4 py-2 text-black text-lg hover:bg-sky-300" onClick={toggleHealthToolsDropdown}>
                                                     Health Tools {showHealthToolsDropdown ? '▲' : '▼'}
                                                 </button>
                                                 {showHealthToolsDropdown && (
                                                     <div className="absolute left-full top-0 dropdown-menu rounded shadow-lg py-2">
-                                                        <Link to="/#/info/bmi-calculator" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
-                                                        <Link to="/#/info/calorie-calculator" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Calorie Calculator</Link>
+                                                        <Link to="/info/bmi-calculator" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>BMI Calculator</Link>
+                                                        <Link to="/info/calorie-calculator" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Calorie Calculator</Link>
                                                     </div>
                                                 )}
                                             </div>
@@ -109,11 +109,11 @@ export const RenderLayout = () => {
                                     </button>
                                     {showKidsDropdown && (
                                         <div className="absolute dropdown-menu rounded shadow-lg py-2 mt-1">
-                                            <Link to="/#/Journey" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Journey</Link>
-                                            <Link to="/#/Snake" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Snake</Link>
-                                            <Link to="/#/FallingFood" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>FallingFood</Link>
-                                            <Link to="/#/MemoryGame" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>MemoryGame</Link>
-                                            <Link to="/#/Sketch" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Sketch</Link>
+                                            <Link to="/Journey" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Journey</Link>
+                                            <Link to="/Snake" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Snake</Link>
+                                            <Link to="/FallingFood" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>FallingFood</Link>
+                                            <Link to="/MemoryGame" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>MemoryGame</Link>
+                                            <Link to="/Sketch" className="block px-4 py-2 text-white text-lg hover:bg-sky-300" onClick={closeDropdowns}>Sketch</Link>
                                         </div>
                                     )}
                                 </li>
@@ -126,17 +126,17 @@ export const RenderLayout = () => {
                 <div className="flex-grow">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/#/info" element={<Info />} />
-                        <Route path="/#info/health-awareness" element={<Info />} />
-                        <Route path="/#/info/bmi-calculator" element={<BMICal />} />
-                        <Route path="/#/info/calorie-calculator" element={<CalorieCal />} />
-                        <Route path="/#/info/guideline" element={<Guideline />} />
-                        <Route path="/#/Journey" element={<Journey />} />
-                        <Route path="/#/Snake" element={<Snake />} />
-                        <Route path="/#/FallingFood" element={<FallingFood />} />
-                        <Route path="/#/Export" element={<Export />} />
-                        <Route path="/#/MemoryGame" element={<MemoryGame />} />
-                        <Route path="/#/Sketch" element={<Sketch />} />
+                        <Route path="/info" element={<Info />} />
+                        <Route path="/info/health-awareness" element={<Info />} />
+                        <Route path="/info/bmi-calculator" element={<BMICal />} />
+                        <Route path="/info/calorie-calculator" element={<CalorieCal />} />
+                        <Route path="/info/guideline" element={<Guideline />} />
+                        <Route path="/Journey" element={<Journey />} />
+                        <Route path="/Snake" element={<Snake />} />
+                        <Route path="/FallingFood" element={<FallingFood />} />
+                        <Route path="/Export" element={<Export />} />
+                        <Route path="/MemoryGame" element={<MemoryGame />} />
+                        <Route path="/Sketch" element={<Sketch />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
